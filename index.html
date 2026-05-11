@@ -32,6 +32,8 @@
       <a href="#soevereiniteit">EU</a>
       <a href="#onderwijs">Onderwijs</a>
       <a href="#veiligheid">Veiligheid</a>
+      <a href="#vergelijking">Vergelijking</a>
+      <a href="#druk">Druk</a>
       <a href="#verval">Verval</a>
       <a href="#bronnen">Bronnen</a>
     </nav>
@@ -401,11 +403,7 @@
       </div>
     </div>
 
-    <blockquote class="quote">
-      <p>"Ik werk 60 uur, betaal me suf, krijg geen huis. Mijn buren zitten in de bijstand
-      die ik betaal. Als ik klaag heet dat racisme. Ik ga naar Portugal."</p>
-      <cite>— anoniem, citaat uit enquête Universiteit Maastricht (2022) — een van 1.247 emigranten</cite>
-    </blockquote>
+    <div class="quotes-grid" id="quotesGrid"></div>
   </div>
 </section>
 
@@ -582,6 +580,84 @@
       <h3>Geldende wetten + AMvB's + ministeriële regelingen</h3>
       <div class="chart-wrap"><canvas id="chartRegels"></canvas></div>
       <p class="src">Bron: Wetten.overheid.nl; ATR jaarrapporten</p>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     INTERNATIONALE VERGELIJKING
+     ===================================================== -->
+<section id="vergelijking" class="chapter">
+  <div class="container">
+    <div class="chapter-head wide">
+      <p class="kicker">13 — Vergelijking</p>
+      <h2 class="h2">Het ligt niet aan "de wereld". <br>Vergelijkbare landen <span class="hl">doen het beter</span>.</h2>
+      <p class="lede">
+        "Maar alle Europese landen worstelen met hetzelfde" is het standaard­antwoord van elke minister.
+        Klopt niet. Hieronder Nederland naast Duitsland, België, Zwitserland, Ierland en Portugal — zes
+        vergelijkbare West-Europese economieën. Op zes essentiële indicatoren scoort Nederland structureel
+        onderaan of bovenaan in de verkeerde richting.
+      </p>
+    </div>
+    <div class="vs-stack" id="vsStack"></div>
+  </div>
+</section>
+
+<!-- =====================================================
+     WERKDRUK / ZORG / JONGEREN
+     ===================================================== -->
+<section id="druk" class="chapter alt">
+  <div class="container">
+    <div class="chapter-head wide">
+      <p class="kicker">14 — Werkdruk, zorg, jongeren</p>
+      <h2 class="h2">De stille epidemie: <br><span class="hl">een land op</span>.</h2>
+      <p class="lede">
+        Eén op de vijf werkenden heeft burn-out­klachten. De wachttijd voor specialistische GGZ is verdubbeld in vijf jaar.
+        Een miljoen mensen ontvluchtte loondienst en werd zzp'er — ondanks dat dat hen alle sociale zekerheid kost.
+        En de jongeren? Twee op de drie denkt dat hun kinderen het slechter zullen hebben.
+      </p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Burn-out­klachten beroepsbevolking (%)</h3>
+        <div class="chart-wrap"><canvas id="chartBurnout"></canvas></div>
+        <p class="src">Bron: TNO/CBS NEA — van 11% (2007) naar 20.6% (2023). Eén op vijf werkenden.</p>
+      </div>
+      <div class="card">
+        <h3>Wachttijd specialistische GGZ (weken)</h3>
+        <div class="chart-wrap"><canvas id="chartWachttijd"></canvas></div>
+        <p class="src">Bron: NZa Wachttijdmonitor — meer dan een half jaar wachten als je echt hulp nodig hebt</p>
+      </div>
+    </div>
+
+    <div class="card wide">
+      <h3>Aantal zzp'ers — de vlucht uit loondienst (× 1.000)</h3>
+      <div class="chart-wrap"><canvas id="chartZZP"></canvas></div>
+      <p class="src">Bron: CBS — van 580k (2003) naar 1.37 miljoen (2023). Mensen kiezen onzekerheid boven een vast contract bij een Nederlandse werkgever.</p>
+    </div>
+
+    <div class="callout dark">
+      <div class="callout-num">67%</div>
+      <div>
+        <h4>Twee op de drie jongeren (18-35) denkt dat de volgende generatie het slechter zal hebben.</h4>
+        <p>Eén op de drie overweegt serieus om Nederland te verlaten. Eén op de twee denkt nooit een eigen huis te kunnen kopen. Een land dat zijn eigen jeugd geen toekomst meer verkoopt, heeft geen toekomst.</p>
+      </div>
+    </div>
+
+    <div class="grid-3 profile">
+      <div class="profile-card">
+        <div class="profile-num">54%</div>
+        <p>jongeren denkt <strong>nooit</strong> een eigen koophuis te kunnen kopen <br><span class="muted">I&amp;O Research 2024</span></p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-num">31%</div>
+        <p>jongeren overweegt <strong>serieus</strong> om NL te verlaten <br><span class="muted">EenVandaag jongerenpeiling</span></p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-num">44%</div>
+        <p>jongeren voelt zich <strong>ongelukkig</strong> over de richting van het land <br><span class="muted">I&amp;O Research 2024</span></p>
+      </div>
     </div>
   </div>
 </section>

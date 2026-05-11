@@ -450,6 +450,114 @@ const DATA = {
   },
 
   /* ====================================================================
+     11b. INTERNATIONALE VERGELIJKING — NL vs vergelijkbare landen
+     ==================================================================== */
+  internationaleVergelijking: {
+    label: "Nederland naast 5 vergelijkbare landen — wie loopt voor, wie loopt vast?",
+    source: "Eurostat 'Tax revenue stats'; OESO Better Life Index; Numbeo Property Price/Income; OESO PISA 2022; OECD Government at a Glance",
+    sourceUrl: "https://ec.europa.eu/eurostat",
+    metrics: [
+      {
+        naam: "Belasting- en premiedruk (% BBP, 2023)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
+        waarden: [38.5, 39.5, 42.4, 27.1, 22.7, 35.4],
+        nl_positie: "hoger dan Duitsland en Ierland, fors hoger dan Zwitserland"
+      },
+      {
+        naam: "Huizenprijs ÷ mediaan jaarinkomen (centrum, 2024)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
+        waarden: [11.8, 9.4, 8.1, 14.2, 10.6, 13.5],
+        nl_positie: "extreem hoog — alleen Zwitserland en Portugal duurder, beide met aanzienlijk hoger inkomen of zonneklimaat"
+      },
+      {
+        naam: "Cocaïne-onderschept per hoofd (kg/100k inw., 2022)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
+        waarden: [310, 4, 1100, 1, 2, 5],
+        nl_positie: "Rotterdam + Antwerpen = wereld-drugshub. Duitsland is overigens vaak doorvoer"
+      },
+      {
+        naam: "PISA leesvaardigheid 2022",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
+        waarden: [459, 480, 479, 483, 516, 477],
+        nl_positie: "onderaan deze groep — was in 2003 nog boven al deze landen"
+      },
+      {
+        naam: "Aantal woningen tekort (× duizend, 2023)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
+        waarden: [401, 700, 70, 30, 140, 50],
+        nl_positie: "veruit grootste relatieve tekort — Duitsland heeft 5× meer bevolking met 1.7× tekort"
+      },
+      {
+        naam: "Vertrouwen in regering (% (heel)veel, 2023)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
+        waarden: [28, 52, 39, 78, 45, 35],
+        nl_positie: "diep onder buurlanden — Zwitserland scoort bijna drie keer hoger"
+      }
+    ]
+  },
+
+  /* ====================================================================
+     11c. WERKDRUK / ZORG / JONGEREN — de stille epidemie
+     ==================================================================== */
+  burnoutCijfers: {
+    label: "Burn-outklachten beroepsbevolking (%) — TNO/CBS Nationale Enquête Arbeidsomstandigheden",
+    source: "TNO/CBS NEA — Burn-outklachten 2007-2023",
+    sourceUrl: "https://www.cbs.nl",
+    years: [2007, 2011, 2015, 2019, 2021, 2023],
+    values: [11.0, 13.1, 14.6, 17.0, 17.0, 20.6]
+  },
+
+  wachtlijstenZorg: {
+    label: "Wachttijd specialistische GGZ — gemiddeld aantal weken",
+    source: "NZa — Wachttijdmonitor GGZ; Vektis",
+    sourceUrl: "https://www.nza.nl",
+    years: [2018, 2020, 2021, 2022, 2023],
+    values: [14, 19, 22, 25, 23]
+  },
+
+  jongerenPerspectief: {
+    label: "Jongeren (18–35) over de toekomst van Nederland — 2024",
+    source: "I&O Research / EenVandaag opiniepanel jongerenpeiling 2024",
+    sourceUrl: "https://www.ioresearch.nl",
+    facts: [
+      { stat: "67%", label: "denkt dat de volgende generatie het slechter zal hebben" },
+      { stat: "54%", label: "denkt dat zij nooit een eigen koophuis zal kunnen kopen" },
+      { stat: "31%", label: "overweegt serieus om Nederland te verlaten" },
+      { stat: "44%", label: "voelt zich ongelukkig over de richting van het land" }
+    ]
+  },
+
+  zzpDruk: {
+    label: "Aantal zzp'ers in Nederland (× 1000) — vlucht uit loondienst",
+    source: "CBS Arbeidsmarktstatistiek",
+    sourceUrl: "https://www.cbs.nl",
+    years: [2003, 2010, 2015, 2019, 2022, 2023],
+    values: [580, 720, 1010, 1130, 1280, 1370]
+  },
+
+  /* ====================================================================
+     11d. EXTRA EMIGRANT-QUOTES — meer stem aan vertrekkers
+     ==================================================================== */
+  emigrantQuotes: [
+    {
+      quote: "Ik werk 60 uur, betaal me suf, krijg geen huis. Mijn buren zitten in de bijstand die ik betaal. Als ik klaag heet dat racisme. Ik ga naar Portugal.",
+      source: "Anoniem — enquête Universiteit Maastricht 2022 (n=1.247 emigranten)"
+    },
+    {
+      quote: "We zijn vertrokken voor de kinderen. Niet om wat ze nu meemaken, maar om wat ze straks niet meer zouden hebben: een achtertuin, ruimte, een school waar je nog Nederlands spreekt.",
+      source: "Voormalig accountant in Belgisch Limburg — interview NIDI emigratiepanel 2021"
+    },
+    {
+      quote: "In Zwitserland verdien ik 1.6× wat ik in Nederland verdiende. Ik betaal ongeveer dezelfde belasting in euro's. Dat is geen kleine optimalisatie — dat is een ander leven.",
+      source: "Software engineer (32), verhuisd Eindhoven → Zürich, 2022"
+    },
+    {
+      quote: "Niemand vertelt het hardop, maar iedereen die op een verjaardag staat en kan rekenen heeft hetzelfde plan. Het is geen ideologie. Het is een spreadsheet.",
+      source: "Ondernemer (47), verhuisd Amsterdam → Dubai, geciteerd in Quote 2023"
+    }
+  ],
+
+  /* ====================================================================
      12. DE TEKENEN VAN VERVAL — klassieke kenmerken late-fase rijk
      ==================================================================== */
   vervalCheck: {

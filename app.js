@@ -674,6 +674,128 @@
   });
 
   /* ====================================================================
+     CHART 29 — Burn-out
+     ==================================================================== */
+  if ($('chartBurnout')) new Chart($('chartBurnout'), {
+    type: 'line',
+    data: {
+      labels: DATA.burnoutCijfers.years,
+      datasets: [{
+        data: DATA.burnoutCijfers.values,
+        borderColor: palette.accent,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.35)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, suggestedMax: 25, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% met burn-outklachten` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 30 — Wachttijd GGZ
+     ==================================================================== */
+  if ($('chartWachttijd')) new Chart($('chartWachttijd'), {
+    type: 'bar',
+    data: {
+      labels: DATA.wachtlijstenZorg.years,
+      datasets: [{
+        data: DATA.wachtlijstenZorg.values,
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.15)']]),
+        borderRadius: 4, maxBarThickness: 60
+      }]
+    },
+    options: barOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + ' wk'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y} weken wachten` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 31 — Zzp'ers
+     ==================================================================== */
+  if ($('chartZZP')) new Chart($('chartZZP'), {
+    type: 'line',
+    data: {
+      labels: DATA.zzpDruk.years,
+      datasets: [{
+        data: DATA.zzpDruk.values,
+        borderColor: palette.accent2,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(249,115,22,.35)'],[1,'rgba(249,115,22,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent2, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + 'k'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + (c.parsed.y * 1000).toLocaleString('nl-NL') + ' zzp\'ers' } } }
+    })
+  });
+
+  /* ====================================================================
+     VS STACK — internationale vergelijking (6 metrics × 6 landen)
+     ==================================================================== */
+  if ($('vsStack')) {
+    const vs = DATA.internationaleVergelijking.metrics;
+    const colors = [palette.accent, palette.ink4, palette.ink4, palette.ink4, palette.ink4, palette.ink4];
+    $('vsStack').innerHTML = vs.map((m, i) => `
+      <div class="vs-row">
+        <div class="vs-row-head">
+          <span class="vs-row-num">${String(i+1).padStart(2,'0')}</span>
+          <h4>${m.naam}</h4>
+        </div>
+        <div class="vs-row-chart">
+          <canvas id="vsChart${i}"></canvas>
+        </div>
+        <p class="vs-row-note">${m.nl_positie}</p>
+      </div>
+    `).join('');
+
+    // Render each comparison chart
+    vs.forEach((m, i) => {
+      const canvas = $('vsChart' + i);
+      if (!canvas) return;
+      new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels: m.landen,
+          datasets: [{
+            data: m.waarden,
+            backgroundColor: m.landen.map(l => l === 'Nederland' ? palette.accent : palette.ink4),
+            borderRadius: 4, maxBarThickness: 50
+          }]
+        },
+        options: {
+          indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: c => ' ' + c.parsed.x.toLocaleString('nl-NL') } }
+          },
+          scales: {
+            x: {...baseScale, ticks: {...baseScale.ticks, padding: 6}},
+            y: {...baseScale, ticks: {...baseScale.ticks, padding: 10, font: {size: 12, weight: c => c.tick && c.tick.label === 'Nederland' ? '700' : '400'}}}
+          }
+        }
+      });
+    });
+  }
+
+  /* ====================================================================
+     QUOTES GRID — meerdere stemmen van vertrekkers
+     ==================================================================== */
+  if ($('quotesGrid')) {
+    $('quotesGrid').innerHTML = DATA.emigrantQuotes.map(q => `
+      <blockquote class="quote-card">
+        <div class="quote-mark">"</div>
+        <p>${q.quote}</p>
+        <cite>${q.source}</cite>
+      </blockquote>
+    `).join('');
+  }
+
+  /* ====================================================================
      WALL OF NUMBERS
      ==================================================================== */
   if ($('wallGrid')) {
@@ -762,7 +884,7 @@
   /* ====================================================================
      SCROLL REVEAL
      ==================================================================== */
-  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item');
+  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row');
   revealTargets.forEach(el => el.classList.add('reveal'));
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
