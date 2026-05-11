@@ -783,6 +783,100 @@
   }
 
   /* ====================================================================
+     CHART 46 — Voedselbanken
+     ==================================================================== */
+  if ($('chartVoedselbank')) new Chart($('chartVoedselbank'), {
+    type: 'line',
+    data: {
+      labels: DATA.voedselbanken.years,
+      datasets: [{
+        data: DATA.voedselbanken.values,
+        borderColor: palette.accent,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.45)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .3, borderWidth: 3,
+        pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, ticks: {...baseScale.ticks, callback: v => v + 'k'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + (c.parsed.y * 1000).toLocaleString('nl-NL') + ' klanten' } } }
+    })
+  });
+
+  /* ====================================================================
+     DEFENSE GRID — 10 critici weerlegd
+     ==================================================================== */
+  if ($('defenseGrid')) {
+    $('defenseGrid').innerHTML = DATA.optimistDefenses.items.map((it, i) => `
+      <div class="defense-card">
+        <div class="defense-claim">
+          <div class="defense-num">${String(i+1).padStart(2,'0')}</div>
+          <div class="defense-claim-text">${it.claim}</div>
+        </div>
+        <div class="defense-reply">
+          <div class="defense-reply-label">Het killer-feit</div>
+          <ul>${it.weerleg.map(w => `
+            <li>
+              <div class="defense-fact">${w.feit}</div>
+              <div class="defense-bron">${w.bron}</div>
+            </li>
+          `).join('')}</ul>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
+     AFFAIR GRID — toeslagenaffaire
+     ==================================================================== */
+  if ($('affairGrid')) {
+    $('affairGrid').innerHTML = DATA.toeslagenAffaire.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+    const q = $('affairQuote'); if (q) q.textContent = '"' + DATA.toeslagenAffaire.quote + '"';
+    const c = $('affairCite'); if (c) c.textContent = '— ' + DATA.toeslagenAffaire.quoteSource;
+  }
+
+  /* ====================================================================
+     ARMOEDE GRID — werkende armen / voedselbanken
+     ==================================================================== */
+  if ($('armoedeGrid')) {
+    $('armoedeGrid').innerHTML = DATA.armoedeProfielen.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
+     STIKSTOF GRID
+     ==================================================================== */
+  if ($('stikstofGrid')) {
+    $('stikstofGrid').innerHTML = DATA.stikstofCrisis.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
+     DEFENSIE GRID
+     ==================================================================== */
+  if ($('defensieGrid')) {
+    $('defensieGrid').innerHTML = DATA.defensieNarco.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
      RANGLIJST-ILLUSIE — dynamische cards
      ==================================================================== */
   if ($('illusionGrid')) {
@@ -1249,7 +1343,7 @@
   /* ====================================================================
      SCROLL REVEAL
      ==================================================================== */
-  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block, .illusion-card');
+  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block, .illusion-card, .defense-card, .affair-card');
   revealTargets.forEach(el => el.classList.add('reveal'));
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

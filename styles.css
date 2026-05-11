@@ -584,6 +584,101 @@ ul { list-style: none; }
   text-underline-offset: 4px;
 }
 
+/* ---------------------------- DEFENSE GRID — critici-weerlegging -------- */
+.defense-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin: 48px 0; }
+
+.defense-card {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 0;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .25s, transform .25s;
+}
+.defense-card:hover { border-color: var(--ink-4); transform: translateY(-2px); }
+@media (max-width: 880px) { .defense-card { grid-template-columns: 1fr; } }
+
+.defense-claim {
+  background: rgba(34,197,94,.05);
+  border-right: 1px solid var(--line);
+  padding: 28px 28px 28px 24px;
+  display: flex; gap: 18px; align-items: center;
+  position: relative;
+}
+.defense-claim::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--good);
+}
+@media (max-width: 880px) {
+  .defense-claim { border-right: 0; border-bottom: 1px solid var(--line); }
+  .defense-claim::before { left: 0; right: 0; top: 0; bottom: auto; width: auto; height: 3px; }
+}
+.defense-num {
+  font-family: var(--serif); font-weight: 800; font-size: 36px;
+  color: var(--good); letter-spacing: -0.03em; line-height: 1;
+  opacity: .55; flex-shrink: 0;
+}
+.defense-claim-text {
+  font-family: var(--serif); font-size: 19px; font-style: italic;
+  color: var(--ink); line-height: 1.35;
+}
+
+.defense-reply {
+  padding: 28px;
+  position: relative;
+}
+.defense-reply::before {
+  content: ''; position: absolute; left: 0; top: 24px; bottom: 24px; width: 2px;
+  background: var(--accent);
+}
+@media (max-width: 880px) { .defense-reply::before { display: none; } }
+.defense-reply-label {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700; margin-bottom: 14px;
+}
+.defense-reply ul { display: grid; gap: 12px; }
+.defense-reply li {
+  padding-left: 22px; position: relative;
+}
+.defense-reply li::before {
+  content: '✕';
+  position: absolute; left: 0; top: 1px;
+  color: var(--accent); font-weight: 700; font-size: 13px;
+}
+.defense-fact {
+  font-size: 14px; line-height: 1.5; color: var(--ink);
+  margin-bottom: 2px;
+}
+.defense-bron {
+  font-size: 11px; color: var(--ink-4); letter-spacing: .02em;
+}
+
+/* ---------------------------- AFFAIR GRID — toeslagen/armoede/stikstof - */
+.affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin: 48px 0;
+}
+@media (max-width: 880px) { .affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid { grid-template-columns: 1fr 1fr; gap: 12px; } }
+@media (max-width: 560px) { .affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid { grid-template-columns: 1fr; } }
+
+.affair-card {
+  padding: 28px 24px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  border-top: 3px solid var(--accent);
+  transition: transform .25s, border-color .25s;
+}
+.affair-card:hover { transform: translateY(-3px); border-color: var(--ink-4); }
+.affair-stat {
+  font-family: var(--serif); font-weight: 800; font-size: 44px;
+  color: var(--accent); line-height: 1; letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+.affair-label {
+  font-size: 14px; line-height: 1.55; color: var(--ink-2);
+}
+
 /* ---------------------------- ILLUSIE / RANGLIJSTEN --------------------- */
 .illusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 48px 0; }
 @media (max-width: 960px) { .illusion-grid { grid-template-columns: 1fr; } }

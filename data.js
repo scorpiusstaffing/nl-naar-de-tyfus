@@ -782,6 +782,105 @@ const DATA = {
   ],
 
   /* ====================================================================
+     11d2. MAAR WAT DAN MET...? — 10 standaard tegenargumenten weerlegd
+     ==================================================================== */
+  optimistDefenses: {
+    label: "Tien meest gehoorde tegenargumenten — en het killer-feit dat ze sloopt",
+    source: "UWV, CBS Inactiviteit, Voedselbanken Nederland, Eurostat, OESO, NIDI, RIVM, Transparency International, WWF Living Planet Index NL, Min. Financiën",
+    items: [
+      {
+        claim: "\"De werkloosheid is toch laag? 3,5%.\"",
+        weerleg: [
+          { feit: "1,4 mln Nederlanders zit in bijstand, WW of WIA — buiten de werkloosheidscijfers", bron: "UWV, CBS" },
+          { feit: "Bijstand: ~400k · WIA/WAO: ~800k · WW: ~200k", bron: "UWV jaarcijfers 2023" },
+          { feit: "Totaal inactief 15-64: 2,5 mln — bijna een op vijf van de beroepsbevolking", bron: "CBS Arbeidsdeelname" },
+          { feit: "Definitie 'werkloos' = actief zoekend + beschikbaar. Wie ontmoedigd thuiszit, telt niet mee", bron: "ILO/Eurostat methodologie" }
+        ]
+      },
+      {
+        claim: "\"Armoede neemt structureel af.\"",
+        weerleg: [
+          { feit: "Voedselbanken: van 50.000 klanten (2008) naar 200.000 (2024) — verviervoudigd", bron: "Voedselbanken Nederland" },
+          { feit: "8% van werkenden leeft onder de armoedegrens (\"werkende armen\")", bron: "SCP 'Armoede in Kaart' 2023" },
+          { feit: "220.000 kinderen groeien op in armoede — 1 op 12", bron: "SCP / Kinderombudsman" },
+          { feit: "Energie­banken zijn pas in 2022 ontstaan — een armoede-categorie die geen bestaan had", bron: "Rijksoverheid 2022" }
+        ]
+      },
+      {
+        claim: "\"Het BBP per capita groeit, dus we worden rijker.\"",
+        weerleg: [
+          { feit: "BBP-groei wordt gedreven door bevolkingsgroei (immigratie), niet productiviteit", bron: "Eurostat productivity per hour worked" },
+          { feit: "Productiviteit per gewerkt uur stagneert sinds 2008", bron: "OESO Productivity Statistics" },
+          { feit: "Mediaan reëel besteedbaar inkomen daalde 2010-2023", bron: "CBS Mediaan inkomen, gecorrigeerd voor inflatie" },
+          { feit: "BBP/capita-stijging gaat naar bedrijfswinsten en kapitaal — niet naar lonen", bron: "DNB Vermogensverdeling 2023" }
+        ]
+      },
+      {
+        claim: "\"De criminaliteit daalt al jaren.\"",
+        weerleg: [
+          { feit: "Aangifte-bereidheid daalde van 35% (2012) naar 21% (2023) — dalende cijfers verbergen ongemelde criminaliteit", bron: "CBS Veiligheidsmonitor" },
+          { feit: "Cybercrime / online fraude steeg ×10 sinds 2015 — daar ligt de criminaliteit nu", bron: "Politie cybercrime­team" },
+          { feit: "Steekincidenten jongeren ×3 sinds 2010", bron: "Politie operationeel centrum" },
+          { feit: "Rotterdam haven onderschept 60 ton cocaïne/jaar — Italiaanse aanklagers noemen NL openlijk een narcostaat", bron: "Douane NL; Direzione Nazionale Antimafia 2022" }
+        ]
+      },
+      {
+        claim: "\"We hebben de hoogste levensverwachting van Europa.\"",
+        weerleg: [
+          { feit: "NL gedaald van top-5 (2010) naar plek #15-18 (2023) — Spanje, Italië, Frankrijk, Zwitserland scoren hoger", bron: "Eurostat life expectancy" },
+          { feit: "'Gezonde levensjaren' (HLY-indicator): NL 65 jaar — Zweden 73, Spanje 74", bron: "Eurostat Healthy Life Years" },
+          { feit: "Levensverwachting van laagopgeleide Nederlandse mannen: 78. Voor hoogopgeleide: 87 — gat van 9 jaar", bron: "CBS Levensverwachting naar opleidings­niveau" }
+        ]
+      },
+      {
+        claim: "\"We hebben migranten nodig voor de vergrijzing.\"",
+        weerleg: [
+          { feit: "NIDI: alleen kennismigratie draagt netto bij — niet-westerse migratie verergert druk op verzorgingsstaat", bron: "NIDI 'Verkenning bevolking 2050'" },
+          { feit: "Gemiddelde leeftijd asielmigrant: 28. Zij worden zelf oud — de demografische 'verjonging' is tijdelijk", bron: "IND asylum-trends" },
+          { feit: "Fertiliteit blijft 1,5 — voor bevolkings­vervanging is 2,1 nodig. Migratie schuift het probleem alleen voor zich uit", bron: "CBS Vruchtbaarheidscijfers" },
+          { feit: "Per Westeuropees scenario zou NL bij gelijke immigratie­snelheid in 2070 een bevolking van 22 miljoen hebben", bron: "Primos 2024 / NIDI" }
+        ]
+      },
+      {
+        claim: "\"De EU geeft ons vrede, welvaart en stabiliteit.\"",
+        weerleg: [
+          { feit: "Netto bijdrage 2023: €8,6 mld — 5,7× wat het was in 2000", bron: "Min. Financiën, Miljoenennota" },
+          { feit: "Eerste keer EU-schulden namens lidstaten: €750 mrd Herstelfonds. NL medeaansprakelijk", bron: "EU Next Generation EU 2020" },
+          { feit: "60+ beleidsterreinen hebben Nederland geen vetorecht meer", bron: "Raad van State 'Staat van de EU'" },
+          { feit: "Drie nationale referenda gewonnen door NEE-stem — alle drie genegeerd of het instrument afgeschaft", bron: "Kiesraad 2005, 2016, 2018" }
+        ]
+      },
+      {
+        claim: "\"Nederland is een rechtsstaat.\"",
+        weerleg: [
+          { feit: "Toeslagenaffaire: 26.000 ouders door de Belastingdienst onterecht als fraudeur bestempeld — financieel verwoest, kinderen uit huis geplaatst", bron: "Parlementaire Ondervragings­commissie Kinderopvang­toeslag 2020" },
+          { feit: "Etnisch profileren door overheidsalgoritme bevestigd — gezinnen met dubbele nationaliteit kregen automatisch verhoogd fraude-risico", bron: "Autoriteit Persoonsgegevens 2020" },
+          { feit: "Tien jaar oneerlijk Box 3-vermogens­belasting — Hoge Raad oordeelde uiteindelijk dat het systeem ongrondwettelijk was", bron: "Hoge Raad Kerstarrest 2021" },
+          { feit: "Stikstofbeleid: boeren onteigend zonder normale planologische procedure, op EU-rechterlijk bevel", bron: "Raad van State 2019 PAS-uitspraak" }
+        ]
+      },
+      {
+        claim: "\"Maar Nederland is groen en duurzaam.\"",
+        weerleg: [
+          { feit: "WWF Living Planet Report: -25% biodiversiteit Nederland sinds 1990", bron: "WWF Living Planet Index NL" },
+          { feit: "Natura 2000-gebieden vrijwel allemaal in slechte staat van instandhouding", bron: "European Environment Agency" },
+          { feit: "Gas afgesloten, kernenergie nooit gebouwd — Nederland is energiemand-import­afhankelijk", bron: "TenneT / CBS Energie­balans" },
+          { feit: "CO2-uitstoot per capita: NL 8,1 ton — EU-gemiddelde 6,7 ton", bron: "Eurostat 2022" }
+        ]
+      },
+      {
+        claim: "\"We wonen ruimer dan ooit — m² per persoon stijgt.\"",
+        weerleg: [
+          { feit: "M² per inwoner stijgt vooral door dat ouderen alleen overblijven in eengezinswoningen — niet door dat jongeren meer ruimte krijgen", bron: "CBS Wonen / NVM" },
+          { feit: "25-34 jarigen die nog bij ouders wonen: gestegen van 10% naar 23%", bron: "CBS / Eurostat" },
+          { feit: "Gemiddelde leeftijd starter op de koopmarkt: 36 jaar (was 28 in 1995)", bron: "Kadaster / NVM Starters­monitor" },
+          { feit: "Wachttijd sociale huur Amsterdam: 14,5 jaar — Utrecht 12, Den Haag 8,5", bron: "WoningNet jaarrapportages" }
+        ]
+      }
+    ]
+  },
+
+  /* ====================================================================
      11e. DE RANGLIJST-ILLUSIE — wat de top-10 lijstjes verbergen
      ==================================================================== */
   ranglijstIllusie: {
@@ -892,6 +991,81 @@ const DATA = {
         ],
         bron: "WEF GCI 2019 (laatste editie); Eurostat R&D; CBS Economische sectoren; ABN AMRO Sector­update 2023"
       }
+    ]
+  },
+
+  /* ====================================================================
+     11f. RECHTSSTAAT IN VERVAL — toeslagenaffaire
+     ==================================================================== */
+  toeslagenAffaire: {
+    label: "Toeslagenaffaire — toen de staat zijn eigen burgers verklaarde tot fraudeur",
+    source: "Parlementaire Ondervragings­commissie Kinderopvang­toeslag 'Ongekend onrecht' 2020; Autoriteit Persoonsgegevens 'Werkwijze Belastingdienst' 2020; Adviescommissie Uitvoering Toeslagen",
+    sourceUrl: "https://www.tweedekamer.nl/kamerstukken/detail?id=2020D52803",
+    facts: [
+      { stat: "26.000", label: "ouders door de Belastingdienst onterecht als toeslagenfraudeur bestempeld" },
+      { stat: "1.675", label: "kinderen onder gedwongen voogdij geplaatst, deels uit huis gehaald — vaak rechtstreeks gevolg van financiële ruïne door de affaire" },
+      { stat: "€100k+", label: "gemiddelde schuld die slachtoffers terug moesten betalen (vaak meer) — inclusief boetes, rente en invorderingskosten" },
+      { stat: "5×", label: "zo vaak werden gezinnen met dubbele nationaliteit als 'risico' gemarkeerd door het overheidsalgoritme" },
+      { stat: "12 jaar", label: "duurde het voordat het schandaal politieke gevolgen kreeg (eerste signalen 2009, kabinet viel 2021)" },
+      { stat: "€5,5 mrd", label: "geschatte compensatiekosten — gefinancierd uit publieke middelen, niet betaald door de daders" }
+    ],
+    quote: "Onze rechtsstaat heeft tijdens deze affaire op verschillende fronten gefaald. Belastingdienst, kabinet, parlement, rechterlijke macht en media hebben allemaal ouders aan hun lot overgelaten.",
+    quoteSource: "Parlementaire Ondervragings­commissie 'Ongekend onrecht', december 2020"
+  },
+
+  /* ====================================================================
+     11g. WERKENDE ARMEN, VOEDSELBANKEN, STILLE ARMOEDE
+     ==================================================================== */
+  voedselbanken: {
+    label: "Aantal klanten Voedselbanken Nederland (× 1.000)",
+    source: "Voedselbanken Nederland — Jaarverslag",
+    sourceUrl: "https://www.voedselbankennederland.nl",
+    years: [2008, 2012, 2015, 2018, 2020, 2022, 2023, 2024],
+    values: [50, 80, 125, 132, 159, 200, 230, 270]
+  },
+
+  armoedeProfielen: {
+    label: "De armoede die de officiële statistiek niet ziet",
+    source: "SCP 'Armoede in Kaart' 2023; Kinderombudsman 2024; CBS Lage inkomens",
+    facts: [
+      { stat: "8%", label: "van álle werkenden leeft onder de armoede­grens — 'werkende armen'" },
+      { stat: "220.000", label: "kinderen groeit op in armoede — 1 op 12 onder de 18" },
+      { stat: "1,2 mln", label: "Nederlanders zit in problematische schuldsituatie — 1 op 14" },
+      { stat: "270.000", label: "voedselbank-klanten in 2024 — verzes­voudigd in 16 jaar" },
+      { stat: "+460%", label: "groei energie­banken sinds oprichting (2022) — bestonden voorheen niet" }
+    ]
+  },
+
+  /* ====================================================================
+     11h. STIKSTOFCRISIS — beleid op EU-bevel
+     ==================================================================== */
+  stikstofCrisis: {
+    label: "Stikstofcrisis — Brussel beslist, boeren onteigend, bouw geblokkeerd",
+    source: "Raad van State 2019 PAS-uitspraak; Min. LNV; LEI-WUR; ABF Research",
+    sourceUrl: "https://www.raadvanstate.nl",
+    facts: [
+      { stat: "2019", label: "Raad van State verklaart PAS-stelsel ongeldig — op grond van EU-Habitatrichtlijn" },
+      { stat: "18.000", label: "vergunningen direct geblokkeerd — bouwprojecten, infrastructuur, agrarische uitbreiding" },
+      { stat: "11.200", label: "boeren­bedrijven die de overheid tussen 2024-2030 wil 'uitkopen' of beperken (programma NPLG)" },
+      { stat: "€24,3 mrd", label: "transitiefonds — door overheid gereserveerd voor uitkopen + boerenleed" },
+      { stat: "−30%", label: "minder vee­dieren als doel — opgelegd via EU Habitat­richtlijn" },
+      { stat: "Kabinet Rutte IV", label: "viel in 2023 mede op stikstof + asiel — twee EU-aangejaagde dossiers tegelijk" }
+    ]
+  },
+
+  /* ====================================================================
+     11i. DEFENSIE LEEG — narcostaat
+     ==================================================================== */
+  defensieNarco: {
+    label: "Het leger is leeg. De staat kan zichzelf niet beschermen.",
+    source: "Min. Defensie Jaarverslag 2023; NAVO Defense Expenditure Report; Direzione Nazionale Antimafia (Italië) jaarrapport 2022; Erasmus Universiteit drugscriminaliteit­onderzoek",
+    facts: [
+      { stat: "1,7%", label: "NL defensie­uitgaven als % BBP — NAVO-norm is 2%. Pas in 2024 begint NL toe te werken naar de norm" },
+      { stat: "9.000", label: "openstaande militaire vacatures — Landmacht alleen al 25% onder­bezetting" },
+      { stat: "0", label: "operationele Patriot-systemen na donaties aan Oekraïne — NL kan geen lucht­oorlog meer voeren" },
+      { stat: "'narcostaat'", label: "term gebruikt door Italiaanse anti-maffia-aanklagers voor Nederland — niet door rechts-NL maar door Italiaanse magistraten" },
+      { stat: "60 ton", label: "cocaïne onderschept Rotterdam 2023 — slechts ~10% van werkelijke instroom volgens Erasmus-onderzoek" },
+      { stat: "2019/2021", label: "moorden op advocaat Wiersum + journalist De Vries — de staat kon zijn eigen rechts­hulpverleners niet beschermen" }
     ]
   },
 
