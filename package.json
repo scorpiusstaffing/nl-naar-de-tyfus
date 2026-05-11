@@ -1,0 +1,12 @@
+{
+  "name": "nl-naar-de-tyfus",
+  "version": "1.0.0",
+  "description": "Een data-rapport over Nederland 1970-2024",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
