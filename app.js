@@ -1,26 +1,22 @@
 /* ==========================================================================
-   NL NAAR DE TYFUS — APP
-   Chart-instanties, animaties, navigatie
+   NL NAAR DE TYFUS — APP v2
    ========================================================================== */
 
 (function () {
   'use strict';
 
-  /* ====================================================================
-     CHART.JS GLOBAL DEFAULTS — dark theme
-     ==================================================================== */
+  /* GLOBAL DEFAULTS — dark theme */
   const palette = {
     accent:  '#dc2626',
     accent2: '#f97316',
     accent3: '#facc15',
-    blue:    '#3b82f6',
     green:   '#22c55e',
+    blue:    '#3b82f6',
     ink:     '#e8e6e1',
     ink2:    '#b8b5ac',
     ink3:    '#8a8780',
     ink4:    '#5b5853',
-    grid:    'rgba(255,255,255,.06)',
-    surface: '#16161a'
+    grid:    'rgba(255,255,255,.06)'
   };
 
   Chart.defaults.color = palette.ink3;
@@ -40,7 +36,6 @@
   Chart.defaults.plugins.tooltip.padding = 12;
   Chart.defaults.plugins.tooltip.titleFont = { size: 13, weight: '700' };
   Chart.defaults.plugins.tooltip.cornerRadius = 6;
-  Chart.defaults.plugins.tooltip.displayColors = true;
   Chart.defaults.plugins.tooltip.boxPadding = 6;
 
   const baseScale = {
@@ -49,117 +44,149 @@
     border: { display: false }
   };
 
-  /* ====================================================================
-     GRADIENT HELPER
-     ==================================================================== */
-  function gradient(ctx, colorStops) {
+  const grad = (ctx, stops) => {
     const g = ctx.chart.ctx.createLinearGradient(0, 0, 0, ctx.chart.height);
-    colorStops.forEach(([stop, color]) => g.addColorStop(stop, color));
+    stops.forEach(([s,c]) => g.addColorStop(s,c));
     return g;
-  }
+  };
+
+  const lineOpts = (extra={}) => Object.assign({
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: { legend: { display: false } },
+    scales: { x: { ...baseScale }, y: { ...baseScale, beginAtZero: false } }
+  }, extra);
+
+  const barOpts = (extra={}) => Object.assign({
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { x: { ...baseScale }, y: { ...baseScale, beginAtZero: true } }
+  }, extra);
+
+  const $ = id => document.getElementById(id);
 
   /* ====================================================================
-     COMMON OPTIONS
+     CHART 1 — Huizenprijs ÷ modaal salaris
      ==================================================================== */
-  function lineOpts(extra = {}) {
-    return Object.assign({
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: { legend: { display: false } },
-      scales: { x: { ...baseScale }, y: { ...baseScale, beginAtZero: false } }
-    }, extra);
-  }
-
-  function barOpts(extra = {}) {
-    return Object.assign({
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: { x: { ...baseScale }, y: { ...baseScale, beginAtZero: true } }
-    }, extra);
-  }
+  if ($('chartHuizenLoon')) new Chart($('chartHuizenLoon'), {
+    type: 'line',
+    data: {
+      labels: DATA.huizenLonenRatio.years,
+      datasets: [{
+        data: DATA.huizenLonenRatio.values,
+        borderColor: palette.accent,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.45)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .35, borderWidth: 3,
+        pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, ticks: {...baseScale.ticks, callback: v => v.toFixed(1) + 'x'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y.toFixed(1)}× modaal jaarsalaris` } } }
+    })
+  });
 
   /* ====================================================================
-     CHARTS
+     CHART 2 — M3 geldgroei
      ==================================================================== */
+  if ($('chartM3')) new Chart($('chartM3'), {
+    type: 'line',
+    data: {
+      labels: DATA.m3Geldgroei.years,
+      datasets: [{
+        data: DATA.m3Geldgroei.values,
+        borderColor: palette.accent2,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(249,115,22,.45)'],[1,'rgba(249,115,22,0)']]),
+        fill: true, tension: .3, borderWidth: 3,
+        pointBackgroundColor: palette.accent2, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, ticks: {...baseScale.ticks, callback: v => v}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y} (index 1980=100)` } } }
+    })
+  });
 
-  // 1. Belastingdruk
-  new Chart(document.getElementById('chartBelasting'), {
+  /* ====================================================================
+     CHART 3 — Marginale druk
+     ==================================================================== */
+  if ($('chartMarginaal')) new Chart($('chartMarginaal'), {
+    type: 'bar',
+    data: {
+      labels: DATA.marginaleDruk.scenarios,
+      datasets: [{
+        data: DATA.marginaleDruk.values,
+        backgroundColor: ctx => {
+          const v = ctx.parsed.y ?? 0;
+          if (v >= 80) return palette.accent;
+          if (v >= 55) return palette.accent2;
+          return palette.accent3;
+        },
+        borderRadius: 6, maxBarThickness: 60
+      }]
+    },
+    options: barOpts({
+      scales: { x: {...baseScale, ticks: {...baseScale.ticks, font: {size: 11}}}, y: {...baseScale, suggestedMax: 100, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% marginale belastingdruk` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 4 — Macro belastingdruk
+     ==================================================================== */
+  if ($('chartBelasting')) new Chart($('chartBelasting'), {
     type: 'line',
     data: {
       labels: DATA.belastingdruk.years,
       datasets: [{
-        label: '% BBP',
         data: DATA.belastingdruk.values,
         borderColor: palette.accent,
-        backgroundColor: ctx => gradient(ctx, [[0,'rgba(220,38,38,.35)'],[1,'rgba(220,38,38,0)']]),
-        fill: true,
-        tension: .35,
-        borderWidth: 2.5,
-        pointBackgroundColor: palette.accent,
-        pointRadius: 4,
-        pointHoverRadius: 6
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.30)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .35, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 4, pointHoverRadius: 6
       }]
     },
     options: lineOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, suggestedMin: 30, suggestedMax: 45, ticks: { ...baseScale.ticks, callback: v => v + '%' } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 25, suggestedMax: 45, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% BBP` } } }
     })
   });
 
-  // 2. BTW
-  new Chart(document.getElementById('chartBTW'), {
+  /* ====================================================================
+     CHART 5 — BTW
+     ==================================================================== */
+  if ($('chartBTW')) new Chart($('chartBTW'), {
     type: 'line',
     data: {
       labels: DATA.btw.events.map(e => e.year),
       datasets: [{
-        label: 'BTW algemeen',
         data: DATA.btw.events.map(e => e.value),
         borderColor: palette.accent,
-        backgroundColor: ctx => gradient(ctx, [[0,'rgba(220,38,38,.30)'],[1,'rgba(220,38,38,0)']]),
-        fill: true,
-        stepped: true,
-        borderWidth: 2.5,
-        pointBackgroundColor: palette.accent,
-        pointRadius: 5,
-        pointHoverRadius: 8
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.30)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, stepped: true, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
       }]
     },
     options: lineOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, suggestedMin: 10, suggestedMax: 22, ticks: { ...baseScale.ticks, callback: v => v + '%' } }
-      },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: c => ` ${c.parsed.y}%`,
-            afterLabel: c => {
-              const note = DATA.btw.events[c.dataIndex].note;
-              return note ? note : '';
-            }
-          }
-        }
-      }
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 10, suggestedMax: 22, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: {
+        label: c => ` ${c.parsed.y}%`,
+        afterLabel: c => DATA.btw.events[c.dataIndex].note || ''
+      } } }
     })
   });
 
-  // 3. Energiebelasting
-  new Chart(document.getElementById('chartEnergiebel'), {
+  /* ====================================================================
+     CHART 6 — Energiebelasting
+     ==================================================================== */
+  if ($('chartEnergiebel')) new Chart($('chartEnergiebel'), {
     type: 'bar',
     data: {
       labels: DATA.energiebelasting.years,
       datasets: [{
-        label: 'ct/kWh',
         data: DATA.energiebelasting.values,
-        backgroundColor: ctx => gradient(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.2)']]),
-        borderRadius: 4,
-        maxBarThickness: 50
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.2)']]),
+        borderRadius: 4, maxBarThickness: 50
       }]
     },
     options: barOpts({
@@ -167,231 +194,286 @@
     })
   });
 
-  // 4. Huizenprijzen
-  new Chart(document.getElementById('chartHuizen'), {
+  /* ====================================================================
+     CHART 7 — Huizenprijzen
+     ==================================================================== */
+  if ($('chartHuizen')) new Chart($('chartHuizen'), {
     type: 'line',
     data: {
       labels: DATA.huizenprijzen.years,
       datasets: [{
         data: DATA.huizenprijzen.values,
         borderColor: palette.accent,
-        backgroundColor: ctx => gradient(ctx, [[0,'rgba(220,38,38,.4)'],[1,'rgba(220,38,38,0)']]),
-        fill: true,
-        tension: .35,
-        borderWidth: 2.5,
-        pointBackgroundColor: palette.accent,
-        pointRadius: 4,
-        pointHoverRadius: 7
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.4)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .35, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 4, pointHoverRadius: 7
       }]
     },
     options: lineOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => '€' + (v/1000) + 'k' } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => '€' + (v/1000) + 'k'}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' €' + c.parsed.y.toLocaleString('nl-NL') } } }
     })
   });
 
-  // 5. Woningtekort
-  new Chart(document.getElementById('chartTekort'), {
+  /* ====================================================================
+     CHART 8 — Tekort
+     ==================================================================== */
+  if ($('chartTekort')) new Chart($('chartTekort'), {
     type: 'bar',
     data: {
       labels: DATA.woningtekort.years,
       datasets: [{
         data: DATA.woningtekort.values,
-        backgroundColor: ctx => gradient(ctx, [[0,palette.accent2],[1,'rgba(249,115,22,.15)']]),
-        borderRadius: 4,
-        maxBarThickness: 60
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent2],[1,'rgba(249,115,22,.15)']]),
+        borderRadius: 4, maxBarThickness: 60
       }]
     },
     options: barOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => (v/1000) + 'k' } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => (v/1000) + 'k'}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + c.parsed.y.toLocaleString('nl-NL') + ' woningen' } } }
     })
   });
 
-  // 6. Migratie (im+em+saldo)
-  new Chart(document.getElementById('chartMigratie'), {
+  /* ====================================================================
+     CHART 9 — Migratie stacked
+     ==================================================================== */
+  if ($('chartMigratie')) new Chart($('chartMigratie'), {
     type: 'bar',
     data: {
       labels: DATA.immigratieEmigratie.years,
       datasets: [
-        {
-          label: 'Immigratie',
-          data: DATA.immigratieEmigratie.immigratie,
-          backgroundColor: palette.accent,
-          borderRadius: 4,
-          maxBarThickness: 28,
-          order: 2
-        },
-        {
-          label: 'Emigratie',
-          data: DATA.immigratieEmigratie.emigratie.map(v => -v),
-          backgroundColor: palette.ink4,
-          borderRadius: 4,
-          maxBarThickness: 28,
-          order: 2
-        },
-        {
-          label: 'Netto saldo',
-          type: 'line',
-          data: DATA.immigratieEmigratie.saldo,
-          borderColor: palette.accent3,
-          backgroundColor: palette.accent3,
-          borderWidth: 2.5,
-          pointRadius: 4,
-          pointHoverRadius: 7,
-          tension: .3,
-          order: 1
-        }
+        { label: 'Immigratie', data: DATA.immigratieEmigratie.immigratie, backgroundColor: palette.accent, borderRadius: 4, maxBarThickness: 28, order: 2 },
+        { label: 'Emigratie',  data: DATA.immigratieEmigratie.emigratie.map(v => -v), backgroundColor: palette.ink4, borderRadius: 4, maxBarThickness: 28, order: 2 },
+        { label: 'Netto saldo', type: 'line', data: DATA.immigratieEmigratie.saldo, borderColor: palette.accent3, backgroundColor: palette.accent3, borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 7, tension: .3, order: 1 }
       ]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: true, position: 'bottom' },
-        tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + Math.abs(c.parsed.y).toLocaleString('nl-NL') + 'k' } }
-      },
-      scales: {
-        x: { ...baseScale, stacked: true },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => Math.abs(v) + 'k' } }
-      }
+      responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: true, position: 'bottom' }, tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + Math.abs(c.parsed.y).toLocaleString('nl-NL') + 'k' } } },
+      scales: { x: {...baseScale, stacked: true}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => Math.abs(v) + 'k'}} }
     }
   });
 
-  // 7. Bevolking
-  new Chart(document.getElementById('chartBevolking'), {
-    type: 'line',
-    data: {
-      labels: DATA.bevolking.years,
-      datasets: [{
-        data: DATA.bevolking.values,
-        borderColor: palette.accent,
-        backgroundColor: ctx => gradient(ctx, [[0,'rgba(220,38,38,.3)'],[1,'rgba(220,38,38,0)']]),
-        fill: true, tension: .25, borderWidth: 2.5,
-        pointBackgroundColor: palette.accent, pointRadius: 4, pointHoverRadius: 7
-      }]
-    },
-    options: lineOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => v + ' mln' } }
-      },
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + c.parsed.y + ' miljoen' } } }
-    })
-  });
-
-  // 8. Migratieachtergrond
-  new Chart(document.getElementById('chartAchtergrond'), {
+  /* ====================================================================
+     CHART 10 — Migratie-achtergrond
+     ==================================================================== */
+  if ($('chartAchtergrond')) new Chart($('chartAchtergrond'), {
     type: 'line',
     data: {
       labels: DATA.migratieAchtergrond.years,
       datasets: [{
         data: DATA.migratieAchtergrond.values,
         borderColor: palette.accent2,
-        backgroundColor: ctx => gradient(ctx, [[0,'rgba(249,115,22,.3)'],[1,'rgba(249,115,22,0)']]),
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(249,115,22,.35)'],[1,'rgba(249,115,22,0)']]),
         fill: true, tension: .3, borderWidth: 2.5,
         pointBackgroundColor: palette.accent2, pointRadius: 4, pointHoverRadius: 7
       }]
     },
     options: lineOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => v + '%' } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + c.parsed.y + '% van bevolking' } } }
     })
   });
 
-  // 9. Asielaanvragen
-  new Chart(document.getElementById('chartAsiel'), {
+  /* ====================================================================
+     CHART 11 — Migratiemotief (donut)
+     ==================================================================== */
+  if ($('chartMotief')) new Chart($('chartMotief'), {
+    type: 'doughnut',
+    data: {
+      labels: DATA.migratieMotief.motieven,
+      datasets: [{
+        data: DATA.migratieMotief.aantallen,
+        backgroundColor: [
+          palette.accent,        // Asiel
+          '#b91c1c',             // Gezin
+          palette.accent2,       // Studie
+          '#ea580c',             // EU-arbeid
+          palette.green,         // Kennismigrant
+          palette.accent3,       // Oekraïne
+          palette.ink4           // Overig
+        ],
+        borderColor: '#16161a',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '60%',
+      plugins: {
+        legend: { display: true, position: 'right', labels: { boxWidth: 10, font: { size: 11 }, color: palette.ink2 } },
+        tooltip: { callbacks: {
+          label: c => {
+            const pct = DATA.migratieMotief.percentages[c.dataIndex];
+            return ` ${c.parsed.toLocaleString('nl-NL')}k (${pct}%)`;
+          }
+        } }
+      }
+    }
+  });
+
+  /* ====================================================================
+     CHART 12 — Asielaanvragen
+     ==================================================================== */
+  if ($('chartAsiel')) new Chart($('chartAsiel'), {
     type: 'bar',
     data: {
       labels: DATA.asielaanvragen.years,
       datasets: [{
         data: DATA.asielaanvragen.values,
-        backgroundColor: ctx => gradient(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.15)']]),
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.15)']]),
         borderRadius: 4, maxBarThickness: 40
       }]
     },
     options: barOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => v + 'k' } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + 'k'}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + (c.parsed.y * 1000).toLocaleString('nl-NL') + ' aanvragen' } } }
     })
   });
 
-  // 10. Herkomst (horizontal bar)
-  new Chart(document.getElementById('chartHerkomst'), {
+  /* ====================================================================
+     CHART 13 — Herkomst
+     ==================================================================== */
+  if ($('chartHerkomst')) new Chart($('chartHerkomst'), {
     type: 'bar',
     data: {
       labels: DATA.herkomstImmigranten2022.landen,
       datasets: [{
         data: DATA.herkomstImmigranten2022.aantallen,
+        backgroundColor: ctx => `rgba(220,38,38,${1 - (ctx.dataIndex * 0.06)})`,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + (c.parsed.x * 1000).toLocaleString('nl-NL') + ' immigranten' } } },
+      scales: { x: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + 'k'}}, y: {...baseScale, ticks: {...baseScale.ticks, padding: 12}} }
+    }
+  });
+
+  /* ====================================================================
+     CHART 14 — Bijstand naar achtergrond
+     ==================================================================== */
+  if ($('chartBijstand')) new Chart($('chartBijstand'), {
+    type: 'bar',
+    data: {
+      labels: DATA.bijstandsAfhankelijkheid.groepen,
+      datasets: [{
+        data: DATA.bijstandsAfhankelijkheid.percentages,
         backgroundColor: ctx => {
-          const i = ctx.dataIndex;
-          const opacity = 1 - (i * 0.06);
-          return `rgba(220,38,38,${opacity})`;
+          const v = ctx.parsed.x ?? 0;
+          if (v >= 30) return palette.accent;
+          if (v >= 10) return palette.accent2;
+          if (v >= 5) return palette.accent3;
+          return palette.green;
         },
         borderRadius: 4
       }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + (c.parsed.x * 1000).toLocaleString('nl-NL') + ' immigranten' } } },
-      scales: {
-        x: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => v + 'k' } },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, padding: 12 } }
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.x}% zit in de bijstand` } } },
+      scales: { x: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + '%'}}, y: {...baseScale, ticks: {...baseScale.ticks, padding: 8, font: {size: 11}}} }
+    }
+  });
+
+  /* ====================================================================
+     CHART 15 — Statushouder na 5 jaar (donut)
+     ==================================================================== */
+  if ($('chartStatus')) new Chart($('chartStatus'), {
+    type: 'doughnut',
+    data: {
+      labels: DATA.statushouderNa5Jaar.categorieen,
+      datasets: [{
+        data: DATA.statushouderNa5Jaar.percentages,
+        backgroundColor: [palette.green, palette.accent, palette.accent2, palette.accent3, palette.ink4],
+        borderColor: '#16161a',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '60%',
+      plugins: {
+        legend: { display: true, position: 'right', labels: { boxWidth: 10, font: { size: 11 }, color: palette.ink2 } },
+        tooltip: { callbacks: { label: c => ` ${c.parsed}% — ${c.label}` } }
       }
     }
   });
 
-  // 11. Bestemming emigranten
-  new Chart(document.getElementById('chartBestemming'), {
+  /* ====================================================================
+     CHART 16 — Arbeidsparticipatie
+     ==================================================================== */
+  if ($('chartArbeid')) new Chart($('chartArbeid'), {
+    type: 'bar',
+    data: {
+      labels: DATA.arbeidsparticipatie.groepen,
+      datasets: [{
+        data: DATA.arbeidsparticipatie.percentages,
+        backgroundColor: ctx => {
+          const v = ctx.parsed.y ?? 0;
+          if (v >= 70) return palette.green;
+          if (v >= 60) return palette.accent3;
+          if (v >= 40) return palette.accent2;
+          return palette.accent;
+        },
+        borderRadius: 4, maxBarThickness: 70
+      }]
+    },
+    options: barOpts({
+      scales: { x: {...baseScale, ticks: {...baseScale.ticks, font: {size: 11}}}, y: {...baseScale, suggestedMax: 100, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% participeert op de arbeidsmarkt` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 17 — Brain drain (grouped bar)
+     ==================================================================== */
+  if ($('chartBrainDrain')) new Chart($('chartBrainDrain'), {
+    type: 'bar',
+    data: {
+      labels: DATA.brainDrain.categorieen,
+      datasets: [
+        { label: 'Vertrekt uit NL', data: DATA.brainDrain.emigrant,             backgroundColor: palette.green, borderRadius: 4, maxBarThickness: 60 },
+        { label: 'Komt naar NL (niet-kennismigrant)', data: DATA.brainDrain.immigrant_niet_kennis, backgroundColor: palette.accent, borderRadius: 4, maxBarThickness: 60 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: true, position: 'bottom' }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y}%` } } },
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMax: 70, ticks: {...baseScale.ticks, callback: v => v + '%'}} }
+    }
+  });
+
+  /* ====================================================================
+     CHART 18 — Bestemming
+     ==================================================================== */
+  if ($('chartBestemming')) new Chart($('chartBestemming'), {
     type: 'bar',
     data: {
       labels: DATA.bestemmingEmigranten.landen,
       datasets: [{
         data: DATA.bestemmingEmigranten.aantallen,
-        backgroundColor: ctx => {
-          const i = ctx.dataIndex;
-          const opacity = 1 - (i * 0.07);
-          return `rgba(249,115,22,${opacity})`;
-        },
+        backgroundColor: ctx => `rgba(249,115,22,${1 - (ctx.dataIndex * 0.07)})`,
         borderRadius: 4
       }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + (c.parsed.x * 1000).toLocaleString('nl-NL') + ' emigranten' } } },
-      scales: {
-        x: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => v + 'k' } },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, padding: 12 } }
-      }
+      scales: { x: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + 'k'}}, y: {...baseScale, ticks: {...baseScale.ticks, padding: 12}} }
     }
   });
 
-  // 12. Motieven emigranten
-  new Chart(document.getElementById('chartMotieven'), {
+  /* ====================================================================
+     CHART 19 — Motieven
+     ==================================================================== */
+  if ($('chartMotieven')) new Chart($('chartMotieven'), {
     type: 'bar',
     data: {
       labels: DATA.emigratieMotieven.motieven,
       datasets: [{
         data: DATA.emigratieMotieven.percentages,
         backgroundColor: ctx => {
-          const v = ctx.parsed.x ?? ctx.parsed.y ?? 0;
+          const v = ctx.parsed.x ?? 0;
           if (v >= 50) return palette.accent;
           if (v >= 35) return palette.accent2;
           return palette.accent3;
@@ -400,108 +482,97 @@
       }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + c.parsed.x + '% noemt dit' } } },
-      scales: {
-        x: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => v + '%' }, suggestedMax: 60 },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, padding: 12, font: { size: 11 } } }
-      }
+      scales: { x: {...baseScale, suggestedMax: 60, ticks: {...baseScale.ticks, callback: v => v + '%'}}, y: {...baseScale, ticks: {...baseScale.ticks, padding: 8, font: {size: 11}}} }
     }
   });
 
-  // 13. Vertrouwen instellingen (multi-line)
-  new Chart(document.getElementById('chartVertrouwen'), {
+  /* ====================================================================
+     CHART 20 — Vertrouwen
+     ==================================================================== */
+  if ($('chartVertrouwen')) new Chart($('chartVertrouwen'), {
     type: 'line',
     data: {
       labels: DATA.vertrouwenInstellingen.years,
       datasets: [
         { label: 'Tweede Kamer', data: DATA.vertrouwenInstellingen.tweedeKamer, borderColor: palette.accent, backgroundColor: palette.accent, borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false },
-        { label: 'Regering', data: DATA.vertrouwenInstellingen.regering, borderColor: palette.accent2, backgroundColor: palette.accent2, borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false },
-        { label: 'Politie', data: DATA.vertrouwenInstellingen.politie, borderColor: palette.green, backgroundColor: palette.green, borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false }
+        { label: 'Regering',     data: DATA.vertrouwenInstellingen.regering,    borderColor: palette.accent2, backgroundColor: palette.accent2, borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false },
+        { label: 'Politie',      data: DATA.vertrouwenInstellingen.politie,     borderColor: palette.green, backgroundColor: palette.green, borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false }
       ]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: true, position: 'bottom' },
-        tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y}%` } }
-      },
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, suggestedMin: 20, suggestedMax: 80, ticks: { ...baseScale.ticks, callback: v => v + '%' } }
-      }
+      responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: true, position: 'bottom' }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y}%` } } },
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 20, suggestedMax: 80, ticks: {...baseScale.ticks, callback: v => v + '%'}} }
     }
   });
 
-  // 14. Sociaal contact
-  new Chart(document.getElementById('chartEenzaam'), {
+  /* ====================================================================
+     CHART 21 — Sociaal contact
+     ==================================================================== */
+  if ($('chartEenzaam')) new Chart($('chartEenzaam'), {
     type: 'line',
     data: {
       labels: DATA.sociaalContact.years,
       datasets: [{
         data: DATA.sociaalContact.values,
         borderColor: palette.accent,
-        backgroundColor: ctx => gradient(ctx, [[0,'rgba(220,38,38,.35)'],[1,'rgba(220,38,38,0)']]),
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.35)'],[1,'rgba(220,38,38,0)']]),
         fill: true, tension: .3, borderWidth: 2.5,
         pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
       }]
     },
     options: lineOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, suggestedMin: 0, suggestedMax: 16, ticks: { ...baseScale.ticks, callback: v => v + '%' } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, suggestedMax: 16, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + c.parsed.y + '% van bevolking' } } }
     })
   });
 
-  // 15. EU bijdrage
-  new Chart(document.getElementById('chartEU'), {
+  /* ====================================================================
+     CHART 22 — EU bijdrage
+     ==================================================================== */
+  if ($('chartEU')) new Chart($('chartEU'), {
     type: 'bar',
     data: {
       labels: DATA.nettoEUBijdrage.years,
       datasets: [{
         data: DATA.nettoEUBijdrage.values,
-        backgroundColor: ctx => gradient(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.15)']]),
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.15)']]),
         borderRadius: 4, maxBarThickness: 50
       }]
     },
     options: barOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => '€' + v + ' mld' } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => '€' + v + ' mld'}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' €' + c.parsed.y + ' miljard netto' } } }
     })
   });
 
-  // 16. Zorgpremie
-  new Chart(document.getElementById('chartZorgpremie'), {
+  /* ====================================================================
+     CHART 23 — Zorgpremie
+     ==================================================================== */
+  if ($('chartZorgpremie')) new Chart($('chartZorgpremie'), {
     type: 'line',
     data: {
       labels: DATA.zorgpremie.years,
       datasets: [{
         data: DATA.zorgpremie.values,
         borderColor: palette.accent,
-        backgroundColor: ctx => gradient(ctx, [[0,'rgba(220,38,38,.3)'],[1,'rgba(220,38,38,0)']]),
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.3)'],[1,'rgba(220,38,38,0)']]),
         fill: true, tension: .3, borderWidth: 2.5,
         pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
       }]
     },
     options: lineOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => '€' + v } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => '€' + v}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' €' + c.parsed.y.toLocaleString('nl-NL') + ' per jaar' } } }
     })
   });
 
-  // 17. Energierekening
-  new Chart(document.getElementById('chartEnergie'), {
+  /* ====================================================================
+     CHART 24 — Energierekening
+     ==================================================================== */
+  if ($('chartEnergie')) new Chart($('chartEnergie'), {
     type: 'bar',
     data: {
       labels: DATA.energieprijs.years,
@@ -517,65 +588,61 @@
       }]
     },
     options: barOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => '€' + v } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => '€' + v}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' €' + c.parsed.y.toLocaleString('nl-NL') } } }
     })
   });
 
-  // 18. PISA
-  new Chart(document.getElementById('chartPISA'), {
+  /* ====================================================================
+     CHART 25 — PISA
+     ==================================================================== */
+  if ($('chartPISA')) new Chart($('chartPISA'), {
     type: 'line',
     data: {
       labels: DATA.pisa.jaren,
       datasets: [
         { label: 'Leesvaardigheid', data: DATA.pisa.leesvaardigheid, borderColor: palette.accent,  backgroundColor: palette.accent,  borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false },
-        { label: 'Wiskunde',         data: DATA.pisa.wiskunde,         borderColor: palette.accent2, backgroundColor: palette.accent2, borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false },
-        { label: 'Natuurwetenschap', data: DATA.pisa.natuurwetenschap, borderColor: palette.accent3, backgroundColor: palette.accent3, borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false }
+        { label: 'Wiskunde',        data: DATA.pisa.wiskunde,        borderColor: palette.accent2, backgroundColor: palette.accent2, borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false },
+        { label: 'Natuurwetenschap',data: DATA.pisa.natuurwetenschap,borderColor: palette.accent3, backgroundColor: palette.accent3, borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false }
       ]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
+      responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
       plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y} punten` } } },
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, suggestedMin: 440, suggestedMax: 550 }
-      }
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 440, suggestedMax: 550} }
     }
   });
 
-  // 19. Cocaine
-  new Chart(document.getElementById('chartCoke'), {
+  /* ====================================================================
+     CHART 26 — Cocaine
+     ==================================================================== */
+  if ($('chartCoke')) new Chart($('chartCoke'), {
     type: 'bar',
     data: {
       labels: DATA.drugsBeslag.years,
       datasets: [{
         data: DATA.drugsBeslag.values,
-        backgroundColor: ctx => gradient(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.15)']]),
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.15)']]),
         borderRadius: 4, maxBarThickness: 40
       }]
     },
     options: barOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => v + ' ton' } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + ' ton'}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + c.parsed.y + ' ton cocaïne' } } }
     })
   });
 
-  // 20. Liquidaties
-  new Chart(document.getElementById('chartLiqui'), {
+  /* ====================================================================
+     CHART 27 — Liquidaties
+     ==================================================================== */
+  if ($('chartLiqui')) new Chart($('chartLiqui'), {
     type: 'line',
     data: {
       labels: DATA.liquidaties.years,
       datasets: [{
         data: DATA.liquidaties.values,
         borderColor: palette.accent,
-        backgroundColor: ctx => gradient(ctx, [[0,'rgba(220,38,38,.3)'],[1,'rgba(220,38,38,0)']]),
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.3)'],[1,'rgba(220,38,38,0)']]),
         fill: true, tension: .3, borderWidth: 2.5,
         pointBackgroundColor: palette.accent, pointRadius: 4, pointHoverRadius: 7
       }]
@@ -585,24 +652,23 @@
     })
   });
 
-  // 21. Regeldruk
-  new Chart(document.getElementById('chartRegels'), {
+  /* ====================================================================
+     CHART 28 — Regeldruk
+     ==================================================================== */
+  if ($('chartRegels')) new Chart($('chartRegels'), {
     type: 'line',
     data: {
       labels: DATA.regeldruk.years,
       datasets: [{
         data: DATA.regeldruk.values,
         borderColor: palette.accent,
-        backgroundColor: ctx => gradient(ctx, [[0,'rgba(220,38,38,.3)'],[1,'rgba(220,38,38,0)']]),
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.3)'],[1,'rgba(220,38,38,0)']]),
         fill: true, tension: .25, borderWidth: 2.5,
         pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
       }]
     },
     options: lineOpts({
-      scales: {
-        x: { ...baseScale },
-        y: { ...baseScale, ticks: { ...baseScale.ticks, callback: v => (v/1000).toFixed(0) + 'k' } }
-      },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => (v/1000).toFixed(0) + 'k'}} },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + c.parsed.y.toLocaleString('nl-NL') + ' regels' } } }
     })
   });
@@ -610,9 +676,8 @@
   /* ====================================================================
      WALL OF NUMBERS
      ==================================================================== */
-  const wallEl = document.getElementById('wallGrid');
-  if (wallEl) {
-    wallEl.innerHTML = DATA.killerNumbers.map(k => `
+  if ($('wallGrid')) {
+    $('wallGrid').innerHTML = DATA.killerNumbers.map(k => `
       <div class="wall-cell">
         <div class="wall-num">${k.value}</div>
         <div class="wall-lbl">${k.label}</div>
@@ -622,11 +687,24 @@
   }
 
   /* ====================================================================
+     TAX STACK — 55+ belastingen, gegroepeerd
+     ==================================================================== */
+  if ($('taxStack')) {
+    $('taxStack').innerHTML = DATA.belastingstapel.categories.map(cat => `
+      <div class="taxstack-group">
+        <h4>${cat.groep} <span class="taxstack-count">(${cat.items.length})</span></h4>
+        <ul>
+          ${cat.items.map(it => `<li>${it}</li>`).join('')}
+        </ul>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
      EU TIMELINE
      ==================================================================== */
-  const tlEl = document.getElementById('timelineEU');
-  if (tlEl) {
-    tlEl.innerHTML = DATA.euOverdracht.items.map(it => `
+  if ($('timelineEU')) {
+    $('timelineEU').innerHTML = DATA.euOverdracht.items.map(it => `
       <div class="tl-item">
         <div class="tl-year">${it.jaar}</div>
         <div class="tl-event">${it.gebeurtenis}</div>
@@ -636,9 +714,25 @@
   }
 
   /* ====================================================================
-     COUNTER ANIMATIONS (hero stats)
+     VERVAL-CHECKLIST — 17 vervaltekenen
      ==================================================================== */
-  function animateCounter(el, to, dur = 1200) {
+  if ($('vervalGrid')) {
+    $('vervalGrid').innerHTML = DATA.vervalCheck.indicators.map((it,i) => `
+      <div class="check-item ${it.status === 'ja' ? 'check-red' : 'check-amber'}">
+        <div class="check-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="check-body">
+          <h4>${it.ind}</h4>
+          <p>${it.nl}</p>
+        </div>
+        <div class="check-status">${it.status === 'ja' ? '✕' : '⚠'}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
+     COUNTER ANIMATIONS
+     ==================================================================== */
+  function animateCounter(el, to, dur = 1400) {
     const start = performance.now();
     function frame(t) {
       const p = Math.min(1, (t - start) / dur);
@@ -654,53 +748,41 @@
   });
 
   /* ====================================================================
-     SCROLL: NAV PROGRESS BAR
+     SCROLL PROGRESS
      ==================================================================== */
   const progressBar = document.querySelector('.nav-progress span');
   function updateProgress() {
     const h = document.documentElement;
     const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-    progressBar.style.width = pct + '%';
+    if (progressBar) progressBar.style.width = pct + '%';
   }
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
 
   /* ====================================================================
-     SCROLL: REVEAL ON VIEW
+     SCROLL REVEAL
      ==================================================================== */
-  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .vs-list');
+  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item');
   revealTargets.forEach(el => el.classList.add('reveal'));
-
   const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   revealTargets.forEach(el => io.observe(el));
 
   /* ====================================================================
-     NAV: MOBILE TOGGLE + ACTIVE SECTION
+     NAV
      ==================================================================== */
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.addEventListener('click', e => {
-      if (e.target.tagName === 'A') navLinks.classList.remove('open');
-    });
+    navLinks.addEventListener('click', e => { if (e.target.tagName === 'A') navLinks.classList.remove('open'); });
   }
 
   /* ====================================================================
      DATE STAMPS
      ==================================================================== */
-  const now = new Date();
-  const stamp = now.toLocaleDateString('nl-NL', { year: 'numeric', month: 'long' });
-  ['lastUpdated', 'dateStamp', 'updated'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = stamp;
-  });
+  const stamp = new Date().toLocaleDateString('nl-NL', { year: 'numeric', month: 'long' });
+  ['lastUpdated','dateStamp','updated'].forEach(id => { const e = $(id); if (e) e.textContent = stamp; });
 
 })();

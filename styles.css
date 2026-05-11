@@ -492,3 +492,104 @@ ul { list-style: none; }
 
 /* ---------------------------- TEXT HELPERS ------------------------------- */
 .h2 .hl { color: var(--accent); }
+
+/* ---------------------------- TAX STACK ---------------------------------- */
+.taxstack {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+  margin-top: 48px;
+}
+@media (max-width: 1100px) { .taxstack { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .taxstack { grid-template-columns: 1fr; } }
+.taxstack-group {
+  padding: 24px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  border-top: 3px solid var(--accent);
+}
+.taxstack-group h4 {
+  font-family: var(--serif); font-weight: 700; font-size: 17px;
+  color: var(--ink); margin-bottom: 14px;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+}
+.taxstack-count {
+  font-family: var(--sans); font-size: 11px;
+  color: var(--accent); letter-spacing: .08em;
+  padding: 3px 8px;
+  background: rgba(220,38,38,.12);
+  border-radius: 999px;
+  font-weight: 600;
+}
+.taxstack-group ul { font-size: 13px; }
+.taxstack-group li {
+  padding: 7px 0;
+  color: var(--ink-2); line-height: 1.45;
+  border-bottom: 1px dashed var(--line-2);
+}
+.taxstack-group li:last-child { border-bottom: 0; }
+.taxstack-group li::before { content: '× '; color: var(--accent); margin-right: 4px; font-weight: 700; }
+
+/* ---------------------------- DARK SECTION ------------------------------- */
+.chapter.dark-section {
+  background:
+    radial-gradient(900px 500px at 80% 20%, rgba(220,38,38,.10), transparent 60%),
+    radial-gradient(700px 400px at 10% 80%, rgba(249,115,22,.06), transparent 60%),
+    #050507;
+  border-bottom: 1px solid rgba(220,38,38,.12);
+}
+.chapter.dark-section .kicker { color: var(--accent-2); border-top-color: var(--accent-2); }
+
+/* ---------------------------- CHECKLIST ---------------------------------- */
+.checklist {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  margin-top: 48px;
+}
+@media (max-width: 880px) { .checklist { grid-template-columns: 1fr; } }
+.check-item {
+  display: grid; grid-template-columns: 56px 1fr 40px; align-items: center; gap: 18px;
+  padding: 22px 24px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  transition: transform .25s, border-color .25s;
+}
+.check-item:hover { transform: translateX(3px); border-color: var(--ink-4); border-left-color: var(--accent); }
+.check-item.check-amber { border-left-color: var(--accent-3); }
+.check-num {
+  font-family: var(--serif); font-weight: 800; font-size: 34px;
+  color: var(--accent); letter-spacing: -0.03em; line-height: 1;
+  opacity: .75;
+}
+.check-item.check-amber .check-num { color: var(--accent-3); }
+.check-body h4 {
+  font-family: var(--sans); font-weight: 700; font-size: 15px;
+  color: var(--ink); margin-bottom: 4px; line-height: 1.3;
+}
+.check-body p { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+.check-status {
+  font-family: var(--serif); font-size: 28px; font-weight: 700;
+  color: var(--accent); text-align: center; line-height: 1;
+}
+.check-item.check-amber .check-status { color: var(--accent-3); }
+
+/* Hero sub strong tweak */
+.hero-sub strong {
+  display: inline;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: rgba(220,38,38,.5);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Intro emph */
+.intro .prose .emph {
+  margin-top: 40px;
+  padding: 24px 28px;
+  font-family: var(--serif); font-size: 21px; line-height: 1.5;
+  color: var(--ink); font-style: italic;
+  border-left: 3px solid var(--accent);
+  background: rgba(220,38,38,.04);
+}
