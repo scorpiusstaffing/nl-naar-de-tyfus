@@ -782,6 +782,120 @@ const DATA = {
   ],
 
   /* ====================================================================
+     11e. DE RANGLIJST-ILLUSIE — wat de top-10 lijstjes verbergen
+     ==================================================================== */
+  ranglijstIllusie: {
+    label: "Acht populaire ranglijsten die de werkelijke Nederlandse toestand verbergen",
+    source: "World Happiness Report; OESO Better Life Index; Euro Health Consumer Index; Credit Suisse Wealth Report; Transparency International; Reporters Without Borders; QS World University Rankings; WEF Global Competitiveness",
+    items: [
+      {
+        ranking: "World Happiness Report",
+        claim: "5e gelukkigste land ter wereld",
+        claimSub: "(2023, score 7.4/10)",
+        werkelijk: [
+          "Onder de 30 jaar zakt NL naar plek #17 in dezelfde WHR-meting",
+          "Antidepressiva-gebruik 7,1% — top 5 in de EU",
+          "20,6% van werkenden heeft burn-outklachten",
+          "47% voelt zich (zeer) eenzaam — RIVM 2022",
+          "Het 'geluk' is een Cantril-ladder zelfrapportage, geen objectieve meting"
+        ],
+        bron: "WHR 2023/2024 jeugdsplit; Lareb / SFK; TNO-CBS NEA; RIVM gezondheids­onderzoek"
+      },
+      {
+        ranking: "OESO Better Life Index — work-life balance",
+        claim: "#1 werk-privé balans van de OESO",
+        claimSub: "(slechts 0,4% werkt 50+ uur)",
+        werkelijk: [
+          "De index meet 'lange uren', niet 'zinvolle uren'",
+          "NL is Europees kampioen deeltijdwerk — 50% van vrouwen werkt <20 uur",
+          "Productiviteit per gewerkt uur stagneert sinds 2008",
+          "800.000 mantelzorgers zijn 'overbelast' — SCP",
+          "Burn-out cijfer (20,6%) past niet bij een land met écht goede balans"
+        ],
+        bron: "OESO BLI 2023; CBS Arbeidsdeelname; SCP Mantelzorg 2023"
+      },
+      {
+        ranking: "Euro Health Consumer Index",
+        claim: "Beste zorgstelsel van Europa",
+        claimSub: "(EHCI 2018 — laatste meting)",
+        werkelijk: [
+          "De EHCI is in 2019 gestaakt wegens financierings­problemen — niemand meet dit nog",
+          "Wachttijd specialistische GGZ: 23 weken",
+          "Kanker 5-jaars overlevings­ratio: NL gezakt naar plek #11 EU (Zwitserland #1)",
+          "Premie basisverzekering ×1.72 sinds 2006 — bij eigen risico ×2.5",
+          "Huisartsentekort treft 14% van de praktijken — LHV"
+        ],
+        bron: "Health Consumer Powerhouse (gestaakt); NZa wachttijdmonitor; Eurostat cancer survival; Vektis; LHV"
+      },
+      {
+        ranking: "Gini-coëfficiënt (inkomen)",
+        claim: "Top 5 meest gelijke land OESO",
+        claimSub: "(Gini 0,29 na herverdeling)",
+        werkelijk: [
+          "De Gini meet inkomen — nadat toeslagen en uitkeringen zijn verrekend",
+          "Vermogens-Gini Nederland: 0,78 — Top 3 ongelijkste van de hele OESO",
+          "Top 1% bezit ~30% van het Nederlandse vermogen",
+          "Top 10% bezit ~65% — onderste 50% bezit ~0% (vaak negatief)",
+          "Het herverdeel-effect verbergt dat werkenden marginaal 49-87% afdragen — terwijl uitkering-ontvangers vrijwel niets bijdragen"
+        ],
+        bron: "OESO Income Distribution Database; Credit Suisse Global Wealth Report; CBS Vermogensverdeling"
+      },
+      {
+        ranking: "Corruption Perceptions Index",
+        claim: "Een van de minst corrupte landen",
+        claimSub: "(Transparency Intl. #8, 2023)",
+        werkelijk: [
+          "Was #5 in 2014 — gedaald met 3 plekken in tien jaar",
+          "Toeslagenaffaire: 26.000 ouders financieel verwoest, kinderen weggehaald, etnisch geprofileerd door overheidsalgoritmes",
+          "Moord op advocaat Derk Wiersum (2019) en journalist Peter R. de Vries (2021) — de staat kon haar eigen gerechts­dienaren niet beschermen",
+          "Lobby-transparantie onder EU-gemiddelde (ALTER-EU)",
+          "Drugs-infiltratie van het juridisch apparaat (Marengo, Caloh Wagoh)"
+        ],
+        bron: "Transparency International CPI 2014-2023; Parlementaire Ondervragings­commissie Kinderopvang­toeslag; Politie Marengo-dossier"
+      },
+      {
+        ranking: "Persvrijheid (Reporters Without Borders)",
+        claim: "Persvrijheid altijd top 10",
+        claimSub: "(2002: wereld #1)",
+        werkelijk: [
+          "RSF 2024: Nederland gezakt naar plek #30 — sterkste daling van enig EU-land",
+          "Moord op Peter R. de Vries (2021) bij klaarlichte dag op de Lange Leidsedwars­straat",
+          "PersVeilig meldde 271 incidenten van agressie / intimidatie tegen journalisten in 2022",
+          "Mediaconcentratie: DPG + Mediahuis bezitten 80% van NL print",
+          "Persveiligheid-budget gekort tijdens kabinet Rutte IV — pas teruggedraaid na bedreigingen"
+        ],
+        bron: "Reporters Without Borders World Press Freedom Index 2002-2024; PersVeilig.nl; Commissariaat voor de Media"
+      },
+      {
+        ranking: "QS World University Rankings",
+        claim: "Nederland is een onderwijs­natie",
+        claimSub: "(UvA, TU Delft, UU 'in top 100')",
+        werkelijk: [
+          "UvA daalde van plek #50 (2014) naar #58 (2024)",
+          "TU Delft van #15 (2010) naar #47 (2024)",
+          "PISA leesvaardigheid −54 punten (1 schooljaar) sinds 2003 — alleen Australië zakte sneller",
+          "33% van Nederlandse 15-jarigen is functioneel analfabeet",
+          "9.400 onvervulde vacatures voor leraren — 1 op 6 kinderen krijgt les van onbevoegden"
+        ],
+        bron: "QS World University Rankings 2010-2024; OESO PISA 2003-2022; OCW Trendrapportage Arbeidsmarkt"
+      },
+      {
+        ranking: "WEF Global Competitiveness Index",
+        claim: "Top 5 concurrent­vermogen wereldwijd",
+        claimSub: "(WEF 2019, plek #4)",
+        werkelijk: [
+          "Het WEF heeft deze ranglijst sinds 2020 niet meer gepubliceerd — niet vergelijkbaar",
+          "R&D-uitgaven 2,3% BBP — onder EU-streefdoel van 3%",
+          "Maakindustrie van 22% BBP (1980) naar 12% (2023) — bijna gehalveerd",
+          "ASML onder geopolitieke druk — export­vergunningen verdwijnen",
+          "ABN AMRO 2023: 14% van Nederlandse bedrijven overweegt vertrek wegens lasten en stikstof"
+        ],
+        bron: "WEF GCI 2019 (laatste editie); Eurostat R&D; CBS Economische sectoren; ABN AMRO Sector­update 2023"
+      }
+    ]
+  },
+
+  /* ====================================================================
      12. DE TEKENEN VAN VERVAL — klassieke kenmerken late-fase rijk
      ==================================================================== */
   vervalCheck: {

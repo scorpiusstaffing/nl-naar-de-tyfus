@@ -783,6 +783,32 @@
   }
 
   /* ====================================================================
+     RANGLIJST-ILLUSIE — dynamische cards
+     ==================================================================== */
+  if ($('illusionGrid')) {
+    $('illusionGrid').innerHTML = DATA.ranglijstIllusie.items.map((it, i) => `
+      <div class="illusion-card">
+        <div class="illusion-head">
+          <span class="illusion-num">${String(i+1).padStart(2,'0')}</span>
+          <h4>${it.ranking}</h4>
+        </div>
+        <div class="illusion-body">
+          <div class="illusion-claim">
+            <div class="illusion-label">De claim</div>
+            <div class="illusion-claim-main">${it.claim}</div>
+            <div class="illusion-claim-sub">${it.claimSub}</div>
+          </div>
+          <div class="illusion-reality">
+            <div class="illusion-label">Wat eronder ligt</div>
+            <ul>${it.werkelijk.map(w => `<li>${w}</li>`).join('')}</ul>
+          </div>
+        </div>
+        <p class="illusion-source">Bron · ${it.bron}</p>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
      QUOTES GRID — meerdere stemmen van vertrekkers
      ==================================================================== */
   if ($('quotesGrid')) {
@@ -1223,7 +1249,7 @@
   /* ====================================================================
      SCROLL REVEAL
      ==================================================================== */
-  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block');
+  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block, .illusion-card');
   revealTargets.forEach(el => el.classList.add('reveal'));
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

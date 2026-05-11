@@ -584,6 +584,105 @@ ul { list-style: none; }
   text-underline-offset: 4px;
 }
 
+/* ---------------------------- ILLUSIE / RANGLIJSTEN --------------------- */
+.illusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 48px 0; }
+@media (max-width: 960px) { .illusion-grid { grid-template-columns: 1fr; } }
+
+.illusion-card {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 26px 28px;
+  display: flex; flex-direction: column;
+  transition: border-color .25s, transform .25s;
+  position: relative;
+  overflow: hidden;
+}
+.illusion-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--good) 0%, var(--good) 35%, var(--accent) 35%, var(--accent) 100%);
+}
+.illusion-card:hover { border-color: var(--ink-4); transform: translateY(-2px); }
+
+.illusion-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed var(--line);
+}
+.illusion-num {
+  display: inline-grid; place-items: center;
+  width: 42px; height: 42px;
+  font-family: var(--serif); font-weight: 800; font-size: 17px;
+  color: var(--accent);
+  background: rgba(220,38,38,.10);
+  border: 1px solid rgba(220,38,38,.25);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.illusion-head h4 {
+  font-family: var(--serif); font-weight: 700; font-size: 19px;
+  color: var(--ink); letter-spacing: -0.01em; line-height: 1.3;
+}
+
+.illusion-body {
+  display: grid; grid-template-columns: 1fr 1.6fr; gap: 22px;
+  margin-bottom: 18px;
+}
+@media (max-width: 600px) { .illusion-body { grid-template-columns: 1fr; gap: 16px; } }
+
+.illusion-label {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 700; margin-bottom: 8px;
+}
+
+.illusion-claim {
+  padding: 16px 18px;
+  background: rgba(34,197,94,.06);
+  border-left: 2px solid var(--good);
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+.illusion-claim::after {
+  content: '✓';
+  position: absolute; top: 14px; right: 14px;
+  font-size: 18px; color: var(--good); font-weight: 700;
+  opacity: .8;
+}
+.illusion-claim .illusion-label { color: var(--good); }
+.illusion-claim-main {
+  font-family: var(--serif); font-weight: 700; font-size: 17px; line-height: 1.3;
+  color: var(--ink); margin-bottom: 4px;
+}
+.illusion-claim-sub { font-size: 12px; color: var(--ink-3); font-style: italic; }
+
+.illusion-reality {
+  padding: 16px 18px;
+  background: rgba(220,38,38,.06);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+}
+.illusion-reality .illusion-label { color: var(--accent); }
+.illusion-reality ul { font-size: 13px; line-height: 1.5; }
+.illusion-reality li {
+  padding: 5px 0 5px 18px;
+  color: var(--ink-2);
+  position: relative;
+}
+.illusion-reality li::before {
+  content: '✕';
+  position: absolute; left: 0; top: 5px;
+  color: var(--accent); font-weight: 700; font-size: 12px;
+}
+
+.illusion-source {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-2);
+  font-size: 11px; letter-spacing: .04em; color: var(--ink-4);
+  line-height: 1.4;
+}
+
 /* ---------------------------- PROFIELEN VERTREKKERS --------------------- */
 .profile-stack { display: grid; gap: 22px; margin: 48px 0; }
 .prof-block {
