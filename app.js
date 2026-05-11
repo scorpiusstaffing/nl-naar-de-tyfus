@@ -796,6 +796,345 @@
   }
 
   /* ====================================================================
+     CHART 32 — Geboorteland emigranten (donut)
+     ==================================================================== */
+  if ($('chartGeboorteland')) new Chart($('chartGeboorteland'), {
+    type: 'doughnut',
+    data: {
+      labels: DATA.emigratieGeboorteland.categorieen,
+      datasets: [{
+        data: DATA.emigratieGeboorteland.aantallen,
+        backgroundColor: [palette.green, palette.accent, palette.accent2, '#b91c1c', palette.accent3],
+        borderColor: '#16161a',
+        borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '55%',
+      plugins: {
+        legend: { display: true, position: 'right', labels: { boxWidth: 12, font: { size: 12 }, color: palette.ink2, padding: 12 } },
+        tooltip: { callbacks: {
+          label: c => {
+            const pct = DATA.emigratieGeboorteland.percentages[c.dataIndex];
+            return ` ${c.parsed.toLocaleString('nl-NL')}k (${pct}%)`;
+          }
+        } }
+      }
+    }
+  });
+
+  /* ====================================================================
+     PROFIEL STACK — 5 vertrekkers-profielen
+     ==================================================================== */
+  if ($('profileStack')) {
+    const profs = DATA.vertrekkersProfielen.profielen;
+    $('profileStack').innerHTML = profs.map((p, i) => `
+      <div class="prof-block">
+        <div class="prof-head">
+          <span class="prof-num">${String(i+1).padStart(2,'0')}</span>
+          <div>
+            <h4>${p.groep}</h4>
+            <div class="prof-meta">
+              <span class="prof-tag">${p.aandeel}</span>
+              <span class="prof-tag muted">${p.aantal}</span>
+            </div>
+          </div>
+        </div>
+        <div class="prof-body">
+          <div class="prof-kenmerken">
+            <h5>Profiel</h5>
+            <ul>${p.kenmerken.map(k => `<li>${k}</li>`).join('')}</ul>
+          </div>
+          <div class="prof-redenen">
+            <h5>Top redenen om te vertrekken</h5>
+            <ul class="prof-bars">
+              ${p.topRedenen.map(r => `
+                <li>
+                  <div class="prof-bar-label"><span>${r.reden}</span><b>${r.pct}%</b></div>
+                  <div class="prof-bar-bg"><div class="prof-bar-fg" style="width:${r.pct}%"></div></div>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        </div>
+        <blockquote class="prof-quote">
+          <p>${p.quote.text}</p>
+          <cite>— ${p.quote.source}</cite>
+        </blockquote>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
+     CHART 33 — Expat retentie
+     ==================================================================== */
+  if ($('chartExpatRet')) new Chart($('chartExpatRet'), {
+    type: 'line',
+    data: {
+      labels: DATA.expatRetentie.jaren.map(j => j + ' jaar'),
+      datasets: [{
+        data: DATA.expatRetentie.percentages,
+        borderColor: palette.accent,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.4)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 6, pointHoverRadius: 9
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, suggestedMax: 100, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% nog in NL` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 34 — Student stay rate
+     ==================================================================== */
+  if ($('chartStayRate')) new Chart($('chartStayRate'), {
+    type: 'line',
+    data: {
+      labels: DATA.studentStayRate.years,
+      datasets: [{
+        data: DATA.studentStayRate.values,
+        borderColor: palette.accent2,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(249,115,22,.35)'],[1,'rgba(249,115,22,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent2, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 30, suggestedMax: 50, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% bleef hier` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 35 — EU arbeidsmigrant vertrek
+     ==================================================================== */
+  if ($('chartArbVertrek')) new Chart($('chartArbVertrek'), {
+    type: 'bar',
+    data: {
+      labels: DATA.arbeidsmigrantTerugkeer.landen,
+      datasets: [{
+        data: DATA.arbeidsmigrantTerugkeer.percentages,
+        backgroundColor: ctx => `rgba(220,38,38,${0.5 + ctx.parsed.y / 200})`,
+        borderRadius: 4, maxBarThickness: 60
+      }]
+    },
+    options: barOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMax: 80, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% vertrok binnen 5 jaar` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 36 — InterNations ranking
+     ==================================================================== */
+  if ($('chartInternations')) new Chart($('chartInternations'), {
+    type: 'line',
+    data: {
+      labels: DATA.internationsRank.years,
+      datasets: [{
+        data: DATA.internationsRank.values,
+        borderColor: palette.accent,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.35)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: {
+        x: {...baseScale},
+        y: {...baseScale, reverse: true, suggestedMin: 1, suggestedMax: 40, ticks: {...baseScale.ticks, callback: v => '#' + v}}
+      },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` plek #${c.parsed.y} wereldwijd` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 37 — Huurexplosie (multi-line)
+     ==================================================================== */
+  if ($('chartHuurExplosie')) new Chart($('chartHuurExplosie'), {
+    type: 'line',
+    data: {
+      labels: DATA.huurExplosie.years,
+      datasets: [
+        { label: 'Amsterdam', data: DATA.huurExplosie.amsterdam, borderColor: palette.accent,  backgroundColor: palette.accent,  borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false },
+        { label: 'Utrecht',   data: DATA.huurExplosie.utrecht,   borderColor: palette.accent2, backgroundColor: palette.accent2, borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false },
+        { label: 'Rotterdam', data: DATA.huurExplosie.rotterdam, borderColor: palette.accent3, backgroundColor: palette.accent3, borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: €${c.parsed.y.toLocaleString('nl-NL')}` } } },
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => '€' + v}} }
+    }
+  });
+
+  /* ====================================================================
+     CHART 38 — Bij ouders wonen
+     ==================================================================== */
+  if ($('chartBijOuders')) new Chart($('chartBijOuders'), {
+    type: 'line',
+    data: {
+      labels: DATA.bijOudersWonen.years,
+      datasets: [{
+        data: DATA.bijOudersWonen.values,
+        borderColor: palette.accent,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.35)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, suggestedMax: 25, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% woont nog thuis` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 39 — Wachttijd sociale huur
+     ==================================================================== */
+  if ($('chartWachtSocHuur')) new Chart($('chartWachtSocHuur'), {
+    type: 'bar',
+    data: {
+      labels: DATA.wachttijdSocHuur.steden,
+      datasets: [{
+        data: DATA.wachttijdSocHuur.jaren,
+        backgroundColor: ctx => {
+          const v = ctx.parsed.y ?? 0;
+          if (v >= 13) return palette.accent;
+          if (v >= 8) return palette.accent2;
+          return palette.accent3;
+        },
+        borderRadius: 4, maxBarThickness: 60
+      }]
+    },
+    options: barOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + ' jr'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y} jaar wachten` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 40 — Functioneel analfabetisme
+     ==================================================================== */
+  if ($('chartAnalfabeet')) new Chart($('chartAnalfabeet'), {
+    type: 'bar',
+    data: {
+      labels: DATA.functioneelAnalfabetisme.years,
+      datasets: [{
+        data: DATA.functioneelAnalfabetisme.values,
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.2)']]),
+        borderRadius: 4, maxBarThickness: 60
+      }]
+    },
+    options: barOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMax: 40, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% onder leesniveau 2` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 41 — School segregatie
+     ==================================================================== */
+  if ($('chartSegregatie')) new Chart($('chartSegregatie'), {
+    type: 'line',
+    data: {
+      labels: DATA.schoolSegregatie.years,
+      datasets: [{
+        data: DATA.schoolSegregatie.values,
+        borderColor: palette.accent2,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(249,115,22,.35)'],[1,'rgba(249,115,22,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent2, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 15, suggestedMax: 50, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% scholen` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 42 — Lerarentekort
+     ==================================================================== */
+  if ($('chartLerarenTekort')) new Chart($('chartLerarenTekort'), {
+    type: 'bar',
+    data: {
+      labels: DATA.lerarentekort.years,
+      datasets: [{
+        data: DATA.lerarentekort.values,
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.2)']]),
+        borderRadius: 4, maxBarThickness: 70
+      }]
+    },
+    options: barOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v.toFixed(1) + 'k'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${(c.parsed.y * 1000).toLocaleString('nl-NL')} vacatures` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 43 — Steekincidenten
+     ==================================================================== */
+  if ($('chartSteek')) new Chart($('chartSteek'), {
+    type: 'line',
+    data: {
+      labels: DATA.steekincidenten.years,
+      datasets: [{
+        data: DATA.steekincidenten.values,
+        borderColor: palette.accent,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.35)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y.toLocaleString('nl-NL')} incidenten` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 44 — Cyber crime
+     ==================================================================== */
+  if ($('chartCyber')) new Chart($('chartCyber'), {
+    type: 'bar',
+    data: {
+      labels: DATA.cyberCrime.years,
+      datasets: [{
+        data: DATA.cyberCrime.values,
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.2)']]),
+        borderRadius: 4, maxBarThickness: 60
+      }]
+    },
+    options: barOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + 'k'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${(c.parsed.y * 1000).toLocaleString('nl-NL')} zaken` } } }
+    })
+  });
+
+  /* ====================================================================
+     CHART 45 — Ervaren onveiligheid
+     ==================================================================== */
+  if ($('chartOnveilig')) new Chart($('chartOnveilig'), {
+    type: 'line',
+    data: {
+      labels: DATA.ervarenVeiligheid.years,
+      datasets: [{
+        data: DATA.ervarenVeiligheid.values,
+        borderColor: palette.accent,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.35)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 30, suggestedMax: 45, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% voelt zich wel eens onveilig` } } }
+    })
+  });
+
+  /* ====================================================================
      WALL OF NUMBERS
      ==================================================================== */
   if ($('wallGrid')) {
@@ -884,7 +1223,7 @@
   /* ====================================================================
      SCROLL REVEAL
      ==================================================================== */
-  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row');
+  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block');
   revealTargets.forEach(el => el.classList.add('reveal'));
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

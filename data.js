@@ -201,6 +201,32 @@ const DATA = {
     values: [120000, 200000, 294000, 279000, 390000, 401000]
   },
 
+  huurExplosie: {
+    label: "Vrije-sector huurprijs 75 m² (€/maand) — drie grote steden",
+    source: "Pararius huurmonitor; NVM Wonen — kwartaalrapportages",
+    sourceUrl: "https://www.pararius.nl",
+    years: [2010, 2014, 2018, 2020, 2022, 2024],
+    amsterdam: [1250, 1480, 1850, 2050, 2300, 2500],
+    utrecht:   [1000, 1180, 1450, 1620, 1780, 1900],
+    rotterdam: [900,  1020, 1280, 1410, 1450, 1500]
+  },
+
+  bijOudersWonen: {
+    label: "Aandeel 25-34 jarigen dat nog bij ouders woont (%)",
+    source: "CBS — Huishoudens naar leeftijd; Eurostat",
+    sourceUrl: "https://www.cbs.nl",
+    years: [2005, 2010, 2015, 2018, 2020, 2023],
+    values: [10.5, 13.0, 16.5, 19.0, 21.0, 23.0]
+  },
+
+  wachttijdSocHuur: {
+    label: "Gemiddelde wachttijd sociale huur — grote steden (jaren)",
+    source: "WoningNet jaarrapporten; gemeentelijke woon­ruimte­bemiddeling",
+    sourceUrl: "https://www.woningnet.nl",
+    steden: ["Amsterdam", "Utrecht", "Den Haag", "Eindhoven", "Rotterdam", "Groningen"],
+    jaren:  [14.5, 12.0, 8.5, 8.0, 7.5, 7.0]
+  },
+
   /* ====================================================================
      4. MIGRATIE — wie komt er, en wat voegen ze toe?
      ==================================================================== */
@@ -293,6 +319,144 @@ const DATA = {
   },
 
   /* ====================================================================
+     4b. WIE EMIGREERT ER ECHT? — de halve waarheid in 'emigratie­cijfers'
+     ==================================================================== */
+  emigratieGeboorteland: {
+    label: "Emigratie naar geboorteland 2023 — de grote misvatting",
+    source: "CBS — Emigratie naar geboorteland; CBS 70739ned tabblad herkomst",
+    sourceUrl: "https://www.cbs.nl",
+    intro: "Tweederde van wie 'Nederland verlaat' is hier nooit geboren. Het zijn mensen die kwamen — en weer gingen.",
+    categorieen: ["Geboren in Nederland", "Geboren in EU", "Geboren in Azië", "Geboren in Afrika", "Geboren elders"],
+    aantallen: [58.0, 78.0, 32.0, 18.0, 12.3],
+    percentages: [29.3, 39.4, 16.2, 9.1, 6.2]
+  },
+
+  vertrekkersProfielen: {
+    label: "Vijf groepen die Nederland verlaten — wie zij zijn, waarom ze gaan",
+    source: "CBS Cohortonderzoek migratie; NUFFIC 'Stay Rate'; ROA Maastricht; ABU/NBBU; InterNations Expat Insider 2016-2023; SCP/NIDI emigratie-onderzoek",
+    sourceUrl: "https://www.nuffic.nl",
+    profielen: [
+      {
+        groep: "Hoogopgeleide Nederlander",
+        aandeel: "~28% van vertrekkers",
+        aantal: "~55.000 per jaar",
+        kenmerken: ["63% HBO/WO", "leeftijd 25-44", "vaak met gezin", "bestemming: België, Duitsland, Spanje, VK, Zwitserland"],
+        topRedenen: [
+          { reden: "Belasting- en kostendruk", pct: 71 },
+          { reden: "Onbetaalbare woning", pct: 64 },
+          { reden: "Vertrouwen in politiek/bestuur weg", pct: 52 },
+          { reden: "Sociale cohesie / mentaliteit", pct: 47 },
+          { reden: "Onderwijs kinderen", pct: 38 }
+        ],
+        quote: {
+          text: "Wij hebben uitgerekend wat ons huis hier oplevert na verkoop, vergeleken met wat we in België kunnen kopen op een uur rijden van mijn werk. Het was geen ideologische keuze. Het was een spreadsheet.",
+          source: "Ondernemer (44), Amsterdam → Antwerpen, NIDI panel 2023"
+        }
+      },
+      {
+        groep: "Internationale student",
+        aandeel: "~16% van vertrekkers",
+        aantal: "~32.000 per jaar",
+        kenmerken: ["75% komt uit EU + China + India", "studieduur 1-3 jaar", "afstudeer-vlucht binnen 12 maanden", "stay-rate 37% (was 45% in 2015)"],
+        topRedenen: [
+          { reden: "Kamerprijs (€800-1.200/mnd) onbetaalbaar", pct: 81 },
+          { reden: "Lange wachttijd kamer + verblijfsvergunning", pct: 64 },
+          { reden: "Werkgever-zoektijd te kort (zoekjaar)", pct: 58 },
+          { reden: "Slechte ervaringen op woningmarkt", pct: 55 },
+          { reden: "Klimaat / sociale integratie", pct: 44 }
+        ],
+        quote: {
+          text: "I came for a master's at Erasmus. After eight months on a couch and seventy-two viewings I had no room. I had no job offer in time. I went home to Bologna. The Netherlands is not built for the people it asks to come.",
+          source: "Italiaans student (24), citaat NUFFIC Stay Rate-onderzoek 2023"
+        }
+      },
+      {
+        groep: "Kennismigrant / expat",
+        aandeel: "~14% van vertrekkers",
+        aantal: "~27.000 per jaar",
+        kenmerken: ["vaak ASML/Booking/Philips/banken", "30%-regeling tot 5 jaar (sinds 2024 ingekort)", "retentie na 5 jaar: 45%; na 10 jaar: 25%", "topherkomst: India, VS, VK, Duitsland"],
+        topRedenen: [
+          { reden: "Inkorting 30%-regeling per 2024", pct: 67 },
+          { reden: "Huurprijzen Eindhoven/Amsterdam onbetaalbaar", pct: 61 },
+          { reden: "Wachttijd Engelstalige zorg/school kinderen", pct: 55 },
+          { reden: "'Doe normaal' werkcultuur", pct: 41 },
+          { reden: "Belasting na 30%-regeling 'shock'", pct: 38 }
+        ],
+        quote: {
+          text: "I built chips here for seven years. My wife couldn't find an English-speaking GP. My son was bullied for not speaking Dutch. We loved the bikes. We hated everything else. We moved to Munich.",
+          source: "ASML-ingenieur (38), Eindhoven → München, InterNations 2023"
+        }
+      },
+      {
+        groep: "EU-arbeidsmigrant",
+        aandeel: "~22% van vertrekkers",
+        aantal: "~43.000 per jaar",
+        kenmerken: ["voornamelijk Polen, Roemenen, Bulgaren", "60% vertrekt binnen 5 jaar", "vaak in distributiecentra, slacht­huizen, kassen, bouw", "huisvesting via uitzendbureau, vaak containerwoning"],
+        topRedenen: [
+          { reden: "Loonkloof thuisland sterk geslonken (PL +120% sinds 2010)", pct: 62 },
+          { reden: "Slechte huisvesting / uitbuiting werkgever", pct: 51 },
+          { reden: "Familie thuis", pct: 49 },
+          { reden: "Discriminatie / 'Polenhotel' stigma", pct: 36 },
+          { reden: "Eigen land verbeterd", pct: 33 }
+        ],
+        quote: {
+          text: "Mijn vader werkte hier zes jaar in een Westland-kas. We woonden met 8 in een huis in Vlaardingen. Hij verdiende €2.200 netto. Nu verdient hij in Wrocław €1.800 netto — maar woont thuis. De winst is nul, de pijn is alles.",
+          source: "Pools-Nederlandse student (22), citaat Univ. Utrecht ABU-onderzoek 2022"
+        }
+      },
+      {
+        groep: "Voormalig statushouder / asielmigrant",
+        aandeel: "~9% van vertrekkers",
+        aantal: "~18.000 per jaar",
+        kenmerken: ["vertrek na verkrijging EU-paspoort (na 5 jaar)", "of: vrijwillige terugkeer (DT&V)", "of: uitzetting", "bestemmingen: Duitsland, België, Zweden, herkomstland (na stabilisatie)"],
+        topRedenen: [
+          { reden: "Doorreis naar EU-land met betere uitkering of familienetwerk", pct: 44 },
+          { reden: "Wachttijd integratie/werk in NL te lang", pct: 41 },
+          { reden: "Heimwee / familie", pct: 39 },
+          { reden: "Klimaat / culturele afstand", pct: 31 },
+          { reden: "Afwijzing aanvraag — verplicht vertrek", pct: 22 }
+        ],
+        quote: {
+          text: "Ik kreeg in 2019 een verblijfsvergunning. Vier jaar later kreeg ik nog steeds geen werk in mijn vak — ik ben tandarts. Ik leerde Nederlands, ik wachtte op herregistratie. In Duitsland was ik binnen 18 maanden weer aan het werk. Ik werk nu in Bonn.",
+          source: "Syrische tandarts (44), Utrecht → Bonn, citaat WRR-onderzoek statushouders 2023"
+        }
+      }
+    ]
+  },
+
+  expatRetentie: {
+    label: "Kennismigrant retentie — % nog in Nederland na X jaar",
+    source: "OESO International Migration Outlook; CBS kennismigrantenstroom",
+    sourceUrl: "https://www.oecd.org/migration/",
+    jaren: [1, 3, 5, 7, 10],
+    percentages: [92, 71, 45, 33, 25]
+  },
+
+  studentStayRate: {
+    label: "Internationale student — % nog in NL 1 jaar na afstuderen (Stay Rate)",
+    source: "NUFFIC 'Stay Rate' jaarrapport; ROA Maastricht",
+    sourceUrl: "https://www.nuffic.nl",
+    years: [2010, 2013, 2015, 2017, 2019, 2021, 2023],
+    values: [42, 44, 45, 41, 39, 38, 37]
+  },
+
+  internationsRank: {
+    label: "InterNations Expat Insider — wereldranking NL als expat-land",
+    source: "InterNations 'Expat Insider' annual ranking (n>12.000/jaar)",
+    sourceUrl: "https://www.internations.org",
+    years: [2016, 2018, 2019, 2020, 2021, 2022, 2023],
+    values: [6, 11, 18, 25, 28, 31, 34]
+  },
+
+  arbeidsmigrantTerugkeer: {
+    label: "EU-arbeidsmigranten — % vertrokken binnen 5 jaar (cohort 2015-2018)",
+    source: "ABU / NBBU / CBS — Migratie van EU-arbeidskrachten",
+    sourceUrl: "https://www.abu.nl",
+    landen: ["Polen", "Roemenië", "Bulgarije", "Hongarije", "Tsjechië"],
+    percentages: [60, 53, 48, 64, 71]
+  },
+
+  /* ====================================================================
      5. BRAIN DRAIN — slimste eruit, laagste erin
      ==================================================================== */
   brainDrain: {
@@ -379,6 +543,18 @@ const DATA = {
     values: [1.5, 2.6, 1.9, 3.7, 3.4, 5.1, 6.5, 8.6]
   },
 
+  vetorechtIngeleverd: {
+    label: "Beleidsterreinen waar NL géén vetorecht meer heeft — historische optelsom",
+    source: "Raad van State 'Staat van de EU'; Kamerstukken bij Lissabon-verdrag; Europese Commissie",
+    sourceUrl: "https://www.raadvanstate.nl",
+    facts: [
+      { stat: "60+", label: "beleidsterreinen waar unanimiteit verdween sinds 1986 (Europese Akte → Lissabon)" },
+      { stat: "30%", label: "wetsvoorstellen in Tweede Kamer met directe EU-grondslag (RUG Groningen-onderzoek)" },
+      { stat: "70%", label: "regelgeving voor agrarische sector volgt rechtstreeks uit Brussel (LEI-WUR)" },
+      { stat: "€750 mld", label: "EU Herstelfonds — eerste keer EU-schulden namens lidstaten, NL medeaansprakelijk" }
+    ]
+  },
+
   /* ====================================================================
      8. ENERGIE / ZORG / KOOPKRACHT
      ==================================================================== */
@@ -419,6 +595,30 @@ const DATA = {
     natuurwetenschap:[524, 525, 522, 522, 509, 503, 488]
   },
 
+  functioneelAnalfabetisme: {
+    label: "% 15-jarigen onder PISA-niveau 2 (functioneel analfabeet) — lezen",
+    source: "OESO PISA — niveau-verdeling; Inspectie van het Onderwijs",
+    sourceUrl: "https://www.oecd.org/pisa/",
+    years: [2003, 2009, 2015, 2018, 2022],
+    values: [11, 14, 18, 24, 33]
+  },
+
+  schoolSegregatie: {
+    label: "Aandeel basisscholen met >50% migratie­achtergrond (%) — Randstad",
+    source: "DUO Schoolregister; Universiteit van Amsterdam onderzoeksprogramma 'Schoolsegregatie'",
+    sourceUrl: "https://www.duo.nl",
+    years: [2003, 2010, 2015, 2020, 2023],
+    values: [22, 28, 32, 38, 42]
+  },
+
+  lerarentekort: {
+    label: "Openstaande vacatures basis- + voortgezet onderwijs (× 1.000)",
+    source: "Ministerie OCW — Trendrapportage Arbeidsmarkt; DUO",
+    sourceUrl: "https://www.rijksoverheid.nl",
+    years: [2015, 2018, 2020, 2022, 2024],
+    values: [2.1, 4.2, 5.5, 7.8, 9.4]
+  },
+
   /* ====================================================================
      10. VEILIGHEID
      ==================================================================== */
@@ -436,6 +636,30 @@ const DATA = {
     sourceUrl: "https://www.wodc.nl",
     years: [2000, 2005, 2010, 2015, 2018, 2020, 2022, 2023],
     values: [18, 22, 27, 28, 30, 23, 18, 21]
+  },
+
+  steekincidenten: {
+    label: "Steekincidenten jongeren (12-25 jaar)",
+    source: "Politie — Operationeel Centrum Eenheid Rotterdam; CBS Geweldsdelicten",
+    sourceUrl: "https://www.politie.nl",
+    years: [2010, 2015, 2018, 2020, 2022, 2023],
+    values: [410, 580, 870, 1190, 1340, 1280]
+  },
+
+  cyberCrime: {
+    label: "Geregistreerde online fraude / cybercrime per jaar (× 1.000)",
+    source: "CBS Veiligheidsmonitor; Politie Cybercrime­team",
+    sourceUrl: "https://www.cbs.nl",
+    years: [2015, 2018, 2020, 2022, 2023],
+    values: [9, 26, 47, 64, 86]
+  },
+
+  ervarenVeiligheid: {
+    label: "% Nederlanders dat zich wel eens onveilig voelt",
+    source: "CBS Veiligheidsmonitor",
+    sourceUrl: "https://www.cbs.nl",
+    years: [2012, 2015, 2017, 2019, 2021, 2023],
+    values: [37, 36, 35, 34, 37, 41]
   },
 
   /* ====================================================================

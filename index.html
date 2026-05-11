@@ -27,6 +27,7 @@
       <a href="#belasting">Belasting</a>
       <a href="#migratie">Migratie</a>
       <a href="#kosten">Kosten</a>
+      <a href="#vertrekkers">Vertrekkers</a>
       <a href="#braindrain">Brain&nbsp;drain</a>
       <a href="#cohesie">Cohesie</a>
       <a href="#soevereiniteit">EU</a>
@@ -239,6 +240,33 @@
         <p class="src">Bron: ABF Research/Primos — 401.000 woningen tekort in 2024</p>
       </div>
     </div>
+
+    <div class="card wide">
+      <h3>Vrije-sector huurprijs 75 m² (€/maand) — Amsterdam, Utrecht, Rotterdam</h3>
+      <div class="chart-wrap tall"><canvas id="chartHuurExplosie"></canvas></div>
+      <p class="src">Bron: Pararius huurmonitor; NVM — een Amsterdams appartement kost nu €2.500/mnd. In 2010 was dat €1.250. Niemand verdubbelde z'n salaris in dezelfde periode.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>25-34 jarigen die nog bij hun ouders wonen (%)</h3>
+        <div class="chart-wrap"><canvas id="chartBijOuders"></canvas></div>
+        <p class="src">Bron: CBS/Eurostat — 23% van de twintigers/dertigers woont nog thuis. Tienjaar geleden was dat de helft.</p>
+      </div>
+      <div class="card">
+        <h3>Wachttijd sociale huur — grote steden (jaren)</h3>
+        <div class="chart-wrap"><canvas id="chartWachtSocHuur"></canvas></div>
+        <p class="src">Bron: WoningNet — in Amsterdam wacht je gemiddeld 14.5 jaar op een sociale huurwoning. Statushouders krijgen voorrang.</p>
+      </div>
+    </div>
+
+    <div class="callout dark">
+      <div class="callout-num">14,5 jr</div>
+      <div>
+        <h4>Gemiddelde wachttijd op een sociale huurwoning in Amsterdam.</h4>
+        <p>Wie zich in 2024 inschrijft, krijgt — bij gelijkblijvende doorstroom — z'n eerste woning in 2038. Wie in 2010 op de woningmarkt stapte als 22-jarige, is nu 36, vaak nog bij z'n ouders, en zal nooit kopen.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -355,6 +383,67 @@
 </section>
 
 <!-- =====================================================
+     WIE VERTREKT ER ECHT?
+     ===================================================== -->
+<section id="vertrekkers" class="chapter">
+  <div class="container">
+    <div class="chapter-head wide">
+      <p class="kicker">06 — De ware emigratie­cijfers</p>
+      <h2 class="h2">Tweederde van wie 'Nederland verlaat' <br>is hier <span class="hl">nooit geboren</span>.</h2>
+      <p class="lede">
+        Wie de emigratie­cijfers leest in een krantenkop, denkt: "Nederlanders vertrekken." Klopt — maar slechts voor één op de drie.
+        De overige tweederde zijn mensen die ooit kwámen: kennismigranten die hun contract afmaken en terugkeren, internationale studenten
+        die hier geen kamer kunnen vinden, Polen en Roemenen die merken dat hun thuislanden zijn ingehaald, statushouders die door­reizen
+        naar een EU-land waar ze beter terechtkunnen. <strong>Het verhaal van 'Nederland importeert talent' valt onder eigen gewicht
+        zodra je leest hoe snel datzelfde talent weer vertrekt.</strong>
+      </p>
+    </div>
+
+    <div class="card wide">
+      <h3>Emigratie 2023 naar geboorteland — wie verlaat er werkelijk?</h3>
+      <div class="chart-wrap tall"><canvas id="chartGeboorteland"></canvas></div>
+      <p class="src">Bron: CBS — Emigratie naar geboorteland. Van de 198.300 emigranten in 2023 was 29% geboren in Nederland; 71% kwam ooit hierheen — en is weer weggegaan.</p>
+    </div>
+
+    <div class="profile-stack" id="profileStack"></div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Kennismigrant retentie — % nog in NL na X jaar</h3>
+        <div class="chart-wrap"><canvas id="chartExpatRet"></canvas></div>
+        <p class="src">Bron: OESO International Migration Outlook — slechts 25% blijft langer dan 10 jaar. ASML, Booking en Philips vinden ze, NL houdt ze niet.</p>
+      </div>
+      <div class="card">
+        <h3>International Student "Stay Rate" — % 1 jaar na afstuderen nog hier</h3>
+        <div class="chart-wrap"><canvas id="chartStayRate"></canvas></div>
+        <p class="src">Bron: NUFFIC — daling van 45% (2015) naar 37% (2023). Geen kamer, geen baan, geen reden om te blijven.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>EU-arbeidsmigranten — % vertrokken binnen 5 jaar</h3>
+        <div class="chart-wrap"><canvas id="chartArbVertrek"></canvas></div>
+        <p class="src">Bron: ABU/NBBU; CBS — Polen verdienen thuis inmiddels 80% van NL-loon. Voor 20% verschil kom je niet 1.500 km, in een containerwoning.</p>
+      </div>
+      <div class="card">
+        <h3>NL-positie InterNations Expat-ranking (wereld)</h3>
+        <div class="chart-wrap"><canvas id="chartInternations"></canvas></div>
+        <p class="src">Bron: InterNations Expat Insider — van #6 (2016) naar #34 (2023). Geen toeval dat ze daar weggaan.</p>
+      </div>
+    </div>
+
+    <div class="callout dark">
+      <div class="callout-num">71%</div>
+      <div>
+        <h4>71% van de jaarlijkse "emigratie" zijn mensen die hier nooit zijn geboren — die kwamen, het probeerden, en vertrokken.</h4>
+        <p>Een land dat zo aantrekkelijk is dat ruim een miljoen mensen per jaar willen komen, is het verhaal. Een land dat de helft van wie het verleidde binnen vijf jaar weer kwijt is — is wat er gebeurt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
      BRAIN DRAIN
      ===================================================== -->
 <section id="braindrain" class="chapter alt">
@@ -456,6 +545,25 @@
 
     <div class="timeline" id="timelineEU"></div>
 
+    <div class="grid-2 profile">
+      <div class="profile-card">
+        <div class="profile-num">60+</div>
+        <p><strong>beleidsterreinen</strong> waar Nederland sinds 1986 geen vetorecht meer heeft <br><span class="muted">Raad van State 'Staat van de EU'</span></p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-num">~30%</div>
+        <p>wetsvoorstellen in Tweede Kamer met <strong>directe EU-grondslag</strong> — geen Nederlandse keuze, alleen implementatie <br><span class="muted">RUG-onderzoek 2019</span></p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-num">~70%</div>
+        <p>regelgeving voor de <strong>agrarische sector</strong> volgt rechtstreeks uit Brussel <br><span class="muted">LEI-WUR / GLB-cijfers</span></p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-num">€750 mld</div>
+        <p>EU-Herstelfonds — <strong>eerste keer dat EU-schulden namens lidstaten</strong> worden uitgegeven. NL is medeaansprakelijk. <br><span class="muted">Next Generation EU, 2020</span></p>
+      </div>
+    </div>
+
     <div class="grid-2">
       <div class="card">
         <h3>Netto Nederlandse afdracht aan EU (€ mld)</h3>
@@ -528,6 +636,33 @@
       <div class="chart-wrap tall"><canvas id="chartPISA"></canvas></div>
       <p class="src">Bron: OESO PISA 2003–2022 — −54 punten op lezen, gelijk aan ruim een vol schooljaar</p>
     </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Aandeel 15-jarigen onder leesniveau 2 (functioneel analfabeet)</h3>
+        <div class="chart-wrap"><canvas id="chartAnalfabeet"></canvas></div>
+        <p class="src">Bron: OESO PISA — Eén op de drie 15-jarigen kan een formulier niet zelfstandig lezen. In 2003 was dat één op de negen.</p>
+      </div>
+      <div class="card">
+        <h3>Basisscholen met &gt;50% migratie­achtergrond in de Randstad (%)</h3>
+        <div class="chart-wrap"><canvas id="chartSegregatie"></canvas></div>
+        <p class="src">Bron: DUO Schoolregister; UvA-onderzoeksprogramma. Witte scholen, zwarte scholen — wettelijk ontkend, statistisch een feit.</p>
+      </div>
+    </div>
+
+    <div class="card wide">
+      <h3>Openstaande vacatures basis- + voortgezet onderwijs (× 1.000)</h3>
+      <div class="chart-wrap"><canvas id="chartLerarenTekort"></canvas></div>
+      <p class="src">Bron: Ministerie OCW Trendrapportage Arbeidsmarkt — 9.400 onvervulde leraar­vacatures. Eén op zes kinderen krijgt les van een onbevoegde.</p>
+    </div>
+
+    <div class="callout dark">
+      <div class="callout-num">33%</div>
+      <div>
+        <h4>Een op de drie Nederlandse 15-jarigen is functioneel analfabeet voor begrijpend lezen.</h4>
+        <p>Verdrievoudigd in twintig jaar. Dat zijn de toekomstige werknemers, kiezers, ouders. Een land dat zijn kinderen niet meer kan leren lezen, kan z'n eigen democratie niet meer reproduceren.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -557,6 +692,25 @@
         <div class="chart-wrap"><canvas id="chartLiqui"></canvas></div>
         <p class="src">Bron: Politie/WODC</p>
       </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Steekincidenten jongeren (12-25 jaar)</h3>
+        <div class="chart-wrap"><canvas id="chartSteek"></canvas></div>
+        <p class="src">Bron: Politie operationeel centrum; CBS Geweldsdelicten — verdrievoudigd sinds 2010. Een tienerprobleem is een volksprobleem geworden.</p>
+      </div>
+      <div class="card">
+        <h3>Online fraude / cybercrime per jaar (× 1.000 zaken)</h3>
+        <div class="chart-wrap"><canvas id="chartCyber"></canvas></div>
+        <p class="src">Bron: CBS Veiligheidsmonitor; Politie Cybercrime­team — ×9.5 in acht jaar. De staat heeft geen antwoord.</p>
+      </div>
+    </div>
+
+    <div class="card wide">
+      <h3>Nederlanders die zich wel eens onveilig voelen (%)</h3>
+      <div class="chart-wrap"><canvas id="chartOnveilig"></canvas></div>
+      <p class="src">Bron: CBS Veiligheidsmonitor — na een dalende trend (2012-2019) een knik omhoog. Het 'gevoel' valt sinds 2021 samen met de cijfers.</p>
     </div>
   </div>
 </section>

@@ -584,6 +584,99 @@ ul { list-style: none; }
   text-underline-offset: 4px;
 }
 
+/* ---------------------------- PROFIELEN VERTREKKERS --------------------- */
+.profile-stack { display: grid; gap: 22px; margin: 48px 0; }
+.prof-block {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 32px 36px;
+  transition: border-color .25s;
+}
+.prof-block:hover { border-color: var(--ink-4); border-left-color: var(--accent); }
+@media (max-width: 720px) { .prof-block { padding: 22px; } }
+
+.prof-head {
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px dashed var(--line);
+}
+.prof-num {
+  display: inline-grid; place-items: center;
+  width: 54px; height: 54px;
+  font-family: var(--serif); font-weight: 800; font-size: 22px;
+  color: var(--accent);
+  background: rgba(220,38,38,.12);
+  border: 1px solid rgba(220,38,38,.25);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.prof-head h4 {
+  font-family: var(--serif); font-weight: 700; font-size: 22px;
+  color: var(--ink); margin-bottom: 6px; letter-spacing: -0.01em;
+}
+.prof-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.prof-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 12px; letter-spacing: .04em;
+  background: rgba(220,38,38,.12);
+  color: var(--accent); border-radius: 999px;
+  font-weight: 600;
+}
+.prof-tag.muted { background: var(--bg-2); color: var(--ink-3); }
+
+.prof-body {
+  display: grid; grid-template-columns: 1fr 1.6fr; gap: 36px;
+  margin-bottom: 28px;
+}
+@media (max-width: 720px) { .prof-body { grid-template-columns: 1fr; gap: 22px; } }
+
+.prof-kenmerken h5,
+.prof-redenen h5 {
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px; font-weight: 700;
+}
+.prof-kenmerken ul li {
+  padding: 5px 0;
+  font-size: 13px; color: var(--ink-2); line-height: 1.5;
+}
+.prof-kenmerken ul li::before { content: '• '; color: var(--accent); margin-right: 4px; }
+
+.prof-bars { display: grid; gap: 12px; }
+.prof-bar-label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 13px; margin-bottom: 4px;
+}
+.prof-bar-label span { color: var(--ink-2); }
+.prof-bar-label b { color: var(--accent); font-family: var(--serif); font-weight: 700; font-size: 14px; }
+.prof-bar-bg {
+  height: 6px; background: var(--bg-2); border-radius: 3px; overflow: hidden;
+}
+.prof-bar-fg {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 3px;
+  transition: width 1.2s cubic-bezier(.2,.7,.2,1);
+}
+
+.prof-quote {
+  margin: 0;
+  padding: 22px 24px;
+  background: linear-gradient(135deg, rgba(220,38,38,.08), rgba(249,115,22,.04));
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+}
+.prof-quote p {
+  font-family: var(--serif); font-size: 18px; line-height: 1.45;
+  font-style: italic; color: var(--ink); margin-bottom: 10px;
+}
+.prof-quote cite {
+  font-size: 12px; letter-spacing: .04em; color: var(--ink-4); font-style: normal;
+}
+
 /* ---------------------------- VS STACK (internationaal) ----------------- */
 .vs-stack { display: grid; gap: 18px; margin-top: 48px; }
 .vs-row {
