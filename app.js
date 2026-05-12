@@ -1400,7 +1400,7 @@
           <div class="defense-claim-text">${it.claim}</div>
         </div>
         <div class="defense-reply">
-          <div class="defense-reply-label">Het killer-feit</div>
+          <div class="defense-reply-label">Wat de cijfers laten zien</div>
           <ul>${it.weerleg.map(w => `
             <li>
               <div class="defense-fact">${w.feit}</div>

@@ -1247,7 +1247,7 @@ const DATA = {
      11d2. MAAR WAT DAN MET...?, 10 standaard tegenargumenten weerlegd
      ==================================================================== */
   optimistDefenses: {
-    label: "Tien meest gehoorde tegenargumenten, en het killer-feit dat ze sloopt",
+    label: "Tien meest gehoorde tegenargumenten, en het doorslaggevende feit dat eronder ligt",
     source: "UWV, CBS Inactiviteit, Voedselbanken Nederland, Eurostat, OESO, NIDI, RIVM, Transparency International, WWF Living Planet Index NL, Min. Financiën",
     items: [
       {
