@@ -13,7 +13,7 @@ const DATA = {
   killerNumbers: [
     { value: "36%", label: "voorgestelde belasting op ongerealiseerd rendement vermogen vanaf 2027, wereldwijd vrijwel uniek", source: "Wet werkelijk rendement Box 3, Min. Financiën" },
     { value: "x42", label: "huizenprijs sinds 1970, modaal salaris vermenigvuldigde slechts x7", source: "CBS, Kadaster, NIBUD" },
-    { value: "−66%", label: "koopkracht voor pakje shag tussen 1999 en 2026, gemeten in modaal-netto/maand", source: "CBS Prijzen, Belastingdienst accijns" },
+    { value: "28 → 36", label: "gemiddelde leeftijd waarop een Nederlander zijn eerste koopwoning verwerft (1995 naar 2024)", source: "Kadaster Starters­monitor, NVM kwartaalrapportages" },
     { value: "€600.000", label: "levenslange netto kosten van één gemiddelde niet-westerse asielmigrant", source: "WODC, J. van de Beek 2021" },
     { value: "71%", label: "van wie Nederland verlaat is hier nooit geboren, kwam, faalde, vertrok", source: "CBS Emigratie naar geboorteland 2023" },
     { value: "1,38", label: "Nederlands geboortecijfer 2024, vervanging vergt 2,1, demografische crisis loopt", source: "CBS Vruchtbaarheid 37422ned" },
@@ -58,10 +58,14 @@ const DATA = {
     modaal2026_netto: 32500,
     voltijdsuren: 1700,
     rekenkader: [
-      { label: "Modaal jaarsalaris brúto (CBS)",                     "1999": "€25.000", "2026": "€44.000" },
-      { label: "Afdracht loonheffing (IB + premies volksverzekeringen)", "1999": "€7.500",  "2026": "€11.500" },
-      { label: "Modaal jaarsalaris nétto besteedbaar",               "1999": "€17.500", "2026": "€32.500" },
-      { label: "Modaal netto besteedbaar per maand",                 "1999": "€1.458",  "2026": "€2.708" }
+      { label: "Modaal jaarsalaris brúto (CBS)",                          "1999": "€25.000", "2026": "€44.000" },
+      { label: "1. Loonheffing (IB + premies volksverz.)",                "1999": "€7.500",  "2026": "€11.500" },
+      { label: "2. ZVW inkomensafhankelijke bijdrage werknemer",          "1999": "€600",    "2026": "€2.340" },
+      { label: "3. BTW + accijnzen + energiebelasting op consumptie",     "1999": "€2.500",  "2026": "€7.500" },
+      { label: "4. Lokale en provinciale heffingen (OZB, MRB, water)",    "1999": "€450",    "2026": "€1.700" },
+      { label: "Totale belasting- en premiedruk modaal (1+2+3+4)",        "1999": "€11.050 (44,2%)", "2026": "€23.040 (52,4%)" },
+      { label: "Modaal jaarsalaris nétto besteedbaar (na loonheffing)",   "1999": "€17.500", "2026": "€32.500" },
+      { label: "Modaal netto besteedbaar per maand",                      "1999": "€1.458",  "2026": "€2.708" }
     ],
     producten: [
       { naam: "Pakje shag (50 gram)",                                prijs1999: 2.50, prijs2026: 13.50, eenheid: "pakjes" },
@@ -172,10 +176,10 @@ const DATA = {
   },
 
   box3Voorstel: {
-    label: "Box 3 vanaf 2027, 36% belasting op werkelijk rendement, inclusief ongerealiseerd rendement",
-    source: "Min. Financiën wetsvoorstel Wet werkelijk rendement Box 3 (dec 2024); Tweede Kamer dossier 36 706; Hoge Raad Kerstarrest 2021; commentaar NOB, Bond voor Belastingbetalers, VEB, Eumedion",
+    label: "Voorstel Box 3, 36% belasting op werkelijk rendement, inclusief ongerealiseerd rendement",
+    source: "Wetsvoorstel Wet werkelijk rendement Box 3, ingediend bij Tweede Kamer december 2024; Min. Financiën dossier 36 706; Hoge Raad Kerstarrest 2021; uitvoerings­toets Belastingdienst 2025; commentaar NOB, Bond voor Belastingbetalers, VEB, Eumedion",
     sourceUrl: "https://www.rijksoverheid.nl/onderwerpen/box-3",
-    intro: "Vanaf 1 januari 2027 (uitgesteld vanaf 2025) gaat de Nederlandse vermogensbelasting in Box 3 over op een nieuw stelsel: 36% belasting op het werkelijke rendement, inclusief óngerealiseerd rendement. Wie aandelen of vastgoed bezit, betaalt jaarlijks belasting over de waardestijging, ook als hij niets verkocht heeft. Dat is wereldwijd vrijwel uniek voor particulier vermogen, levert acute liquiditeitsproblemen op, en sloopt het mechanisme dat lange­termijn vermogensopbouw mogelijk maakt: samengestelde rente.",
+    intro: "Onder het voorgestelde stelsel wordt de Nederlandse vermogensbelasting in Box 3 omgezet naar een heffing van 36% op het werkelijke rendement, inclusief óngerealiseerd rendement. Wie aandelen, beleggings­fondsen of verhuurd vastgoed bezit, betaalt jaarlijks belasting over de waarde­stijging, ook als hij niets verkocht heeft. Het wetsvoorstel is in december 2024 ingediend bij de Tweede Kamer. Beoogde invoer­datum was 1 januari 2025, vervolgens uitgesteld naar 2027, en gezien recente uitvoerings­problemen bij de Belastingdienst en de complexiteit van de waarderings­logica wordt 2028 inmiddels door diverse fiscaal­specialisten als realistischer genoemd. De systematiek zelf is in de wandelgang vrijwel uniek voor particulier vermogen wereldwijd, en sloopt het mechanisme dat lange­termijn vermogensopbouw mogelijk maakt: samengestelde rente.",
     onrechtvaardig: [
       { titel: "Papierwinst is geen winst", uitleg: "Wie een aandelenportefeuille bezit die in een jaar 8% stijgt, heeft géén euro op zijn rekening. Toch moet hij in december belasting betalen alsof hij die winst incasseerde. Als de koers in januari weer zakt, blijft de belastingschuld staan." },
       { titel: "Geen verrekening van verliesjaren (volledig)", uitleg: "Beleggen kent slechte jaren. Onder de voorgestelde wet kan een verlies niet onbeperkt worden teruggewenteld. Wie 2025 +30% maakt en 2026 -25%, betaalt eerst de heffing, en hoeft de tweede klap maar deels te verrekenen." },
@@ -186,7 +190,7 @@ const DATA = {
       { stat: "36%", label: "tarief over werkelijk rendement (rente, dividend, huur, koers­winst)" },
       { stat: "ongerealiseerd", label: "óók over waardestijging die nog niet is verzilverd, op aandelen, vastgoed en crypto" },
       { stat: "€57.000", label: "heffingsvrij vermogen per persoon (gehuwd: dubbel)" },
-      { stat: "1 januari 2027", label: "geplande inwerkingtreding, voorstel ingediend bij Tweede Kamer december 2024" },
+      { stat: "2027 of later", label: "beoogde inwerkingtreding, het wetsvoorstel ligt sinds december 2024 in de Tweede Kamer, eerdere ambitie 2025 is al uitgesteld" },
       { stat: "wereldwijd uniek", label: "geen enkel ander OESO-land belast structureel ongerealiseerd rendement op particulier vermogen" },
       { stat: "€14.400", label: "voorbeeld: portefeuille €500.000 stijgt 8% zonder verkoop, u betaalt over €40.000 papier­winst" }
     ],
