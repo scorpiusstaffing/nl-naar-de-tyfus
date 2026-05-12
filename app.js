@@ -603,25 +603,21 @@
 
     const gridEl = $('koopkrachtGrid');
     if (gridEl) {
-      const m1999 = DATA.koopkrachtVergelijking.modaal1999_netto;
-      const m2026 = DATA.koopkrachtVergelijking.modaal2026_netto;
-      const uren_per_jaar = DATA.koopkrachtVergelijking.voltijdsuren || 1700;
-      const uurloon1999 = m1999 / uren_per_jaar; // ~€10,30 netto
-      const uurloon2026 = m2026 / uren_per_jaar; // ~€19,10 netto
+      const maand1999 = DATA.koopkrachtVergelijking.modaal1999_netto / 12; // €1.458 netto/maand
+      const maand2026 = DATA.koopkrachtVergelijking.modaal2026_netto / 12; // €2.708 netto/maand
 
-      const fmtTime = minuten => {
-        if (minuten < 60) return `${Math.round(minuten)} min`;
-        const u = Math.floor(minuten / 60);
-        const m = Math.round(minuten - u * 60);
-        return m === 0 ? `${u} uur` : `${u} u ${m} min`;
+      const fmtAantal = n => {
+        if (n >= 1000) return Math.round(n / 10) * 10; // afronden op tientallen voor leesbaarheid
+        if (n >= 100)  return Math.round(n);
+        if (n >= 10)   return Math.round(n);
+        return n.toFixed(1).replace('.', ',');
       };
       const fmtPrijs = p => '€' + p.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
       gridEl.innerHTML = DATA.koopkrachtVergelijking.producten.map(p => {
-        const min1999 = (p.prijs1999 / uurloon1999) * 60;
-        const min2026 = (p.prijs2026 / uurloon2026) * 60;
-        const verlies = (1 - (min1999 / min2026)) * 100;
-        const factor = (min2026 / min1999).toFixed(1).replace('.', ',');
+        const aantal1999 = maand1999 / p.prijs1999;
+        const aantal2026 = maand2026 / p.prijs2026;
+        const verlies = ((aantal1999 - aantal2026) / aantal1999) * 100;
         return `
           <div class="kk-card">
             <div class="kk-product">${p.naam}</div>
@@ -638,17 +634,16 @@
             </div>
             <div class="kk-aantal-row">
               <div class="kk-aantal">
-                <span class="kk-aantal-num">${fmtTime(min1999)}</span>
-                <span class="kk-aantal-lbl">werken voor één in 1999</span>
+                <span class="kk-aantal-num">${fmtAantal(aantal1999).toLocaleString ? fmtAantal(aantal1999).toLocaleString('nl-NL') : fmtAantal(aantal1999)}</span>
+                <span class="kk-aantal-lbl">van een modaal maandsalaris in 1999</span>
               </div>
               <div class="kk-aantal kk-aantal-now">
-                <span class="kk-aantal-num">${fmtTime(min2026)}</span>
-                <span class="kk-aantal-lbl">werken voor één in 2026</span>
+                <span class="kk-aantal-num">${fmtAantal(aantal2026).toLocaleString ? fmtAantal(aantal2026).toLocaleString('nl-NL') : fmtAantal(aantal2026)}</span>
+                <span class="kk-aantal-lbl">van een modaal maandsalaris in 2026</span>
               </div>
             </div>
             <div class="kk-verlies-row">
               <span class="kk-verlies">−${Math.round(verlies)}% koopkracht</span>
-              <span class="kk-factor">${factor}× zo veel werktijd nodig</span>
             </div>
           </div>
         `;
