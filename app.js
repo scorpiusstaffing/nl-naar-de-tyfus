@@ -570,6 +570,106 @@
   });
 
   /* ====================================================================
+     IDENTITEIT — religieuze affiliatie (multi-line)
+     ==================================================================== */
+  if ($('chartReligie')) new Chart($('chartReligie'), {
+    type: 'line',
+    data: {
+      labels: DATA.religieuzeAffiliatie.years,
+      datasets: [
+        { label: 'Geen religie',     data: DATA.religieuzeAffiliatie.geenReligie,    borderColor: palette.accent,  backgroundColor: palette.accent,  borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false },
+        { label: 'Rooms-katholiek',  data: DATA.religieuzeAffiliatie.katholiek,      borderColor: palette.ink3,    backgroundColor: palette.ink3,    borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false },
+        { label: 'Protestant',       data: DATA.religieuzeAffiliatie.protestant,     borderColor: palette.ink4,    backgroundColor: palette.ink4,    borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false },
+        { label: 'Overig christelijk',data: DATA.religieuzeAffiliatie.overigChristen,borderColor: palette.accent3, backgroundColor: palette.accent3, borderWidth: 2, tension: .3, pointRadius: 3, pointHoverRadius: 6, fill: false, borderDash: [4,4] },
+        { label: 'Islam',            data: DATA.religieuzeAffiliatie.islam,          borderColor: palette.green,   backgroundColor: palette.green,   borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y}%` } } },
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, suggestedMax: 60, ticks: {...baseScale.ticks, callback: v => v + '%'}} }
+    }
+  });
+
+  /* Kerkgang */
+  if ($('chartKerkgang')) new Chart($('chartKerkgang'), {
+    type: 'line',
+    data: {
+      labels: DATA.kerkgangData.years,
+      datasets: [{
+        data: DATA.kerkgangData.values,
+        borderColor: palette.accent,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.35)'],[1,'rgba(220,38,38,0)']]),
+        fill: true, tension: .3, borderWidth: 2.5,
+        pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, suggestedMax: 65, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% wekelijks naar de kerk` } } }
+    })
+  });
+
+  /* Islam-groei */
+  if ($('chartIslam')) new Chart($('chartIslam'), {
+    type: 'line',
+    data: {
+      labels: DATA.islamGroei.years,
+      datasets: [{
+        data: DATA.islamGroei.values,
+        borderColor: palette.green,
+        backgroundColor: ctx => grad(ctx, [[0,'rgba(34,197,94,.32)'],[1,'rgba(34,197,94,0)']]),
+        fill: true, tension: .25, borderWidth: 2.5,
+        pointBackgroundColor: ctx => ctx.parsed && ctx.parsed.x === 7 ? palette.accent2 : palette.green,
+        pointRadius: ctx => ctx.dataIndex === DATA.islamGroei.years.length - 1 ? 7 : 5,
+        pointHoverRadius: 9,
+        segment: {
+          borderDash: ctx => ctx.p0DataIndex === DATA.islamGroei.years.length - 2 ? [6, 4] : undefined
+        }
+      }]
+    },
+    options: lineOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, suggestedMax: 10, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: {
+        label: c => ` ${c.parsed.y}% van de bevolking`,
+        afterLabel: c => c.dataIndex === DATA.islamGroei.years.length - 1 ? DATA.islamGroei.note2050 : ''
+      } } }
+    })
+  });
+
+  /* Religieus bij jongeren per groep */
+  if ($('chartReligieusJongeren')) new Chart($('chartReligieusJongeren'), {
+    type: 'bar',
+    data: {
+      labels: DATA.religieusBijJongeren.groepen,
+      datasets: [{
+        data: DATA.religieusBijJongeren.percentages,
+        backgroundColor: ctx => {
+          const v = ctx.parsed.y ?? 0;
+          if (v >= 75) return palette.accent;
+          if (v >= 50) return palette.accent2;
+          return palette.accent3;
+        },
+        borderRadius: 4, maxBarThickness: 80
+      }]
+    },
+    options: barOpts({
+      scales: { x: {...baseScale, ticks: {...baseScale.ticks, font: {size: 11}}}, y: {...baseScale, suggestedMax: 100, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.y}% noemt zich (sterk) religieus` } } }
+    })
+  });
+
+  /* Identiteit-feiten grid */
+  if ($('identiteitGrid')) {
+    $('identiteitGrid').innerHTML = DATA.identiteitFacts.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
      SALDERING grid + intro
      ==================================================================== */
   if (typeof DATA !== 'undefined' && DATA.salderingsregeling) {
@@ -1371,13 +1471,28 @@
   revealTargets.forEach(el => io.observe(el));
 
   /* ====================================================================
-     NAV
+     NAV PANEL (inhoudsoverlay)
      ==================================================================== */
   const navToggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.addEventListener('click', e => { if (e.target.tagName === 'A') navLinks.classList.remove('open'); });
+  const navPanel  = document.querySelector('.nav-panel');
+  const navOverlay = document.querySelector('.nav-overlay');
+  function closePanel() {
+    if (!navPanel) return;
+    navPanel.classList.remove('open');
+    if (navOverlay) navOverlay.classList.remove('open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+  }
+  function togglePanel() {
+    if (!navPanel) return;
+    const open = navPanel.classList.toggle('open');
+    if (navOverlay) navOverlay.classList.toggle('open', open);
+    if (navToggle) navToggle.setAttribute('aria-expanded', String(open));
+  }
+  if (navToggle && navPanel) {
+    navToggle.addEventListener('click', togglePanel);
+    navPanel.addEventListener('click', e => { if (e.target.tagName === 'A') closePanel(); });
+    if (navOverlay) navOverlay.addEventListener('click', closePanel);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
   }
 
   /* ====================================================================

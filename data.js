@@ -494,6 +494,59 @@ const DATA = {
   },
 
   /* ====================================================================
+     5b. IDENTITEIT, van zuilen naar leegte (en één doorgroeiende identiteit)
+     ==================================================================== */
+  religieuzeAffiliatie: {
+    label: "Religieuze affiliatie Nederlandse bevolking (%)",
+    source: "CBS Religieuze betrokkenheid; SCP 'God in Nederland' (Bernts en Berghuijs); KASKI Radboud Universiteit",
+    sourceUrl: "https://www.cbs.nl/nl-nl/visualisaties/dashboard-bevolking/leeftijd/religieuze-betrokkenheid",
+    years: [1960, 1970, 1980, 1990, 2000, 2010, 2017, 2023],
+    geenReligie:    [5, 18, 35, 42, 47, 50, 51, 57],
+    katholiek:      [40, 36, 28, 23, 19, 17, 22, 18],
+    protestant:     [38, 32, 22, 19, 17, 14, 15, 13],
+    overigChristen: [10, 8, 7, 6, 6, 6, 6, 5],
+    islam:          [0.4, 1.2, 2.2, 3.8, 5.0, 5.2, 5.0, 5.7]
+  },
+
+  kerkgangData: {
+    label: "Wekelijks kerkbezoek Nederland (%)",
+    source: "CBS Religieuze betrokkenheid; SCP 'God in Nederland'",
+    sourceUrl: "https://www.cbs.nl",
+    years: [1960, 1975, 1985, 1995, 2005, 2015, 2020, 2023],
+    values: [60, 30, 22, 17, 13, 10, 7, 5]
+  },
+
+  islamGroei: {
+    label: "Aandeel moslims in de Nederlandse bevolking (%)",
+    source: "CBS Religieuze betrokkenheid; PEW Research 'Europe's Growing Muslim Population' 2017; SCP integratierapporten",
+    sourceUrl: "https://www.pewresearch.org",
+    years: [1971, 1980, 1990, 2000, 2010, 2020, 2024, 2050],
+    values: [0.4, 1.5, 3.0, 4.5, 5.1, 5.5, 5.7, 9.0],
+    note2050: "Projectie 2050 op basis van PEW middenscenario voor Nederland (continuerend migratiebeleid plus geboortes)"
+  },
+
+  religieusBijJongeren: {
+    label: "Aandeel 18 tot 34-jarigen dat zich (sterk) religieus noemt, per achtergrond (%)",
+    source: "SCP 'Religie en migratie' 2022; WRR 'Samenleven in verscheidenheid' 2020; Universiteit Utrecht onderzoek tweede generatie",
+    sourceUrl: "https://www.scp.nl",
+    groepen: ["Nederlandse achtergrond", "Surinaamse achtergrond", "Turkse 2e gen.", "Marokkaanse 2e gen.", "Syrische achtergrond"],
+    percentages: [25, 56, 75, 79, 88]
+  },
+
+  identiteitFacts: {
+    label: "Het identiteitsvacuüm in cijfers",
+    source: "CBS Religie; KASKI Radboud; SCP Sociale Staat; RIVM eenzaamheidsmonitor; jeugdmonitor",
+    facts: [
+      { stat: "60% naar 5%", label: "wekelijks kerkbezoek tussen 1960 en 2023" },
+      { stat: "5% naar 57%", label: "Nederlanders zonder enige religieuze affiliatie" },
+      { stat: "ca. 800", label: "kerken zijn sinds 2000 gesloten of herbestemd (KASKI, Radboud)" },
+      { stat: "ca. 525", label: "moskeeën in Nederland anno 2024 (in 1980 nog 150)" },
+      { stat: "×14", label: "groei van het aandeel moslims in de bevolking sinds 1971" },
+      { stat: "79%", label: "tweede generatie Marokkaans-Nederlandse jongeren noemt zich (sterk) religieus, tegen 25% bij Nederlands-Nederlandse leeftijdsgenoten" }
+    ]
+  },
+
+  /* ====================================================================
      6. SOCIALE COHESIE
      ==================================================================== */
   vertrouwenInstellingen: {
