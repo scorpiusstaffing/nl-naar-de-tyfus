@@ -496,15 +496,14 @@
     data: {
       labels: DATA.vertrouwenInstellingen.years,
       datasets: [
-        { label: 'Tweede Kamer', data: DATA.vertrouwenInstellingen.tweedeKamer, borderColor: palette.accent, backgroundColor: palette.accent, borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false },
-        { label: 'Regering',     data: DATA.vertrouwenInstellingen.regering,    borderColor: palette.accent2, backgroundColor: palette.accent2, borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false },
-        { label: 'Politie',      data: DATA.vertrouwenInstellingen.politie,     borderColor: palette.green, backgroundColor: palette.green, borderWidth: 2.5, tension: .3, pointRadius: 4, pointHoverRadius: 7, fill: false }
+        { label: 'Tweede Kamer', data: DATA.vertrouwenInstellingen.tweedeKamer, borderColor: palette.accent, backgroundColor: palette.accent, borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false },
+        { label: 'Regering',     data: DATA.vertrouwenInstellingen.regering,    borderColor: palette.accent2, backgroundColor: palette.accent2, borderWidth: 2.5, tension: .3, pointRadius: 5, pointHoverRadius: 8, fill: false }
       ]
     },
     options: {
       responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
       plugins: { legend: { display: true, position: 'bottom' }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y}%` } } },
-      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 20, suggestedMax: 80, ticks: {...baseScale.ticks, callback: v => v + '%'}} }
+      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 15, suggestedMax: 75, ticks: {...baseScale.ticks, callback: v => v + '%'}} }
     }
   });
 
@@ -568,6 +567,100 @@
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' €' + c.parsed.y.toLocaleString('nl-NL') + ' per jaar' } } }
     })
   });
+
+  /* ====================================================================
+     KOOPKRACHT 1999 vs 2026 — vergelijkingscards
+     ==================================================================== */
+  if (typeof DATA !== 'undefined' && DATA.koopkrachtVergelijking) {
+    const introEl = $('koopkrachtIntro');
+    if (introEl) introEl.textContent = DATA.koopkrachtVergelijking.intro;
+
+    const gridEl = $('koopkrachtGrid');
+    if (gridEl) {
+      const m1999 = DATA.koopkrachtVergelijking.modaal1999_netto;
+      const m2026 = DATA.koopkrachtVergelijking.modaal2026_netto;
+      gridEl.innerHTML = DATA.koopkrachtVergelijking.producten.map(p => {
+        const aantal1999 = m1999 / p.prijs1999;
+        const aantal2026 = m2026 / p.prijs2026;
+        const verlies = ((aantal1999 - aantal2026) / aantal1999) * 100;
+        const fmt = n => n >= 100 ? Math.round(n).toLocaleString('nl-NL') : n.toFixed(1).replace('.', ',');
+        const isBig = p.naam.includes('woning');
+        return `
+          <div class="kk-card ${isBig ? 'kk-big' : ''}">
+            <div class="kk-product">${p.naam}</div>
+            <div class="kk-prijs-row">
+              <div class="kk-prijs">
+                <span class="kk-jaar">1999</span>
+                <span class="kk-eur">€${p.prijs1999.toLocaleString('nl-NL', { minimumFractionDigits: p.prijs1999 < 100 ? 2 : 0, maximumFractionDigits: p.prijs1999 < 100 ? 2 : 0 })}</span>
+              </div>
+              <div class="kk-arrow">→</div>
+              <div class="kk-prijs kk-now">
+                <span class="kk-jaar">2026</span>
+                <span class="kk-eur">€${p.prijs2026.toLocaleString('nl-NL', { minimumFractionDigits: p.prijs2026 < 100 ? 2 : 0, maximumFractionDigits: p.prijs2026 < 100 ? 2 : 0 })}</span>
+              </div>
+            </div>
+            <div class="kk-aantal-row">
+              <div class="kk-aantal">
+                <span class="kk-aantal-num">${fmt(aantal1999)}</span>
+                <span class="kk-aantal-lbl">${p.eenheid} van een modaal jaarsalaris in 1999</span>
+              </div>
+              <div class="kk-aantal kk-aantal-now">
+                <span class="kk-aantal-num">${fmt(aantal2026)}</span>
+                <span class="kk-aantal-lbl">${p.eenheid} van een modaal jaarsalaris in 2026</span>
+              </div>
+            </div>
+            <div class="kk-verlies">−${Math.round(verlies)}% koopkracht</div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  /* ====================================================================
+     BEMOEIZUCHT — gegroepeerde regels-lijst
+     ==================================================================== */
+  if ($('bemoeiGrid') && DATA.bemoeizucht) {
+    $('bemoeiGrid').innerHTML = DATA.bemoeizucht.categorieen.map(cat => `
+      <div class="bemoei-cat">
+        <h4>${cat.groep} <span class="bemoei-count">${cat.items.length}</span></h4>
+        <ul>
+          ${cat.items.map(it => `
+            <li>
+              <span class="bemoei-jaar">${it.jaar}</span>
+              <span class="bemoei-regel">${it.regel}</span>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
+     ACCIJNS-curves: sigaretten, benzine, bier
+     ==================================================================== */
+  function accijnsChart(canvasId, key, currency = '€', barColor = palette.accent) {
+    const el = $(canvasId);
+    if (!el || !DATA.accijnsExplosie || !DATA.accijnsExplosie[key]) return;
+    const d = DATA.accijnsExplosie[key];
+    new Chart(el, {
+      type: 'bar',
+      data: {
+        labels: d.years,
+        datasets: [{
+          data: d.values,
+          backgroundColor: ctx => grad(ctx, [[0, barColor], [1, 'rgba(220,38,38,.15)']]),
+          borderRadius: 4, maxBarThickness: 60
+        }]
+      },
+      options: barOpts({
+        scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => currency + v.toFixed(v < 5 ? 2 : 0)}} },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${currency}${c.parsed.y.toFixed(2)}` } } }
+      })
+    });
+  }
+  accijnsChart('chartAccijnsSig',  'sigaret',  '€', palette.accent);
+  accijnsChart('chartAccijnsBenz', 'benzine',  '€', palette.accent2);
+  accijnsChart('chartAccijnsBier', 'bier',     '€', palette.accent);
 
   /* ====================================================================
      IDENTITEIT — religieuze affiliatie (multi-line)
@@ -1463,7 +1556,7 @@
   /* ====================================================================
      SCROLL REVEAL
      ==================================================================== */
-  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block, .illusion-card, .defense-card, .affair-card');
+  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block, .illusion-card, .defense-card, .affair-card, .kk-card, .bemoei-cat');
   revealTargets.forEach(el => el.classList.add('reveal'));
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

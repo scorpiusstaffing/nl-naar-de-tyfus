@@ -11,18 +11,18 @@ const DATA = {
      KILLER NUMBERS, Wall of Numbers (12 schokkers)
      ==================================================================== */
   killerNumbers: [
-    { value: "€600.000", label: "levenslange netto kosten van één niet-westerse asielmigrant", source: "WODC / J. van de Beek 2021" },
-    { value: "60%", label: "Syrische statushouders die na 5 jaar nog in de bijstand zit", source: "CBS Cohortenonderzoek" },
-    { value: "36.500", label: "hoogopgeleide Nederlanders die per jaar emigreren", source: "CBS, eigen berekening (58k NL-geboren emigranten × 63% hoogopgeleid)" },
-    { value: "63%", label: "van vertrekkende Nederlanders is hoogopgeleid", source: "CBS, landelijk: 36%" },
-    { value: "×42", label: "huizenprijs in 53 jaar, modale loon: ×7", source: "CBS / Kadaster sinds 1971" },
-    { value: "55+", label: "verschillende belastingen en heffingen die je nu betaalt", source: "Belastingdienst + lokale heffingen" },
-    { value: "€8.6 mld", label: "netto bijdrage aan Brussel in 2023, 5× zoveel als in 2000", source: "Min. Financiën" },
-    { value: "459", label: "PISA leesscore, laagste OOIT voor NL (was 513 in 2003)", source: "OESO 2022" },
+    { value: "€600.000", label: "levenslange netto kosten van één niet-westerse asielmigrant", source: "WODC, J. van de Beek 2021" },
+    { value: "ca. 55%", label: "Syrische statushouders die na 5 jaar nog in de bijstand zit (cohort 2014-2019)", source: "CBS Cohortenonderzoek asielmigranten" },
+    { value: "36.500", label: "hoogopgeleide Nederlanders die per jaar emigreren", source: "CBS, eigen berekening (58k NL-geboren emigranten x 63% hoogopgeleid)" },
+    { value: "63%", label: "van vertrekkende Nederlanders is hoogopgeleid, het landelijk gemiddelde is 36%", source: "CBS Emigratie naar opleidingsniveau" },
+    { value: "x42", label: "huizenprijs sinds 1970, modale loon vermenigvuldigde x7", source: "CBS, Kadaster, NIBUD modaal salaris-reeks" },
+    { value: "55+", label: "verschillende belastingen en heffingen die je in 2026 betaalt", source: "Belastingdienst en lokale heffingen, eigen telling" },
+    { value: "€9,2 mld", label: "netto Nederlandse afdracht aan Brussel in 2025 (was €1,5 mld in 2000)", source: "Min. Financiën Miljoenennota 2025" },
+    { value: "459", label: "PISA-leesscore 2022, laagste ooit voor NL (513 in 2003)", source: "OESO PISA 2022, volgende meting eind 2025" },
     { value: "17 van 18", label: "klassieke verval-indicatoren die NL nu vertoont", source: "samengesteld uit CBS, OESO, SCP, DNB" },
-    { value: "21.900", label: "geldende regels in 2023, was 10.100 in 2000", source: "Wetten.overheid.nl / ATR" },
-    { value: "61.5%", label: "stemde NEE tegen EU-grondwet, alsnog ingevoerd", source: "Kiesraad 2005" },
-    { value: "€2.4 mrd/jr", label: "directe kosten asielopvang COA, exclusief uitkeringen, zorg, onderwijs", source: "COA jaarverslag 2023" }
+    { value: "22.500", label: "geldende wetten en regelingen in 2025 (10.100 in 2000)", source: "Wetten.overheid.nl en ATR" },
+    { value: "61,5%", label: "stemde NEE tegen EU-grondwet in 2005, alsnog ingevoerd via Lissabon", source: "Kiesraad" },
+    { value: "€2,8 mrd", label: "directe kosten asielopvang COA in 2024, exclusief uitkeringen, zorg, onderwijs", source: "COA jaarverslag 2024" }
   ],
 
   /* ====================================================================
@@ -45,6 +45,27 @@ const DATA = {
     sourceUrl: "https://www.cbs.nl",
     years: [1970, 1980, 1990, 2000, 2010, 2015, 2020, 2024],
     values: [2.1, 3.0, 4.3, 5.5, 7.0, 7.8, 9.5, 11.8]
+  },
+
+  koopkrachtVergelijking: {
+    label: "Wat je modaal-netto-jaarsalaris je oplevert: 1999 versus 2026",
+    intro: "Het modale jaarsalaris ging tussen 1999 en 2026 omhoog van ongeveer €18.500 netto naar ongeveer €33.000 netto. Een verdubbeling op papier. Maar wat kun je er werkelijk voor kopen? Hieronder tien dagelijkse producten en wat hun prijs precies met die verdubbeling deed.",
+    source: "NIBUD, CBS Prijzen consumenten (CPI), Belastingdienst tariefoverzicht modaal, archieven McDonald's NL, NS Reisplanner, brandstofprijzen-historiek",
+    sourceUrl: "https://www.nibud.nl",
+    modaal1999_netto: 18500,
+    modaal2026_netto: 33000,
+    producten: [
+      { naam: "Pilsje in het café (30 cl)",     prijs1999: 1.50, prijs2026: 4.50, eenheid: "biertjes" },
+      { naam: "Pakje sigaretten (20 stuks)",     prijs1999: 2.80, prijs2026: 11.00, eenheid: "pakjes" },
+      { naam: "Kop koffie buiten de deur",       prijs1999: 1.10, prijs2026: 4.20, eenheid: "koppen" },
+      { naam: "Heel volkorenbrood",              prijs1999: 1.20, prijs2026: 3.50, eenheid: "broden" },
+      { naam: "Big Mac",                          prijs1999: 2.40, prijs2026: 6.00, eenheid: "Big Macs" },
+      { naam: "Treinkaartje Amsterdam, Rotterdam (enkele reis)", prijs1999: 8.50, prijs2026: 21.00, eenheid: "ritjes" },
+      { naam: "Pizza Margherita restaurant",     prijs1999: 7.00, prijs2026: 17.00, eenheid: "pizza's" },
+      { naam: "Volle tank benzine (50 liter)",   prijs1999: 55.00, prijs2026: 115.00, eenheid: "tankbeurten" },
+      { naam: "Pak melk 1 liter",                 prijs1999: 0.70, prijs2026: 1.45, eenheid: "pakken" },
+      { naam: "Gemiddelde koopwoning",            prijs1999: 128000, prijs2026: 495000, eenheid: "woningen (theoretisch)" }
+    ]
   },
 
   m3Geldgroei: {
@@ -187,18 +208,18 @@ const DATA = {
      ==================================================================== */
   huizenprijzen: {
     label: "Gemiddelde verkoopprijs bestaande koopwoning (€)",
-    source: "CBS / Kadaster, Prijsindex bestaande koopwoningen",
+    source: "CBS en Kadaster, Prijsindex bestaande koopwoningen",
     sourceUrl: "https://www.cbs.nl/nl-nl/cijfers/detail/83906NED",
-    years: [1971, 1980, 1990, 1995, 2000, 2008, 2013, 2018, 2022, 2024],
-    values: [11000, 70000, 90000, 99000, 172000, 254000, 213000, 287000, 435000, 470000]
+    years: [1971, 1980, 1990, 1995, 2000, 2008, 2013, 2018, 2022, 2024, 2025, 2026],
+    values: [11000, 70000, 90000, 99000, 172000, 254000, 213000, 287000, 435000, 470000, 485000, 495000]
   },
 
   woningtekort: {
     label: "Geschat woningtekort",
-    source: "ABF Research / Ministerie BZK, Primos",
+    source: "ABF Research en Ministerie BZK, Primos",
     sourceUrl: "https://www.rijksoverheid.nl",
-    years: [2013, 2017, 2019, 2021, 2023, 2024],
-    values: [120000, 200000, 294000, 279000, 390000, 401000]
+    years: [2013, 2017, 2019, 2021, 2023, 2024, 2025],
+    values: [120000, 200000, 294000, 279000, 390000, 401000, 415000]
   },
 
   huurExplosie: {
@@ -234,16 +255,16 @@ const DATA = {
     label: "Bevolking Nederland (miljoen)",
     source: "CBS Statline, Bevolking",
     sourceUrl: "https://www.cbs.nl",
-    years: [1900, 1950, 1970, 1980, 1990, 2000, 2010, 2015, 2020, 2024],
-    values: [5.1, 10.0, 13.0, 14.1, 14.9, 15.9, 16.6, 16.9, 17.4, 17.94]
+    years: [1900, 1950, 1970, 1980, 1990, 2000, 2010, 2015, 2020, 2024, 2026],
+    values: [5.1, 10.0, 13.0, 14.1, 14.9, 15.9, 16.6, 16.9, 17.4, 17.94, 18.05]
   },
 
   migratieAchtergrond: {
-    label: "Aandeel inwoners met migratie­achtergrond (%)",
-    source: "CBS Statline, Bevolking naar migratie­achtergrond (37325)",
+    label: "Aandeel inwoners met migratieachtergrond (%)",
+    source: "CBS Statline, Bevolking naar migratieachtergrond (37325)",
     sourceUrl: "https://www.cbs.nl/nl-nl/cijfers/detail/37325",
-    years: [1972, 1980, 1990, 2000, 2010, 2015, 2020, 2023],
-    values: [9.2, 11.0, 13.2, 17.5, 20.2, 22.1, 24.0, 26.6]
+    years: [1972, 1980, 1990, 2000, 2010, 2015, 2020, 2023, 2025],
+    values: [9.2, 11.0, 13.2, 17.5, 20.2, 22.1, 24.0, 26.6, 28.0]
   },
 
   immigratieEmigratie: {
@@ -550,13 +571,12 @@ const DATA = {
      6. SOCIALE COHESIE
      ==================================================================== */
   vertrouwenInstellingen: {
-    label: "Vertrouwen in instellingen (% (heel)veel vertrouwen)",
-    source: "CBS Belevingen 82378ned",
+    label: "Vertrouwen in Tweede Kamer en regering, % met (heel) veel vertrouwen",
+    source: "CBS Belevingen 82378ned, 2025-update",
     sourceUrl: "https://www.cbs.nl",
-    years: [2012, 2015, 2018, 2020, 2022, 2023],
-    tweedeKamer: [36, 35, 41, 51, 32, 27],
-    regering:    [33, 33, 41, 70, 36, 28],
-    politie:     [60, 63, 67, 76, 64, 62]
+    years: [2012, 2015, 2018, 2020, 2022, 2023, 2025],
+    tweedeKamer: [36, 35, 41, 51, 32, 27, 24],
+    regering:    [33, 33, 41, 70, 36, 28, 22]
   },
 
   sociaalContact: {
@@ -589,11 +609,11 @@ const DATA = {
   },
 
   nettoEUBijdrage: {
-    label: "Netto NL afdracht aan EU (€ mld)",
-    source: "Europese Commissie, EU Budget; Min. Financiën",
+    label: "Netto Nederlandse afdracht aan EU (€ mld)",
+    source: "Europese Commissie EU Budget en Min. Financiën Miljoenennota",
     sourceUrl: "https://ec.europa.eu",
-    years: [2000, 2005, 2010, 2015, 2018, 2020, 2022, 2023],
-    values: [1.5, 2.6, 1.9, 3.7, 3.4, 5.1, 6.5, 8.6]
+    years: [2000, 2005, 2010, 2015, 2018, 2020, 2022, 2023, 2024, 2025],
+    values: [1.5, 2.6, 1.9, 3.7, 3.4, 5.1, 6.5, 8.6, 8.9, 9.2]
   },
 
   vetorechtIngeleverd: {
@@ -627,11 +647,11 @@ const DATA = {
   },
 
   zorgpremie: {
-    label: "Premie basisverzekering (€/jaar gem.)",
-    source: "Vektis / Min. VWS",
+    label: "Premie basisverzekering (€ per jaar gemiddeld)",
+    source: "Vektis en Ministerie van VWS",
     sourceUrl: "https://www.vektis.nl",
-    years: [2006, 2010, 2015, 2018, 2020, 2022, 2024],
-    values: [1030, 1192, 1158, 1308, 1414, 1521, 1772]
+    years: [2006, 2010, 2015, 2018, 2020, 2022, 2024, 2025, 2026],
+    values: [1030, 1192, 1158, 1308, 1414, 1521, 1772, 1858, 1955]
   },
 
   reëleKoopkracht: {
@@ -746,12 +766,127 @@ const DATA = {
   /* ====================================================================
      11. REGELDRUK
      ==================================================================== */
+  bemoeizucht: {
+    label: "Wat de overheid je sinds 2008 heeft voorgeschreven, uit eigen mond en uit eigen pak­ket",
+    source: "Belastingdienst tariefoverzichten, Min. VWS, Min. EZK, Min. IenW, Min. LNV, Staatsblad, Rijksoverheid.nl, Tweede Kamer dossiers",
+    sourceUrl: "https://www.rijksoverheid.nl",
+    categorieen: [
+      {
+        groep: "Roken en tabak",
+        items: [
+          { jaar: 2008, regel: "Rookverbod in de horeca" },
+          { jaar: 2014, regel: "Wettelijke leeftijdsgrens tabak naar 18 jaar" },
+          { jaar: 2014, regel: "Rookverbod op alle schoolterreinen" },
+          { jaar: 2020, regel: "Verplichte 'plain packaging', geen logo's, alleen ziektewaarschuwingen" },
+          { jaar: 2020, regel: "Verbod op tabaks­automaten" },
+          { jaar: 2022, regel: "Rookverbod op alle openbare plekken inclusief speeltuinen, sportvelden, zorg­terreinen" },
+          { jaar: 2024, regel: "Verbod op tabaksverkoop in supermarkten en webshops" },
+          { jaar: 2024, regel: "Accijnsverhoging: pakje sigaretten van ongeveer €8 naar ruim €11" },
+          { jaar: 2025, regel: "Aankondiging verbod tabaksverkoop tankstations vanaf 2030" }
+        ]
+      },
+      {
+        groep: "Alcohol",
+        items: [
+          { jaar: 2014, regel: "Wettelijke leeftijdsgrens alcohol naar 18 jaar" },
+          { jaar: 2014, regel: "Verbod op alcoholverkoop in tankstations en zorgcentra" },
+          { jaar: 2014, regel: "Happy hour-verbod (geen kortingen meer dan 25% op alcohol)" },
+          { jaar: 2020, regel: "Verbod 'blurring': kappers, sportclubs en boekhandels mogen geen alcohol meer schenken" },
+          { jaar: 2021, regel: "Verbod op late bezorging van alcohol via apps zoals Gorillas" },
+          { jaar: 2024, regel: "Verbod op bonus- en korting­acties op alcohol in supermarkten" },
+          { jaar: 2024, regel: "Accijnsverhoging bier (+16,2%) en wijn" },
+          { jaar: 2025, regel: "Discussie verplichte gezondheids­waarschuwingen op alcoholverpakkingen" }
+        ]
+      },
+      {
+        groep: "Eten en voedsel",
+        items: [
+          { jaar: 2018, regel: "Schijf van Vijf herzien naar plantaardiger dieet, kantines van overheid moeten 'volgen'" },
+          { jaar: 2018, regel: "Verbod op kindermarketing voor ongezond eten in scholen" },
+          { jaar: 2024, regel: "Verbruiks­belasting frisdrank verhoogd van €8,83 naar €26,13 per hectoliter (drie­voud)" },
+          { jaar: 2024, regel: "Verbod op 'kindermarketing' voor ongezonde producten in bredere zin" },
+          { jaar: 2024, regel: "Stikstof­onteigening boeren­bedrijven (NPLG, 11.200 bedrijven)" },
+          { jaar: 2025, regel: "Aankondiging vleestaks-onderzoek, discussie 'true price' op vlees" },
+          { jaar: 2025, regel: "Verplichte Nutri-Score op verpakkingen" }
+        ]
+      },
+      {
+        groep: "Auto en brandstof",
+        items: [
+          { jaar: 1996, regel: "Introductie energiebelasting op elektriciteit en gas" },
+          { jaar: 2012, regel: "BTW omhoog naar 21%, ook op auto-onderhoud, banden, parkeren" },
+          { jaar: 2014, regel: "BPM-tarieven verhoogd, vooral op auto's met hogere CO2-uitstoot" },
+          { jaar: 2018, regel: "Verbod gasaansluiting nieuwbouw, geen gas­installatie meer mogelijk" },
+          { jaar: 2020, regel: "Snelheidslimiet 100 km/u overdag op alle snelwegen" },
+          { jaar: 2024, regel: "Accijns benzine €0,82 per liter (ca. 46% van de pompprijs)" },
+          { jaar: 2024, regel: "Milieuzone-uitbreiding in grote steden, ouder dieselverbod" },
+          { jaar: 2026, regel: "Vrachtwagen­heffing per kilometer ingevoerd" },
+          { jaar: 2035, regel: "Verbod op verkoop nieuwe benzine- en diesel­auto's (EU-besluit)" }
+        ]
+      },
+      {
+        groep: "Wonen en energie",
+        items: [
+          { jaar: 2008, regel: "Verplicht energielabel bij verkoop woning" },
+          { jaar: 2018, regel: "Verplicht energielabel C voor kantoren, anders verhuurverbod" },
+          { jaar: 2018, regel: "Verbod nieuwe gas­aansluitingen" },
+          { jaar: 2023, regel: "Wet 'Goed verhuurderschap', nieuwe verplichtingen verhuurder" },
+          { jaar: 2024, regel: "Huurprijs­regulering middensegment, beperking op vrije markt" },
+          { jaar: 2027, regel: "Afbouw salderings­regeling zonnepanelen begint, definitief weg in 2031" }
+        ]
+      },
+      {
+        groep: "Werk en ondernemen",
+        items: [
+          { jaar: 2018, regel: "AVG / GDPR-verplichtingen, ook voor eenmans­zaken" },
+          { jaar: 2020, regel: "Wet DBA opnieuw ingesteld, zzp-toetsing arbeidsrelatie" },
+          { jaar: 2023, regel: "Loondoorbetalingsverplichting twee jaar bij ziekte, ook voor MKB" },
+          { jaar: 2024, regel: "Pensioenwet­herziening, individuele potten in plaats van collectief" },
+          { jaar: 2025, regel: "Klimaatrapportageplicht middelgrote bedrijven (CSRD)" }
+        ]
+      },
+      {
+        groep: "Overige leefstijl",
+        items: [
+          { jaar: 2015, regel: "Vuurwerkverbod uitgebreid, knal­vuurwerk en vuurpijlen verboden" },
+          { jaar: 2020, regel: "Mondkapjesplicht openbaar vervoer en winkels (tot 2022)" },
+          { jaar: 2021, regel: "Coronapas (QR-code) verplicht voor horeca, evenementen, kappers" },
+          { jaar: 2022, regel: "Discussie verbod op houtkachels en open haard in stedelijk gebied" },
+          { jaar: 2024, regel: "Volledig vuurwerkverbod consumenten in 25 gemeentes" },
+          { jaar: 2024, regel: "Chip-verplichting honden landelijk" },
+          { jaar: 2025, regel: "Vergunningsplicht drones boven 250 gram" }
+        ]
+      }
+    ]
+  },
+
+  accijnsExplosie: {
+    label: "Accijns- en heffingsverhogingen op leefstijl­producten (€/eenheid)",
+    source: "Belastingdienst tariefoverzichten, Min. Financiën",
+    sourceUrl: "https://www.belastingdienst.nl",
+    sigaret: {
+      label: "Accijns + BTW op pakje 20 sigaretten",
+      years: [2000, 2008, 2012, 2016, 2020, 2024, 2025],
+      values: [2.10, 3.20, 4.30, 5.20, 6.85, 9.50, 10.70]
+    },
+    benzine: {
+      label: "Accijns + BTW per liter benzine",
+      years: [2000, 2008, 2012, 2016, 2020, 2024, 2025],
+      values: [0.70, 0.85, 1.00, 1.05, 1.15, 1.50, 1.55]
+    },
+    bier: {
+      label: "Accijns + BTW per krat (24 flessen)",
+      years: [2000, 2008, 2012, 2016, 2020, 2024, 2025],
+      values: [1.20, 1.60, 1.90, 2.30, 2.65, 3.65, 3.95]
+    }
+  },
+
   regeldruk: {
-    label: "Geldende wetten + AMvB's + min. regelingen",
-    source: "Wetten.overheid.nl; ATR jaarrapporten",
+    label: "Geldende wetten en AMvB's en ministeriële regelingen",
+    source: "Wetten.overheid.nl en ATR jaarrapporten",
     sourceUrl: "https://www.atr-regeldruk.nl",
-    years: [2000, 2005, 2010, 2015, 2020, 2023],
-    values: [10100, 12000, 13800, 16200, 19700, 21900]
+    years: [2000, 2005, 2010, 2015, 2020, 2023, 2025],
+    values: [10100, 12000, 13800, 16200, 19700, 21900, 22500]
   },
 
   /* ====================================================================
@@ -1098,11 +1233,11 @@ const DATA = {
      11g. WERKENDE ARMEN, VOEDSELBANKEN, STILLE ARMOEDE
      ==================================================================== */
   voedselbanken: {
-    label: "Aantal klanten Voedselbanken Nederland (× 1.000)",
+    label: "Aantal klanten Voedselbanken Nederland (x1.000)",
     source: "Voedselbanken Nederland, Jaarverslag",
     sourceUrl: "https://www.voedselbankennederland.nl",
-    years: [2008, 2012, 2015, 2018, 2020, 2022, 2023, 2024],
-    values: [50, 80, 125, 132, 159, 200, 230, 270]
+    years: [2008, 2012, 2015, 2018, 2020, 2022, 2023, 2024, 2025],
+    values: [50, 80, 125, 132, 159, 200, 230, 270, 290]
   },
 
   armoedeProfielen: {
