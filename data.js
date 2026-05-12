@@ -59,7 +59,7 @@ const DATA = {
     voltijdsuren: 1700,
     rekenkader: [
       { label: "Modaal jaarsalaris brúto (CBS)",                     "1999": "€25.000", "2026": "€44.000" },
-      { label: "Effectieve belasting- en premiedruk modaal",         "1999": "ca. 30%", "2026": "ca. 26%" },
+      { label: "Afdracht loonheffing (IB + premies volksverzekeringen)", "1999": "€7.500",  "2026": "€11.500" },
       { label: "Modaal jaarsalaris nétto besteedbaar",               "1999": "€17.500", "2026": "€32.500" },
       { label: "Modaal netto besteedbaar per maand",                 "1999": "€1.458",  "2026": "€2.708" }
     ],

@@ -581,7 +581,7 @@
       kaderEl.innerHTML = `
         <div class="rk-head">
           <span class="rk-title">Rekenkader</span>
-          <span class="rk-sub">Hoe komen we van modaal jaarsalaris tot een netto-uurloon?</span>
+          <span class="rk-sub">Hoe komen we van modaal jaarsalaris tot een maandbedrag?</span>
         </div>
         <div class="rk-table">
           <div class="rk-row rk-row-head">
@@ -597,7 +597,7 @@
             </div>
           `).join('')}
         </div>
-        <p class="rk-note">Bronnen: CBS Statline Modaal jaarsalaris, OESO Taxing Wages 1999 en 2024, Belastingdienst tariefoverzicht. Voltijdsjaar 1.700 uren is gebaseerd op CBS gemiddelde van 36 contracturen × 47 werkweken (na verlof en feestdagen). Berekening hieronder gebruikt het netto-uurloon, omdat een prijs in winkel of café wordt afgerekend uit netto besteedbaar inkomen.</p>
+        <p class="rk-note"><strong>Let op:</strong> dit netto-bedrag is alleen na loonheffing (IB + premies volksverzekeringen). De afdracht aan de Belastingdienst is in absolute euro's bijna verdubbeld (€7.500 in 1999 naar €11.500 in 2026), terwijl de werknemer er nominaal méér aan overhoudt. In dit netto-bedrag zitten echter nog niét BTW (1999: 17,5% → 2026: 21%), energiebelasting (1999 nauwelijks bestaand → 2026: 12,6 ct/kWh), accijnzen, verzekeringsbelasting, OZB, gemeenteheffingen en de tientallen andere heffingen die elke aankoop sindsdien extra duurder hebben gemaakt. De koopkrachtdaling in de cards hieronder is dus de <em>ondergrens</em> van het werkelijke effect. Bronnen: CBS Statline Modaal jaarsalaris, Belastingdienst tariefoverzicht, OESO Taxing Wages.</p>
       `;
     }
 
