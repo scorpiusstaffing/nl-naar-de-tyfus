@@ -819,7 +819,7 @@ ul { list-style: none; }
 .bemoei-cat ul { font-size: 13px; }
 .bemoei-cat li {
   display: grid; grid-template-columns: 48px 1fr; gap: 12px;
-  padding: 9px 0;
+  padding: 11px 0;
   border-bottom: 1px dashed var(--line-2);
   align-items: baseline;
 }
@@ -828,9 +828,9 @@ ul { list-style: none; }
   font-family: var(--serif); font-weight: 700; font-size: 14px;
   color: var(--accent); letter-spacing: -0.01em;
 }
-.bemoei-regel {
-  color: var(--ink-2); line-height: 1.5;
-}
+.bemoei-text { display: flex; flex-direction: column; gap: 3px; }
+.bemoei-regel { color: var(--ink-2); line-height: 1.5; }
+.bemoei-bron { font-size: 11px; color: var(--ink-4); line-height: 1.45; font-style: italic; }
 
 /* ---------------------------- BOX 3 ONRECHT GRID ------------------------ */
 .box3-onrecht {

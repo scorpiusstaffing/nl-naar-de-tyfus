@@ -652,7 +652,7 @@
   }
 
   /* ====================================================================
-     BEMOEIZUCHT — gegroepeerde regels-lijst
+     BEMOEIZUCHT — gegroepeerde regels-lijst met bron per item
      ==================================================================== */
   if ($('bemoeiGrid') && DATA.bemoeizucht) {
     $('bemoeiGrid').innerHTML = DATA.bemoeizucht.categorieen.map(cat => `
@@ -662,7 +662,10 @@
           ${cat.items.map(it => `
             <li>
               <span class="bemoei-jaar">${it.jaar}</span>
-              <span class="bemoei-regel">${it.regel}</span>
+              <div class="bemoei-text">
+                <span class="bemoei-regel">${it.regel}</span>
+                ${it.bron ? `<span class="bemoei-bron">${it.bron}</span>` : ''}
+              </div>
             </li>
           `).join('')}
         </ul>
@@ -954,32 +957,72 @@
     })
   });
 
-  /* Islam-groei */
-  if ($('chartIslam')) new Chart($('chartIslam'), {
-    type: 'line',
-    data: {
-      labels: DATA.islamGroei.years,
-      datasets: [{
-        data: DATA.islamGroei.values,
-        borderColor: palette.green,
-        backgroundColor: ctx => grad(ctx, [[0,'rgba(34,197,94,.32)'],[1,'rgba(34,197,94,0)']]),
-        fill: true, tension: .25, borderWidth: 2.5,
-        pointBackgroundColor: ctx => ctx.parsed && ctx.parsed.x === 7 ? palette.accent2 : palette.green,
-        pointRadius: ctx => ctx.dataIndex === DATA.islamGroei.years.length - 1 ? 7 : 5,
-        pointHoverRadius: 9,
-        segment: {
-          borderDash: ctx => ctx.p0DataIndex === DATA.islamGroei.years.length - 2 ? [6, 4] : undefined
-        }
-      }]
-    },
-    options: lineOpts({
-      scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, suggestedMax: 10, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
-      plugins: { legend: { display: false }, tooltip: { callbacks: {
-        label: c => ` ${c.parsed.y}% van de bevolking`,
-        afterLabel: c => c.dataIndex === DATA.islamGroei.years.length - 1 ? DATA.islamGroei.note2050 : ''
-      } } }
-    })
-  });
+  /* Islam-groei NL + G4 met extrapolatie naar 2100 */
+  if ($('chartIslam') && DATA.islamGroei.nl_totaal) {
+    const lastActualIdx = DATA.islamGroei.years.indexOf(2024);
+    new Chart($('chartIslam'), {
+      type: 'line',
+      data: {
+        labels: DATA.islamGroei.years,
+        datasets: [
+          {
+            label: 'Vier grote steden (G4: Adam, Rdam, Den Haag, Utrecht)',
+            data: DATA.islamGroei.g4,
+            borderColor: palette.accent,
+            backgroundColor: palette.accent,
+            borderWidth: 2.5, tension: .25,
+            pointRadius: 5, pointHoverRadius: 9,
+            fill: false,
+            segment: { borderDash: ctx => ctx.p0DataIndex >= lastActualIdx ? [6, 4] : undefined }
+          },
+          {
+            label: 'Heel Nederland',
+            data: DATA.islamGroei.nl_totaal,
+            borderColor: palette.accent2,
+            backgroundColor: palette.accent2,
+            borderWidth: 2.5, tension: .25,
+            pointRadius: 5, pointHoverRadius: 9,
+            fill: false,
+            segment: { borderDash: ctx => ctx.p0DataIndex >= lastActualIdx ? [6, 4] : undefined }
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: {
+          label: c => ` ${c.dataset.label}: ${c.parsed.y}%`,
+          afterBody: c => c[0].dataIndex >= lastActualIdx ? '(extrapolatie)' : ''
+        } } },
+        scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 0, suggestedMax: 50, ticks: {...baseScale.ticks, callback: v => v + '%'}} }
+      }
+    });
+  }
+
+  /* TFR per herkomstgroep */
+  if ($('chartTFRgroep') && DATA.tfrPerGroep) {
+    const d = DATA.tfrPerGroep;
+    new Chart($('chartTFRgroep'), {
+      type: 'bar',
+      data: {
+        labels: d.groepen,
+        datasets: [{
+          data: d.waarden,
+          backgroundColor: d.waarden.map(v => v >= 2.5 ? palette.accent : v >= 2.0 ? palette.accent2 : v >= 1.7 ? palette.accent3 : palette.ink4),
+          borderRadius: 4, maxBarThickness: 60
+        }]
+      },
+      options: barOpts({
+        scales: {
+          x: {...baseScale, ticks: {...baseScale.ticks, font: {size: 11}, maxRotation: 30, minRotation: 0}},
+          y: {...baseScale, suggestedMin: 0, suggestedMax: 4, ticks: {...baseScale.ticks, callback: v => v.toFixed(1).replace('.', ',')}}
+        },
+        plugins: { legend: { display: false }, tooltip: { callbacks: {
+          label: c => ` ${c.parsed.y.toString().replace('.', ',')} kinderen per vrouw`,
+          afterLabel: c => c.parsed.y < d.drempel ? '(onder demografische vervanging van 2,1)' : '(boven demografische vervanging)'
+        } } }
+      })
+    });
+  }
 
   /* Religieus bij jongeren per groep */
   if ($('chartReligieusJongeren')) new Chart($('chartReligieusJongeren'), {

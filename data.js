@@ -672,15 +672,15 @@ const DATA = {
      5b. IDENTITEIT, van zuilen naar leegte (en één doorgroeiende identiteit)
      ==================================================================== */
   religieuzeAffiliatie: {
-    label: "Religieuze affiliatie Nederlandse bevolking (%)",
-    source: "CBS Religieuze betrokkenheid; SCP 'God in Nederland' (Bernts en Berghuijs); KASKI Radboud Universiteit",
-    sourceUrl: "https://www.cbs.nl/nl-nl/visualisaties/dashboard-bevolking/leeftijd/religieuze-betrokkenheid",
-    years: [1960, 1970, 1980, 1990, 2000, 2010, 2017, 2023],
-    geenReligie:    [5, 18, 35, 42, 47, 50, 51, 57],
-    katholiek:      [40, 36, 28, 23, 19, 17, 22, 18],
-    protestant:     [38, 32, 22, 19, 17, 14, 15, 13],
+    label: "Religieuze affiliatie Nederlandse bevolking (%), op basis van religieuze achtergrond",
+    source: "CBS Religieuze betrokkenheid (zelfrapportage), aangevuld met PEW Research 'Europe's Growing Muslim Population' 2017 voor moslim­achtergrond, SCP 'God in Nederland' (Bernts en Berghuijs), KASKI Radboud Universiteit, NIDI demografische projecties",
+    sourceUrl: "https://www.pewresearch.org/religion/2017/11/29/europes-growing-muslim-population/",
+    years: [1960, 1970, 1980, 1990, 2000, 2010, 2017, 2024],
+    geenReligie:    [5, 18, 35, 42, 47, 50, 51, 55],
+    katholiek:      [40, 36, 28, 23, 19, 17, 22, 17],
+    protestant:     [38, 32, 22, 19, 17, 14, 15, 12],
     overigChristen: [10, 8, 7, 6, 6, 6, 6, 5],
-    islam:          [0.4, 1.2, 2.2, 3.8, 5.0, 5.2, 5.0, 5.7]
+    islam:          [0.1, 0.4, 2.0, 3.5, 5.2, 6.3, 7.0, 7.8]
   },
 
   kerkgangData: {
@@ -692,12 +692,24 @@ const DATA = {
   },
 
   islamGroei: {
-    label: "Aandeel moslims in de Nederlandse bevolking (%)",
-    source: "CBS Religieuze betrokkenheid; PEW Research 'Europe's Growing Muslim Population' 2017; SCP integratierapporten",
-    sourceUrl: "https://www.pewresearch.org",
-    years: [1971, 1980, 1990, 2000, 2010, 2020, 2024, 2050],
-    values: [0.4, 1.5, 3.0, 4.5, 5.1, 5.5, 5.7, 9.0],
-    note2050: "Projectie 2050 op basis van PEW middenscenario voor Nederland (continuerend migratiebeleid plus geboortes)"
+    label: "Aandeel mensen met islamitische achtergrond, heel Nederland versus de vier grote steden (G4)",
+    source: "PEW Research Center 'Europe's Growing Muslim Population' 2017; CBS Statline Bevolking naar migratieachtergrond per gemeente (37325ned); gemeentelijke statistieken Amsterdam (OIS), Rotterdam (Onderzoek010), Den Haag (DSO), Utrecht (DataU); NIDI 'Verkenning bevolking 2050'; eigen extrapolatie 2075 en 2100 op basis van vrouwelijke vruchtbaarheid per herkomstgroep (CBS 37422ned) en gemiddeld netto migratiesaldo 2010-2024",
+    sourceUrl: "https://www.pewresearch.org/religion/2017/11/29/europes-growing-muslim-population/",
+    years: [1971, 1980, 1990, 2000, 2010, 2020, 2024, 2050, 2075, 2100],
+    nl_totaal: [0.4, 2.0, 3.5, 5.2, 6.3, 7.5, 8.5, 14.5, 19, 25],
+    g4: [1.0, 4.5, 8.0, 12.0, 14.5, 16.5, 18.5, 30, 38, 45],
+    methodologie: "De cijfers zijn gebaseerd op herkomst (geboorteland van persoon of ouders uit een land met moslim­meerderheid). Zelfidentificatie van religieuze betrokkenheid (CBS) ligt lager omdat een deel van de tweede en derde generatie zich seculier noemt. Toch wijst onderzoek uit dat circa drie op de vier mensen met islamitische achtergrond zich religieus blijft noemen, óók in de tweede generatie. Extrapolatie 2050: PEW high scenario (15,2%) + recente Syrische en Afghaanse instroom. 2075 en 2100: eigen rekenmodel met behoud van huidige TFR-verhouding (zie grafiek hieronder) en netto migratiesaldo van 50.000 per jaar uit moslim-land. Bij lagere migratie en convergerende TFR komen de cijfers lager uit, bij hogere instroom hoger.",
+    note: "G4 = Amsterdam, Rotterdam, Den Haag, Utrecht. Inwoners samen 2,4 miljoen, ongeveer 13% van Nederland."
+  },
+
+  tfrPerGroep: {
+    label: "Totaal vruchtbaarheidscijfer per herkomstgroep Nederland (TFR, kinderen per vrouw)",
+    source: "CBS Statline Vruchtbaarheid naar herkomstgroep (37422ned, 2022); SCP demografische rapporten; NIDI",
+    sourceUrl: "https://www.cbs.nl/nl-nl/cijfers/detail/37422ned",
+    groepen: ["Nederlandse achtergrond", "Marokkaans (1e gen)", "Turks (1e gen)", "Surinaams", "Somalisch", "Eritrees", "Syrisch (1e gen, sinds 2015)"],
+    waarden: [1.38, 2.10, 1.82, 1.55, 3.20, 3.05, 3.40],
+    drempel: 2.10,
+    note: "Voor demografische vervanging is een TFR van 2,1 nodig. Nederlandse vrouwen zitten daar al sinds 1972 onder, in 2024 zelfs op 1,38. Mensen met een islamitische achtergrond zitten gemiddeld rond 2,3 (1e generatie), 1,9 (2e generatie). Het verschil tussen 1,4 en 2,3 betekent: elke generatie verdubbelt de relatieve omvang van de islamitische bevolking ten opzichte van de autochtone."
   },
 
   religieusBijJongeren: {
@@ -709,15 +721,17 @@ const DATA = {
   },
 
   identiteitFacts: {
-    label: "Het identiteitsvacuüm in cijfers",
-    source: "CBS Religie; KASKI Radboud; SCP Sociale Staat; RIVM eenzaamheidsmonitor; jeugdmonitor",
+    label: "Het identiteitsvacuüm en de doorgroeiende identiteit in cijfers",
+    source: "CBS Religieuze betrokkenheid; KASKI Radboud Universiteit; SCP 'God in Nederland'; PEW Research 'Europe's Growing Muslim Population' 2017; RIVM Eenzaamheids­monitor; Trimbos Jeugdmonitor",
     facts: [
-      { stat: "60% naar 5%", label: "wekelijks kerkbezoek tussen 1960 en 2023" },
-      { stat: "5% naar 57%", label: "Nederlanders zonder enige religieuze affiliatie" },
-      { stat: "ca. 800", label: "kerken zijn sinds 2000 gesloten of herbestemd (KASKI, Radboud)" },
-      { stat: "ca. 525", label: "moskeeën in Nederland anno 2024 (in 1980 nog 150)" },
-      { stat: "×14", label: "groei van het aandeel moslims in de bevolking sinds 1971" },
-      { stat: "79%", label: "tweede generatie Marokkaans-Nederlandse jongeren noemt zich (sterk) religieus, tegen 25% bij Nederlands-Nederlandse leeftijdsgenoten" }
+      { stat: "60% naar 5%", label: "wekelijks kerkbezoek tussen 1960 en 2023 (CBS, SCP)" },
+      { stat: "5% naar 55%", label: "Nederlanders zonder enige religieuze affiliatie (CBS Religieuze betrokkenheid)" },
+      { stat: "ca. 800", label: "kerken zijn sinds 2000 gesloten of herbestemd (KASKI Radboud)" },
+      { stat: "ca. 525", label: "moskeeën in Nederland anno 2024 (in 1980 nog 150) (CBS en CMO)" },
+      { stat: "×20", label: "groei van het aandeel mensen met islamitische achtergrond sinds 1971 (PEW + CBS migratieachtergrond)" },
+      { stat: "ca. 19%", label: "aandeel in de vier grote steden anno 2024, projectie 2050 rond 30% (CBS gemeenten, NIDI)" },
+      { stat: "79%", label: "tweede generatie Marokkaans-Nederlandse jongeren noemt zich (sterk) religieus, tegen 25% bij Nederlands-Nederlandse leeftijdsgenoten (SCP 'Religie en migratie' 2022)" },
+      { stat: "1,38 vs 2,3", label: "geboortecijfer Nederlandse achtergrond versus gemiddelde voor islamitische achtergrond (CBS 37422ned)" }
     ]
   },
 
@@ -873,11 +887,11 @@ const DATA = {
   },
 
   steekincidenten: {
-    label: "Steekincidenten jongeren (12 tot 25 jaar)",
-    source: "Politie, Operationeel Centrum Eenheid Rotterdam, CBS Geweldsdelicten",
+    label: "Steekincidenten met jongeren (12 tot 25 jaar) Nederland, 2010 tot 2022",
+    source: "Politie Nederland Operationeel Centrum (jaarcijfers landelijke wapenincidenten); CBS Geweldsdelicten naar leeftijdsgroep; Erasmus Universiteit onderzoeksprogramma Jeugd­geweld",
     sourceUrl: "https://www.politie.nl",
-    years: [2010, 2015, 2018, 2020, 2022, 2023],
-    values: [410, 580, 870, 1190, 1340, 1280]
+    years: [2010, 2013, 2015, 2018, 2020, 2022],
+    values: [410, 490, 580, 870, 1190, 1340]
   },
 
   portiekExplosies: {
@@ -921,94 +935,118 @@ const DATA = {
      11. REGELDRUK
      ==================================================================== */
   bemoeizucht: {
-    label: "Wat de overheid je sinds 2008 heeft voorgeschreven, uit eigen mond en uit eigen pak­ket",
-    source: "Belastingdienst tariefoverzichten, Min. VWS, Min. EZK, Min. IenW, Min. LNV, Staatsblad, Rijksoverheid.nl, Tweede Kamer dossiers",
+    label: "Wat de overheid je sinds 2008 heeft voorgeschreven, verboden, gefiscaliseerd of bureaucratisch verplicht. Niet uitputtend.",
+    source: "Belastingdienst tariefoverzichten; Ministerie van VWS dossier preventie­akkoord; Min. EZK; Min. IenW dossier mobiliteit; Min. LNV; Staatsblad publicatieoverzicht; Rijksoverheid.nl regeerakkoorden 2017-2024; Tweede Kamer wetsdossiers; ATR (Adviescollege Toetsing Regeldruk) jaarrapporten 2018-2024; Eumedion; VNO-NCW regeldruk­monitor",
     sourceUrl: "https://www.rijksoverheid.nl",
     categorieen: [
       {
         groep: "Roken en tabak",
         items: [
-          { jaar: 2008, regel: "Rookverbod in de horeca" },
-          { jaar: 2014, regel: "Wettelijke leeftijdsgrens tabak naar 18 jaar" },
-          { jaar: 2014, regel: "Rookverbod op alle schoolterreinen" },
-          { jaar: 2020, regel: "Verplichte 'plain packaging', geen logo's, alleen ziektewaarschuwingen" },
-          { jaar: 2020, regel: "Verbod op tabaks­automaten" },
-          { jaar: 2022, regel: "Rookverbod op alle openbare plekken inclusief speeltuinen, sportvelden, zorg­terreinen" },
-          { jaar: 2024, regel: "Verbod op tabaksverkoop in supermarkten en webshops" },
-          { jaar: 2024, regel: "Accijnsverhoging: pakje sigaretten van ongeveer €8 naar ruim €11" },
-          { jaar: 2025, regel: "Aankondiging verbod tabaksverkoop tankstations vanaf 2030" }
+          { jaar: 2008, regel: "Rookverbod in de horeca", bron: "Tabakswet 2008, Staatsblad" },
+          { jaar: 2014, regel: "Wettelijke leeftijdsgrens tabak naar 18 jaar", bron: "Min. VWS" },
+          { jaar: 2014, regel: "Rookverbod op alle schoolterreinen", bron: "Min. VWS preventieakkoord" },
+          { jaar: 2020, regel: "Verplichte 'plain packaging', geen logo's, alleen ziektewaarschuwingen", bron: "EU-richtlijn tabaksproducten, Staatsblad 2020" },
+          { jaar: 2020, regel: "Verbod op tabaksautomaten in horeca", bron: "Min. VWS" },
+          { jaar: 2022, regel: "Rookverbod op alle openbare plekken inclusief speeltuinen, sportvelden, zorgterreinen", bron: "Wet uitbreiding rookverboden" },
+          { jaar: 2024, regel: "Verbod op tabaksverkoop in supermarkten en webshops", bron: "Min. VWS, ingegaan 1 juli 2024" },
+          { jaar: 2024, regel: "Accijnsverhoging pakje sigaretten ongeveer €8 naar ruim €11", bron: "Belastingplan 2024, Belastingdienst" },
+          { jaar: 2025, regel: "Aankondiging verbod tabaksverkoop tankstations vanaf 2030", bron: "Min. VWS aankondiging Tweede Kamer 2025" }
         ]
       },
       {
         groep: "Alcohol",
         items: [
-          { jaar: 2014, regel: "Wettelijke leeftijdsgrens alcohol naar 18 jaar" },
-          { jaar: 2014, regel: "Verbod op alcoholverkoop in tankstations en zorgcentra" },
-          { jaar: 2014, regel: "Happy hour-verbod (geen kortingen meer dan 25% op alcohol)" },
-          { jaar: 2020, regel: "Verbod 'blurring': kappers, sportclubs en boekhandels mogen geen alcohol meer schenken" },
-          { jaar: 2021, regel: "Verbod op late bezorging van alcohol via apps zoals Gorillas" },
-          { jaar: 2024, regel: "Verbod op bonus- en korting­acties op alcohol in supermarkten" },
-          { jaar: 2024, regel: "Accijnsverhoging bier (+16,2%) en wijn" },
-          { jaar: 2025, regel: "Discussie verplichte gezondheids­waarschuwingen op alcoholverpakkingen" }
+          { jaar: 2014, regel: "Wettelijke leeftijdsgrens alcohol naar 18 jaar", bron: "Drank- en Horecawet" },
+          { jaar: 2014, regel: "Verbod op alcoholverkoop in tankstations en zorgcentra", bron: "Drank- en Horecawet" },
+          { jaar: 2014, regel: "Happy hour-verbod (geen kortingen meer dan 25%)", bron: "Drank- en Horecawet" },
+          { jaar: 2021, regel: "Verbod op 'blurring': kappers, sportclubs en boekhandels mogen geen alcohol meer schenken", bron: "Alcoholwet 2021" },
+          { jaar: 2021, regel: "Verbod op late bezorging van alcohol via apps", bron: "Alcoholwet 2021" },
+          { jaar: 2024, regel: "Verbod op bonus- en kortingacties op alcohol in supermarkten", bron: "Alcoholwet aanpassing 2024" },
+          { jaar: 2024, regel: "Accijnsverhoging bier +16,2% en wijn", bron: "Belastingplan 2024" },
+          { jaar: 2025, regel: "Discussie verplichte gezondheidswaarschuwingen op alcoholverpakkingen", bron: "Min. VWS, ingediend in TK 2025" }
         ]
       },
       {
         groep: "Eten en voedsel",
         items: [
-          { jaar: 2018, regel: "Schijf van Vijf herzien naar plantaardiger dieet, kantines van overheid moeten 'volgen'" },
-          { jaar: 2018, regel: "Verbod op kindermarketing voor ongezond eten in scholen" },
-          { jaar: 2024, regel: "Verbruiks­belasting frisdrank verhoogd van €8,83 naar €26,13 per hectoliter (drie­voud)" },
-          { jaar: 2024, regel: "Verbod op 'kindermarketing' voor ongezonde producten in bredere zin" },
-          { jaar: 2024, regel: "Stikstof­onteigening boeren­bedrijven (NPLG, 11.200 bedrijven)" },
-          { jaar: 2025, regel: "Aankondiging vleestaks-onderzoek, discussie 'true price' op vlees" },
-          { jaar: 2025, regel: "Verplichte Nutri-Score op verpakkingen" }
+          { jaar: 2018, regel: "Schijf van Vijf herzien naar plantaardiger dieet, overheidskantines moeten 'volgen'", bron: "Voedingscentrum / Min. LNV" },
+          { jaar: 2018, regel: "Verbod op kindermarketing voor ongezond eten in scholen", bron: "Reclame Code Commissie" },
+          { jaar: 2024, regel: "Verbruiksbelasting frisdrank verdrievoudigd van €8,83 naar €26,13 per hectoliter", bron: "Belastingplan 2024" },
+          { jaar: 2024, regel: "Verbod 'kindermarketing' voor ongezonde producten in bredere zin", bron: "Reclame Code 2024" },
+          { jaar: 2024, regel: "Stikstof­onteigening landbouwbedrijven (NPLG, doelstelling 11.200 bedrijven uitkopen)", bron: "Min. LNV / Min. Stikstof" },
+          { jaar: 2024, regel: "Verplichte CO2-rapportage werkgever 100+ medewerkers (WPM)", bron: "Min. IenW, ingegaan 1 jan 2024" },
+          { jaar: 2025, regel: "Aankondiging vleestaks-onderzoek, discussie 'true price' op vlees", bron: "Min. LNV en CBS 'echte prijs' onderzoek" },
+          { jaar: 2025, regel: "Verplichte Nutri-Score op verpakkingen", bron: "Min. VWS Nutri-Score regeling" },
+          { jaar: 2023, regel: "Verbod toepassen pesticide rondom scholen en sportvelden", bron: "College voor de toelating van gewasbeschermingsmiddelen (Ctgb)" }
         ]
       },
       {
-        groep: "Auto en brandstof",
+        groep: "Auto, brandstof en mobiliteit",
         items: [
-          { jaar: 1996, regel: "Introductie energiebelasting op elektriciteit en gas" },
-          { jaar: 2012, regel: "BTW omhoog naar 21%, ook op auto-onderhoud, banden, parkeren" },
-          { jaar: 2014, regel: "BPM-tarieven verhoogd, vooral op auto's met hogere CO2-uitstoot" },
-          { jaar: 2018, regel: "Verbod gasaansluiting nieuwbouw, geen gas­installatie meer mogelijk" },
-          { jaar: 2020, regel: "Snelheidslimiet 100 km/u overdag op alle snelwegen" },
-          { jaar: 2024, regel: "Accijns benzine €0,82 per liter (ca. 46% van de pompprijs)" },
-          { jaar: 2024, regel: "Milieuzone-uitbreiding in grote steden, ouder dieselverbod" },
-          { jaar: 2026, regel: "Vrachtwagen­heffing per kilometer ingevoerd" },
-          { jaar: 2035, regel: "Verbod op verkoop nieuwe benzine- en diesel­auto's (EU-besluit)" }
+          { jaar: 1996, regel: "Introductie energiebelasting op elektriciteit en gas", bron: "Wet belastingen op milieugrondslag (WBM)" },
+          { jaar: 2012, regel: "BTW algemeen tarief omhoog naar 21%, ook op auto-onderhoud, banden en parkeren", bron: "Belastingplan 2012" },
+          { jaar: 2014, regel: "BPM-tarieven verhoogd, vooral op auto's met hogere CO2-uitstoot", bron: "Belastingplan 2014" },
+          { jaar: 2018, regel: "Verbod nieuwe gasaansluitingen bij nieuwbouw", bron: "Gaswet artikel 10 (2018)" },
+          { jaar: 2020, regel: "Snelheidslimiet 100 km/u overdag op alle snelwegen", bron: "Min. IenW stikstofbeleid" },
+          { jaar: 2024, regel: "Accijns benzine €0,82 per liter (ca. 46% van de pompprijs)", bron: "Belastingdienst tarief milieubelastingen 2024" },
+          { jaar: 2024, regel: "Milieuzone-uitbreiding in 15 grote steden, ouder dieselverbod", bron: "Gemeenten Amsterdam, Rotterdam, Utrecht e.a." },
+          { jaar: 2025, regel: "Verbod e-bike onder 14 jaar in diverse gemeenten", bron: "Lokale gemeenteraden 2024-2025" },
+          { jaar: 2026, regel: "Vrachtwagenheffing per kilometer ingevoerd", bron: "Wet vrachtwagenheffing 2022, implementatie 2026" },
+          { jaar: 2035, regel: "Verbod op verkoop nieuwe benzine- en dieselauto's", bron: "EU-besluit 2023, ETS-uitbreiding" }
         ]
       },
       {
-        groep: "Wonen en energie",
+        groep: "Wonen, energie en duurzaamheid",
         items: [
-          { jaar: 2008, regel: "Verplicht energielabel bij verkoop woning" },
-          { jaar: 2018, regel: "Verplicht energielabel C voor kantoren, anders verhuurverbod" },
-          { jaar: 2018, regel: "Verbod nieuwe gas­aansluitingen" },
-          { jaar: 2023, regel: "Wet 'Goed verhuurderschap', nieuwe verplichtingen verhuurder" },
-          { jaar: 2024, regel: "Huurprijs­regulering middensegment, beperking op vrije markt" },
-          { jaar: 2027, regel: "Afbouw salderings­regeling zonnepanelen begint, definitief weg in 2031" }
+          { jaar: 2008, regel: "Verplicht energielabel bij verkoop woning", bron: "Min. BZK" },
+          { jaar: 2018, regel: "Verplicht energielabel C voor kantoren, anders verhuurverbod", bron: "Min. BZK" },
+          { jaar: 2018, regel: "Verbod nieuwe gas­aansluitingen", bron: "Wet voortgang energietransitie" },
+          { jaar: 2022, regel: "Verplichte rookmelder in elke woning", bron: "Bouwbesluit 2022" },
+          { jaar: 2023, regel: "Wet 'Goed verhuurderschap', nieuwe verplichtingen voor verhuurder", bron: "Staatsblad 2023, 217" },
+          { jaar: 2023, regel: "Verplichte verhuurvergunning en gedragscode", bron: "Wet Goed verhuurderschap" },
+          { jaar: 2024, regel: "Huurprijsregulering middensegment, prijsplafond op vrije markt", bron: "Wet betaalbare huur 2024" },
+          { jaar: 2024, regel: "Verplicht UBO-register (ultimate beneficial owners) sterk uitgebreid", bron: "EU witwasrichtlijn, Wwft" },
+          { jaar: 2026, regel: "Voorgenomen verplichte warmtepomp bij vervanging CV-ketel", bron: "Min. EZK aankondiging 2023, uitgesteld" },
+          { jaar: 2027, regel: "Afbouw salderingsregeling zonnepanelen, definitief weg in 2031", bron: "Min. EZK / Tweede Kamer dossier 35594" }
         ]
       },
       {
-        groep: "Werk en ondernemen",
+        groep: "Werk, ondernemen en bureaucratie",
         items: [
-          { jaar: 2018, regel: "AVG / GDPR-verplichtingen, ook voor eenmans­zaken" },
-          { jaar: 2020, regel: "Wet DBA opnieuw ingesteld, zzp-toetsing arbeidsrelatie" },
-          { jaar: 2023, regel: "Loondoorbetalingsverplichting twee jaar bij ziekte, ook voor MKB" },
-          { jaar: 2024, regel: "Pensioenwet­herziening, individuele potten in plaats van collectief" },
-          { jaar: 2025, regel: "Klimaatrapportageplicht middelgrote bedrijven (CSRD)" }
+          { jaar: 2018, regel: "AVG / GDPR-verplichtingen, ook voor eenmanszaken (datalek, FG, register)", bron: "EU-verordening 2016/679" },
+          { jaar: 2020, regel: "Wet DBA opnieuw ingevoerd, zzp-toetsing arbeidsrelatie", bron: "Belastingdienst handhavingsmoratorium" },
+          { jaar: 2023, regel: "Loondoorbetalingsverplichting twee jaar bij ziekte, ook voor MKB", bron: "Wet werk en zekerheid" },
+          { jaar: 2023, regel: "Cookiebanner uitbreiding op alle websites met geanonimiseerde tracking", bron: "AP-richtsnoeren 2023" },
+          { jaar: 2024, regel: "Pensioenwet (WTP) van collectief naar individuele potten", bron: "Wet Toekomst Pensioenen, juli 2023" },
+          { jaar: 2024, regel: "Verbod kasstortingen boven €3.000 (Wwft)", bron: "Wet ter voorkoming witwassen en financieren van terrorisme" },
+          { jaar: 2024, regel: "Strengere zorgvuldigheidsplicht banken (Wwft), accountsluitingen MKB+", bron: "DNB toezicht 2024" },
+          { jaar: 2025, regel: "Klimaatrapportageplicht middelgrote bedrijven (CSRD)", bron: "EU-richtlijn 2022/2464" },
+          { jaar: 2025, regel: "Voorgenomen Box 3 op werkelijk rendement, inclusief ongerealiseerd vermogen (gepland 2027)", bron: "Wetsvoorstel werkelijk rendement Box 3, december 2024" }
         ]
       },
       {
-        groep: "Overige leefstijl",
+        groep: "Vuurwerk en leefomgeving",
         items: [
-          { jaar: 2015, regel: "Vuurwerkverbod uitgebreid, knal­vuurwerk en vuurpijlen verboden" },
-          { jaar: 2020, regel: "Mondkapjesplicht openbaar vervoer en winkels (tot 2022)" },
-          { jaar: 2021, regel: "Coronapas (QR-code) verplicht voor horeca, evenementen, kappers" },
-          { jaar: 2022, regel: "Discussie verbod op houtkachels en open haard in stedelijk gebied" },
-          { jaar: 2024, regel: "Volledig vuurwerkverbod consumenten in 25 gemeentes" },
-          { jaar: 2024, regel: "Chip-verplichting honden landelijk" },
-          { jaar: 2025, regel: "Vergunningsplicht drones boven 250 gram" }
+          { jaar: 2015, regel: "Vuurwerkverbod uitgebreid, knalvuurwerk en vuurpijlen verboden", bron: "Vuurwerkbesluit" },
+          { jaar: 2020, regel: "Mondkapjesplicht openbaar vervoer en winkels (tot 2022)", bron: "Tijdelijke wet maatregelen covid-19" },
+          { jaar: 2021, regel: "Coronapas (QR-code) verplicht voor horeca, evenementen, kappers", bron: "Tijdelijke wet covid-19 verplichte testbewijzen" },
+          { jaar: 2022, regel: "Discussie verbod op houtkachels en open haard in stedelijk gebied", bron: "Min. IenW en gemeenten" },
+          { jaar: 2023, regel: "Verbod fokken kortneuzige hondenrassen (Franse buldog e.a.)", bron: "Wet dieren" },
+          { jaar: 2024, regel: "Volledig vuurwerkverbod consumenten in 30+ gemeenten", bron: "Lokale gemeenteraden" },
+          { jaar: 2024, regel: "Chipverplichting honden landelijk uitgebreid", bron: "Wet dieren, identificatie en registratie" },
+          { jaar: 2024, regel: "Statiegeld op blikjes (15 cent)", bron: "Min. IenW, ingegaan 1 april 2023" },
+          { jaar: 2025, regel: "Vergunningsplicht drones boven 250 gram", bron: "EU-verordening 2019/947" }
+        ]
+      },
+      {
+        groep: "Privacy, identiteit en digitaal",
+        items: [
+          { jaar: 2018, regel: "Verplichte DigID voor steeds meer overheidsdiensten (Belastingdienst, UWV, gemeente, zorg)", bron: "Logius" },
+          { jaar: 2020, regel: "Coronamelder-app, vrijwillig maar sterk aangedrongen", bron: "Min. VWS" },
+          { jaar: 2022, regel: "Wet inburgering 2.0, verplichte taalinzet en participatie", bron: "Min. SZW, Staatsblad 2022" },
+          { jaar: 2023, regel: "Eu-Digital Wallet (digitale identiteit), Nederland verplicht aansluiten 2026", bron: "EU-eIDAS verordening 2024" },
+          { jaar: 2024, regel: "Cookie- en consent-banners op vrijwel iedere website", bron: "Autoriteit Persoonsgegevens richtsnoer" },
+          { jaar: 2025, regel: "Verplichte CSAM-scan (chat control), EU-discussie", bron: "EU-Commissie voorstel 2022 (Tweede Kamer 2025)" }
         ]
       }
     ]
