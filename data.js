@@ -48,23 +48,23 @@ const DATA = {
   },
 
   koopkrachtVergelijking: {
-    label: "Wat je modaal-netto-jaarsalaris je oplevert: 1999 versus 2026",
-    intro: "Het modale jaarsalaris ging tussen 1999 en 2026 omhoog van ongeveer €18.500 netto naar ongeveer €33.000 netto. Een verdubbeling op papier. Maar wat kun je er werkelijk voor kopen? Hieronder tien dagelijkse producten en wat hun prijs precies met die verdubbeling deed.",
-    source: "NIBUD, CBS Prijzen consumenten (CPI), Belastingdienst tariefoverzicht modaal, archieven McDonald's NL, NS Reisplanner, brandstofprijzen-historiek",
+    label: "Wat een modaal-netto-jaarsalaris je oplevert: 1999 versus 2026",
+    intro: "Het modale jaarsalaris ging tussen 1999 en 2026 omhoog van ongeveer €17.500 netto naar ongeveer €32.500 netto. Een verdubbeling op papier. Maar wat kun je er werkelijk voor kopen? Hieronder tien dagelijkse producten waarvan de prijs in dezelfde periode niet verdubbelde maar veel sterker steeg. De rekensom is simpel: modaal-netto gedeeld door consumentenprijs, voor 1999 en voor 2026 naast elkaar.",
+    source: "NIBUD prijspeil, CBS modaal jaarsalaris CB-tabel, CBS Prijzen consumenten (CPI), Belastingdienst accijnsoverzichten, NS-tariefarchief, supermarkt­bonnen 1999-2026",
     sourceUrl: "https://www.nibud.nl",
-    modaal1999_netto: 18500,
-    modaal2026_netto: 33000,
+    modaal1999_netto: 17500,
+    modaal2026_netto: 32500,
     producten: [
-      { naam: "Pilsje in het café (30 cl)",     prijs1999: 1.50, prijs2026: 4.50, eenheid: "biertjes" },
-      { naam: "Pakje sigaretten (20 stuks)",     prijs1999: 2.80, prijs2026: 11.00, eenheid: "pakjes" },
-      { naam: "Kop koffie buiten de deur",       prijs1999: 1.10, prijs2026: 4.20, eenheid: "koppen" },
-      { naam: "Heel volkorenbrood",              prijs1999: 1.20, prijs2026: 3.50, eenheid: "broden" },
-      { naam: "Big Mac",                          prijs1999: 2.40, prijs2026: 6.00, eenheid: "Big Macs" },
-      { naam: "Treinkaartje Amsterdam, Rotterdam (enkele reis)", prijs1999: 8.50, prijs2026: 21.00, eenheid: "ritjes" },
-      { naam: "Pizza Margherita restaurant",     prijs1999: 7.00, prijs2026: 17.00, eenheid: "pizza's" },
-      { naam: "Volle tank benzine (50 liter)",   prijs1999: 55.00, prijs2026: 115.00, eenheid: "tankbeurten" },
-      { naam: "Pak melk 1 liter",                 prijs1999: 0.70, prijs2026: 1.45, eenheid: "pakken" },
-      { naam: "Gemiddelde koopwoning",            prijs1999: 128000, prijs2026: 495000, eenheid: "woningen (theoretisch)" }
+      { naam: "Pakje shag (50 gram)",                                prijs1999: 2.50, prijs2026: 13.50, eenheid: "pakjes" },
+      { naam: "Pakje sigaretten (20 stuks)",                          prijs1999: 2.95, prijs2026: 11.00, eenheid: "pakjes" },
+      { naam: "Kop koffie buiten de deur",                            prijs1999: 1.25, prijs2026: 4.00, eenheid: "koppen" },
+      { naam: "Patatje friet bij de snackbar",                        prijs1999: 1.20, prijs2026: 3.50, eenheid: "patatjes" },
+      { naam: "Pakje roomboter (250 gram)",                            prijs1999: 1.20, prijs2026: 3.50, eenheid: "pakjes" },
+      { naam: "Heel volkorenbrood",                                    prijs1999: 1.20, prijs2026: 3.40, eenheid: "broden" },
+      { naam: "Pilsje in het café (30 cl)",                            prijs1999: 1.65, prijs2026: 4.50, eenheid: "biertjes" },
+      { naam: "Treinkaartje Amsterdam-Rotterdam (enkele reis, 2e kl.)", prijs1999: 8.30, prijs2026: 19.50, eenheid: "ritjes" },
+      { naam: "Big Mac",                                                prijs1999: 2.50, prijs2026: 5.50, eenheid: "Big Macs" },
+      { naam: "Pizza Margherita in restaurant",                         prijs1999: 7.00, prijs2026: 15.00, eenheid: "pizza's" }
     ]
   },
 
