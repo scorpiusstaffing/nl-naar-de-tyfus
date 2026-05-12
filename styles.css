@@ -657,6 +657,56 @@ ul { list-style: none; }
   text-underline-offset: 4px;
 }
 
+/* ---------------------------- REKENKADER (boven koopkracht) ------------- */
+.rekenkader {
+  margin: 40px 0 32px;
+  padding: 28px 32px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  border-left: 3px solid var(--accent-2);
+}
+.rk-head {
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--line);
+}
+.rk-title {
+  font-family: var(--serif); font-weight: 700; font-size: 18px;
+  color: var(--accent-2); letter-spacing: -0.005em;
+}
+.rk-sub { font-size: 13px; color: var(--ink-3); }
+.rk-table { display: grid; gap: 4px; }
+.rk-row {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 12px;
+  padding: 10px 6px;
+  border-bottom: 1px dashed var(--line-2);
+  align-items: baseline;
+}
+.rk-row:last-child { border-bottom: 0; }
+.rk-row-head {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 700;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+.rk-cell-label { color: var(--ink-2); font-size: 13.5px; line-height: 1.4; }
+.rk-cell-then { color: var(--ink-3); font-family: var(--serif); font-weight: 600; font-size: 15px; }
+.rk-cell-now { color: var(--accent); font-family: var(--serif); font-weight: 700; font-size: 15px; }
+.rk-row-head .rk-cell-then, .rk-row-head .rk-cell-now { color: var(--ink-3); font-family: var(--sans); font-size: 10px; font-weight: 700; }
+.rk-note {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-2);
+  font-size: 12px; color: var(--ink-4); line-height: 1.6;
+}
+@media (max-width: 560px) {
+  .rekenkader { padding: 22px 20px; }
+  .rk-row { grid-template-columns: 1.4fr 1fr 1fr; gap: 8px; }
+  .rk-cell-label { font-size: 12px; }
+}
+
 /* ---------------------------- KOOPKRACHT GRID --------------------------- */
 .koopkracht-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
@@ -722,6 +772,9 @@ ul { list-style: none; }
   font-size: 11px; color: var(--ink-3); line-height: 1.4;
 }
 
+.kk-verlies-row {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
 .kk-verlies {
   display: inline-block;
   padding: 6px 14px;
@@ -730,6 +783,10 @@ ul { list-style: none; }
   font-family: var(--serif); font-weight: 700; font-size: 16px;
   border-radius: 999px;
   letter-spacing: -0.005em;
+}
+.kk-factor {
+  font-size: 12px; color: var(--ink-3);
+  letter-spacing: .02em;
 }
 
 /* ---------------------------- BEMOEIZUCHT GRID -------------------------- */

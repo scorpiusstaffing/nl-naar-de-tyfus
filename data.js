@@ -48,12 +48,21 @@ const DATA = {
   },
 
   koopkrachtVergelijking: {
-    label: "Wat een modaal-netto-jaarsalaris je oplevert: 1999 versus 2026",
-    intro: "Het modale jaarsalaris ging tussen 1999 en 2026 omhoog van ongeveer €17.500 netto naar ongeveer €32.500 netto. Een verdubbeling op papier. Maar wat kun je er werkelijk voor kopen? Hieronder tien dagelijkse producten waarvan de prijs in dezelfde periode niet verdubbelde maar veel sterker steeg. De rekensom is simpel: modaal-netto gedeeld door consumentenprijs, voor 1999 en voor 2026 naast elkaar.",
-    source: "NIBUD prijspeil, CBS modaal jaarsalaris CB-tabel, CBS Prijzen consumenten (CPI), Belastingdienst accijnsoverzichten, NS-tariefarchief, supermarkt­bonnen 1999-2026",
-    sourceUrl: "https://www.nibud.nl",
+    label: "Hoeveel werktijd kost een dagelijks product, 1999 versus 2026",
+    intro: "Modaal jaarsalaris is een bruto-begrip. Een biertje of pakje brood reken je echter af uit wat overblijft na de Belastingdienst, en daarom is netto besteedbaar inkomen de juiste maatstaf voor koopkracht. Het rekenkader hieronder maakt elke stap controleerbaar: van bruto naar netto, van jaar naar uur. De cards die volgen tonen voor tien dagelijkse producten hoeveel minuten werk een modale werknemer in 1999 en in 2026 nodig had om er één van te kopen, plus het resulterende koopkrachtverlies.",
+    source: "CBS Statline Modaal jaarsalaris (historische reeks), OESO Taxing Wages 1999 en 2024, Belastingdienst tariefoverzichten, NIBUD prijspeil, CBS Prijzen consumenten (CPI), NS-tariefarchief, archieven supermarktbonnen 1999-2026",
+    sourceUrl: "https://www.cbs.nl",
+    modaal1999_bruto: 25000,
+    modaal2026_bruto: 44000,
     modaal1999_netto: 17500,
     modaal2026_netto: 32500,
+    voltijdsuren: 1700,
+    rekenkader: [
+      { label: "Modaal jaarsalaris brúto (CBS)",                     "1999": "€25.000", "2026": "€44.000" },
+      { label: "Effectieve belasting- en premiedruk modaal",         "1999": "ca. 30%", "2026": "ca. 26%" },
+      { label: "Modaal jaarsalaris nétto besteedbaar",               "1999": "€17.500", "2026": "€32.500" },
+      { label: "Netto-uurloon bij voltijds 1.700 uren per jaar",     "1999": "€10,30",  "2026": "€19,10" }
+    ],
     producten: [
       { naam: "Pakje shag (50 gram)",                                prijs1999: 2.50, prijs2026: 13.50, eenheid: "pakjes" },
       { naam: "Pakje sigaretten (20 stuks)",                          prijs1999: 2.95, prijs2026: 11.00, eenheid: "pakjes" },

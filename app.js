@@ -575,41 +575,81 @@
     const introEl = $('koopkrachtIntro');
     if (introEl) introEl.textContent = DATA.koopkrachtVergelijking.intro;
 
+    // Rekenkader
+    const kaderEl = $('rekenkader');
+    if (kaderEl && DATA.koopkrachtVergelijking.rekenkader) {
+      kaderEl.innerHTML = `
+        <div class="rk-head">
+          <span class="rk-title">Rekenkader</span>
+          <span class="rk-sub">Hoe komen we van modaal jaarsalaris tot een netto-uurloon?</span>
+        </div>
+        <div class="rk-table">
+          <div class="rk-row rk-row-head">
+            <div class="rk-cell rk-cell-label"></div>
+            <div class="rk-cell rk-cell-then">1999</div>
+            <div class="rk-cell rk-cell-now">2026</div>
+          </div>
+          ${DATA.koopkrachtVergelijking.rekenkader.map(r => `
+            <div class="rk-row">
+              <div class="rk-cell rk-cell-label">${r.label}</div>
+              <div class="rk-cell rk-cell-then">${r['1999']}</div>
+              <div class="rk-cell rk-cell-now">${r['2026']}</div>
+            </div>
+          `).join('')}
+        </div>
+        <p class="rk-note">Bronnen: CBS Statline Modaal jaarsalaris, OESO Taxing Wages 1999 en 2024, Belastingdienst tariefoverzicht. Voltijdsjaar 1.700 uren is gebaseerd op CBS gemiddelde van 36 contracturen × 47 werkweken (na verlof en feestdagen). Berekening hieronder gebruikt het netto-uurloon, omdat een prijs in winkel of café wordt afgerekend uit netto besteedbaar inkomen.</p>
+      `;
+    }
+
     const gridEl = $('koopkrachtGrid');
     if (gridEl) {
       const m1999 = DATA.koopkrachtVergelijking.modaal1999_netto;
       const m2026 = DATA.koopkrachtVergelijking.modaal2026_netto;
+      const uren_per_jaar = DATA.koopkrachtVergelijking.voltijdsuren || 1700;
+      const uurloon1999 = m1999 / uren_per_jaar; // ~€10,30 netto
+      const uurloon2026 = m2026 / uren_per_jaar; // ~€19,10 netto
+
+      const fmtTime = minuten => {
+        if (minuten < 60) return `${Math.round(minuten)} min`;
+        const u = Math.floor(minuten / 60);
+        const m = Math.round(minuten - u * 60);
+        return m === 0 ? `${u} uur` : `${u} u ${m} min`;
+      };
+      const fmtPrijs = p => '€' + p.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
       gridEl.innerHTML = DATA.koopkrachtVergelijking.producten.map(p => {
-        const aantal1999 = m1999 / p.prijs1999;
-        const aantal2026 = m2026 / p.prijs2026;
-        const verlies = ((aantal1999 - aantal2026) / aantal1999) * 100;
-        const fmt = n => n >= 100 ? Math.round(n).toLocaleString('nl-NL') : n.toFixed(1).replace('.', ',');
-        const isBig = p.naam.includes('woning');
+        const min1999 = (p.prijs1999 / uurloon1999) * 60;
+        const min2026 = (p.prijs2026 / uurloon2026) * 60;
+        const verlies = (1 - (min1999 / min2026)) * 100;
+        const factor = (min2026 / min1999).toFixed(1).replace('.', ',');
         return `
-          <div class="kk-card ${isBig ? 'kk-big' : ''}">
+          <div class="kk-card">
             <div class="kk-product">${p.naam}</div>
             <div class="kk-prijs-row">
               <div class="kk-prijs">
-                <span class="kk-jaar">1999</span>
-                <span class="kk-eur">€${p.prijs1999.toLocaleString('nl-NL', { minimumFractionDigits: p.prijs1999 < 100 ? 2 : 0, maximumFractionDigits: p.prijs1999 < 100 ? 2 : 0 })}</span>
+                <span class="kk-jaar">Prijs 1999</span>
+                <span class="kk-eur">${fmtPrijs(p.prijs1999)}</span>
               </div>
               <div class="kk-arrow">→</div>
               <div class="kk-prijs kk-now">
-                <span class="kk-jaar">2026</span>
-                <span class="kk-eur">€${p.prijs2026.toLocaleString('nl-NL', { minimumFractionDigits: p.prijs2026 < 100 ? 2 : 0, maximumFractionDigits: p.prijs2026 < 100 ? 2 : 0 })}</span>
+                <span class="kk-jaar">Prijs 2026</span>
+                <span class="kk-eur">${fmtPrijs(p.prijs2026)}</span>
               </div>
             </div>
             <div class="kk-aantal-row">
               <div class="kk-aantal">
-                <span class="kk-aantal-num">${fmt(aantal1999)}</span>
-                <span class="kk-aantal-lbl">${p.eenheid} van een modaal jaarsalaris in 1999</span>
+                <span class="kk-aantal-num">${fmtTime(min1999)}</span>
+                <span class="kk-aantal-lbl">werken voor één in 1999</span>
               </div>
               <div class="kk-aantal kk-aantal-now">
-                <span class="kk-aantal-num">${fmt(aantal2026)}</span>
-                <span class="kk-aantal-lbl">${p.eenheid} van een modaal jaarsalaris in 2026</span>
+                <span class="kk-aantal-num">${fmtTime(min2026)}</span>
+                <span class="kk-aantal-lbl">werken voor één in 2026</span>
               </div>
             </div>
-            <div class="kk-verlies">−${Math.round(verlies)}% koopkracht</div>
+            <div class="kk-verlies-row">
+              <span class="kk-verlies">−${Math.round(verlies)}% koopkracht</span>
+              <span class="kk-factor">${factor}× zo veel werktijd nodig</span>
+            </div>
           </div>
         `;
       }).join('');
