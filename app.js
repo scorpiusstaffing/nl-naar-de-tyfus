@@ -1937,28 +1937,55 @@
   revealTargets.forEach(el => io.observe(el));
 
   /* ====================================================================
-     NAV PANEL (inhoudsoverlay)
+     NAV — dropdown-categorieën (desktop) + mobile hamburger
      ==================================================================== */
+  const navCats = document.querySelectorAll('.nav-cat');
+  function closeAllCats(except) {
+    navCats.forEach(c => { if (c !== except) c.classList.remove('open'); });
+  }
+  navCats.forEach(cat => {
+    const btn = cat.querySelector('.nav-cat-btn');
+    if (!btn) return;
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const wasOpen = cat.classList.contains('open');
+      closeAllCats();
+      if (!wasOpen) {
+        cat.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    cat.addEventListener('click', e => { if (e.target.tagName === 'A') closeAllCats(); });
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.nav-cat')) closeAllCats();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAllCats(); });
+
+  /* Mobile hamburger panel */
   const navToggle = document.querySelector('.nav-toggle');
-  const navPanel  = document.querySelector('.nav-panel');
+  const navMobile = document.querySelector('.nav-mobile');
   const navOverlay = document.querySelector('.nav-overlay');
-  function closePanel() {
-    if (!navPanel) return;
-    navPanel.classList.remove('open');
+  function closeMobile() {
+    if (!navMobile) return;
+    navMobile.classList.remove('open');
     if (navOverlay) navOverlay.classList.remove('open');
     if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
   }
-  function togglePanel() {
-    if (!navPanel) return;
-    const open = navPanel.classList.toggle('open');
+  function toggleMobile() {
+    if (!navMobile) return;
+    const open = navMobile.classList.toggle('open');
     if (navOverlay) navOverlay.classList.toggle('open', open);
     if (navToggle) navToggle.setAttribute('aria-expanded', String(open));
   }
-  if (navToggle && navPanel) {
-    navToggle.addEventListener('click', togglePanel);
-    navPanel.addEventListener('click', e => { if (e.target.tagName === 'A') closePanel(); });
-    if (navOverlay) navOverlay.addEventListener('click', closePanel);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+  if (navToggle && navMobile) {
+    navToggle.addEventListener('click', toggleMobile);
+    navMobile.addEventListener('click', e => { if (e.target.tagName === 'A') closeMobile(); });
+    if (navOverlay) navOverlay.addEventListener('click', closeMobile);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobile(); });
   }
 
   /* ====================================================================

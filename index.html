@@ -21,56 +21,109 @@
       <span class="brand-mark">NL</span>
       <span class="brand-name">stand van het land</span>
     </a>
-    <div class="nav-quick">
-      <a href="#wall">Cijfers</a>
-      <a href="#vertrekkers">Vertrekkers</a>
-      <a href="#weerlegging">Tegenargumenten</a>
-      <a href="#verval">Verval</a>
-      <a href="#bronnen">Bronnen</a>
-    </div>
-    <button class="nav-toggle" aria-label="Inhoud" aria-expanded="false">
-      <span class="nav-toggle-text">Inhoud</span>
+
+    <nav class="nav-cats">
+      <div class="nav-cat">
+        <button class="nav-cat-btn" data-cat="geld">Geld<span class="nav-caret">▾</span></button>
+        <div class="nav-cat-menu" data-menu="geld">
+          <a href="#belasting">02 Belasting</a>
+          <a href="#koopkracht">02a Koopkracht</a>
+          <a href="#pensioen">02b Pensioen en AOW</a>
+          <a href="#wonen">03 Wonen</a>
+          <a href="#zorg">09 Verbroken beloftes</a>
+          <a href="#regels">12 Regeldruk</a>
+          <a href="#bemoeizucht">12a Bemoeizucht</a>
+          <a href="#armoede">17 Armoede</a>
+        </div>
+      </div>
+      <div class="nav-cat">
+        <button class="nav-cat-btn" data-cat="migratie">Migratie<span class="nav-caret">▾</span></button>
+        <div class="nav-cat-menu" data-menu="migratie">
+          <a href="#demografie">02c Demografie</a>
+          <a href="#migratie">04 Migratie</a>
+          <a href="#kosten">05 Kosten migratie</a>
+          <a href="#hoofdkantoren">05b Hoofdkantoren</a>
+          <a href="#vertrekkers">06 Wie vertrekt echt</a>
+          <a href="#braindrain">07 Brain drain</a>
+        </div>
+      </div>
+      <div class="nav-cat">
+        <button class="nav-cat-btn" data-cat="samenleving">Samenleving<span class="nav-caret">▾</span></button>
+        <div class="nav-cat-menu" data-menu="samenleving">
+          <a href="#identiteit">07a Individualisering</a>
+          <a href="#cohesie">08 Cohesie</a>
+          <a href="#onderwijs">10 Onderwijs</a>
+          <a href="#veiligheid">11 Veiligheid</a>
+          <a href="#druk">20 Werkdruk en jongeren</a>
+        </div>
+      </div>
+      <div class="nav-cat">
+        <button class="nav-cat-btn" data-cat="staat">Staat<span class="nav-caret">▾</span></button>
+        <div class="nav-cat-menu" data-menu="staat">
+          <a href="#soevereiniteit">09a Soevereiniteit (EU)</a>
+          <a href="#toeslagen">16 Toeslagenaffaire</a>
+          <a href="#stikstof">18 Stikstof</a>
+          <a href="#narco">19 Defensie en narco</a>
+        </div>
+      </div>
+      <div class="nav-cat">
+        <button class="nav-cat-btn" data-cat="vergelijking">Vergelijking<span class="nav-caret">▾</span></button>
+        <div class="nav-cat-menu" data-menu="vergelijking">
+          <a href="#wall">De cijfers in 12 getallen</a>
+          <a href="#vergelijking">13 Vergelijking buurlanden</a>
+          <a href="#ranglijsten">14 Ranglijst-illusie</a>
+          <a href="#weerlegging">15 Tien tegenargumenten</a>
+          <a href="#verval">21 Verval-checklist</a>
+          <a href="#bronnen">Bronnenlijst</a>
+        </div>
+      </div>
+    </nav>
+
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
       <span class="nav-toggle-icon">≡</span>
     </button>
   </div>
   <div class="nav-progress"><span></span></div>
 
-  <div class="nav-panel" aria-hidden="true">
-    <div class="nav-panel-inner">
+  <div class="nav-mobile" aria-hidden="true">
+    <div class="nav-mobile-inner">
       <div class="nav-col">
-        <h5>Geld en werk</h5>
-        <a href="#belasting">01 Belasting</a>
-        <a href="#ontkoppeling">02 Ontkoppeling</a>
+        <h5>Geld</h5>
+        <a href="#belasting">02 Belasting</a>
+        <a href="#koopkracht">02a Koopkracht</a>
+        <a href="#pensioen">02b Pensioen en AOW</a>
         <a href="#wonen">03 Wonen</a>
         <a href="#zorg">09 Verbroken beloftes</a>
-        <a href="#demografie">02c Demografie</a>
         <a href="#regels">12 Regeldruk</a>
+        <a href="#bemoeizucht">12a Bemoeizucht</a>
         <a href="#armoede">17 Armoede</a>
       </div>
       <div class="nav-col">
         <h5>Migratie</h5>
+        <a href="#demografie">02c Demografie</a>
         <a href="#migratie">04 Migratie</a>
         <a href="#kosten">05 Kosten migratie</a>
+        <a href="#hoofdkantoren">05b Hoofdkantoren</a>
         <a href="#vertrekkers">06 Wie vertrekt echt</a>
         <a href="#braindrain">07 Brain drain</a>
       </div>
       <div class="nav-col">
         <h5>Samenleving</h5>
-        <a href="#identiteit">08a Identiteit</a>
+        <a href="#identiteit">07a Individualisering</a>
         <a href="#cohesie">08 Cohesie</a>
         <a href="#onderwijs">10 Onderwijs</a>
         <a href="#veiligheid">11 Veiligheid</a>
         <a href="#druk">20 Werkdruk en jongeren</a>
       </div>
       <div class="nav-col">
-        <h5>Staat en macht</h5>
+        <h5>Staat</h5>
         <a href="#soevereiniteit">09a Soevereiniteit (EU)</a>
         <a href="#toeslagen">16 Toeslagenaffaire</a>
         <a href="#stikstof">18 Stikstof</a>
         <a href="#narco">19 Defensie en narco</a>
       </div>
       <div class="nav-col">
-        <h5>Vergelijking en samenvatting</h5>
+        <h5>Vergelijking</h5>
         <a href="#wall">De cijfers in 12 getallen</a>
         <a href="#vergelijking">13 Vergelijking buurlanden</a>
         <a href="#ranglijsten">14 Ranglijst-illusie</a>
