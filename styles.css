@@ -832,6 +832,98 @@ ul { list-style: none; }
   color: var(--ink-2); line-height: 1.5;
 }
 
+/* ---------------------------- BOX 3 ONRECHT GRID ------------------------ */
+.box3-onrecht {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  margin: 32px 0;
+}
+@media (max-width: 720px) { .box3-onrecht { grid-template-columns: 1fr; } }
+.box3-onrecht-card {
+  padding: 24px 26px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  transition: border-color .25s, transform .25s;
+}
+.box3-onrecht-card:hover { transform: translateY(-2px); border-color: var(--ink-4); }
+.box3-onrecht-card h4 {
+  font-family: var(--serif); font-weight: 700; font-size: 18px;
+  color: var(--accent); margin-bottom: 10px;
+}
+.box3-onrecht-card p { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+
+.box3-facts {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin: 32px 0;
+}
+@media (max-width: 880px) { .box3-facts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .box3-facts { grid-template-columns: 1fr; } }
+
+/* COMPOUND-eindcijfers (2x2) */
+.compound-eindcijfers { margin-top: 24px; display: grid; gap: 14px; }
+.ce-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .ce-row { grid-template-columns: 1fr; } }
+.ce-cell {
+  padding: 18px 22px;
+  background: rgba(0,0,0,.18);
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+}
+.ce-label { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin-bottom: 8px; }
+.ce-num { font-family: var(--serif); font-weight: 800; font-size: 28px; line-height: 1; letter-spacing: -0.02em; margin-bottom: 6px; }
+.ce-good { color: var(--good); }
+.ce-bad  { color: var(--accent); }
+.ce-sub { font-size: 11px; color: var(--ink-3); line-height: 1.45; }
+
+/* ---------------------------- PENSIOEN GRID ----------------------------- */
+.pensioen-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin: 48px 0;
+}
+@media (max-width: 880px) { .pensioen-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .pensioen-grid { grid-template-columns: 1fr; } }
+
+/* ---------------------------- HOOFDKANTOREN TIJDLIJN -------------------- */
+.hoofdkantoren-tijdlijn {
+  position: relative;
+  margin-top: 48px;
+  padding: 20px 0 20px 32px;
+  border-left: 2px solid var(--line);
+}
+.hk-item {
+  position: relative;
+  display: grid; grid-template-columns: 60px 1fr; gap: 18px; align-items: baseline;
+  padding: 16px 24px 16px 36px;
+  margin-bottom: 8px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  transition: border-color .25s, transform .25s;
+}
+.hk-item::before {
+  content: '';
+  position: absolute; left: -41px; top: 24px;
+  width: 14px; height: 14px;
+  background: var(--accent); border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--accent);
+}
+.hk-item:hover { border-color: var(--ink-4); transform: translateX(3px); }
+.hk-jaar {
+  font-family: var(--serif); font-weight: 800; font-size: 22px;
+  color: var(--accent); letter-spacing: -0.02em;
+}
+.hk-bedrijf { font-weight: 700; font-size: 16px; color: var(--ink); margin-bottom: 4px; }
+.hk-uitkomst { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+/* ---------------------------- SYNTHESE - actie -------------------------- */
+.som-actie {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line-2);
+}
+
 /* ---------------------------- DEFENSE GRID — critici-weerlegging -------- */
 .defense-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin: 48px 0; }
 

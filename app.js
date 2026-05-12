@@ -698,6 +698,222 @@
   accijnsChart('chartAccijnsBier', 'bier',     '€', palette.accent);
 
   /* ====================================================================
+     ZES CRISES VAN INDIVIDUALISERING (charts)
+     ==================================================================== */
+  function simpleLine(canvasId, yearsAndValues, opts = {}) {
+    const el = $(canvasId);
+    if (!el || !yearsAndValues) return;
+    const { color = palette.accent, suggestedMin, suggestedMax, ticksCallback, tooltipLabel } = opts;
+    new Chart(el, {
+      type: 'line',
+      data: {
+        labels: yearsAndValues.years,
+        datasets: [{
+          data: yearsAndValues.values,
+          borderColor: color,
+          backgroundColor: ctx => grad(ctx, [[0, 'rgba(220,38,38,.35)'], [1, 'rgba(220,38,38,0)']]),
+          fill: true, tension: .3, borderWidth: 2.5,
+          pointBackgroundColor: color, pointRadius: 5, pointHoverRadius: 8
+        }]
+      },
+      options: lineOpts({
+        scales: { x: {...baseScale}, y: {...baseScale, suggestedMin, suggestedMax, ticks: {...baseScale.ticks, callback: ticksCallback || (v => v)}} },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => tooltipLabel ? tooltipLabel(c) : ` ${c.parsed.y}` } } }
+      })
+    });
+  }
+
+  simpleLine('chartEenzaamheidNew', DATA.eenzaamheid,
+    { suggestedMin: 30, suggestedMax: 55, ticksCallback: v => v + '%', tooltipLabel: c => ` ${c.parsed.y}% voelt zich (zeer) eenzaam` });
+
+  simpleLine('chartMentaalJongeren', DATA.mentaleKlachtenJongeren,
+    { color: palette.accent, suggestedMin: 0, suggestedMax: 30, ticksCallback: v => v + '%', tooltipLabel: c => ` ${c.parsed.y}% met mentale klachten` });
+
+  simpleLine('chartTFR', DATA.geboortecijfer,
+    { color: palette.accent2, suggestedMin: 1.2, suggestedMax: 2.7, ticksCallback: v => v.toFixed(1).replace('.', ','), tooltipLabel: c => ` ${c.parsed.y.toString().replace('.', ',')} kinderen per vrouw` });
+
+  if ($('chartEenouder')) new Chart($('chartEenouder'), {
+    type: 'bar',
+    data: { labels: DATA.eenoudergezinnen.years, datasets: [{
+      data: DATA.eenoudergezinnen.values,
+      backgroundColor: ctx => grad(ctx, [[0, palette.accent], [1, 'rgba(220,38,38,.15)']]),
+      borderRadius: 4, maxBarThickness: 50
+    }] },
+    options: barOpts({
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v + 'k'}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + (c.parsed.y * 1000).toLocaleString('nl-NL') + ' eenoudergezinnen' } } }
+    })
+  });
+
+  simpleLine('chartVrijwilligers', DATA.vrijwilligerswerk,
+    { color: palette.accent2, suggestedMin: 20, suggestedMax: 42, ticksCallback: v => v + '%', tooltipLabel: c => ` ${c.parsed.y}% doet vrijwilligerswerk` });
+
+  if ($('chartSuicideYouth')) new Chart($('chartSuicideYouth'), {
+    type: 'line',
+    data: { labels: DATA.suicideJongeren.years, datasets: [{
+      data: DATA.suicideJongeren.values,
+      borderColor: palette.accent,
+      backgroundColor: ctx => grad(ctx, [[0, 'rgba(220,38,38,.40)'], [1, 'rgba(220,38,38,0)']]),
+      fill: true, tension: .3, borderWidth: 2.5,
+      pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+    }] },
+    options: lineOpts({
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + c.parsed.y + ' suïcides bij 15- tot 25-jarigen' } } }
+    })
+  });
+
+  /* ====================================================================
+     BOX 3 — onrecht, facts, compound interest
+     ==================================================================== */
+  if (DATA.box3Voorstel) {
+    const intro = $('box3Intro');
+    if (intro) intro.textContent = DATA.box3Voorstel.intro;
+
+    const onrechtEl = $('box3Onrecht');
+    if (onrechtEl) onrechtEl.innerHTML = DATA.box3Voorstel.onrechtvaardig.map(o => `
+      <div class="box3-onrecht-card">
+        <h4>${o.titel}</h4>
+        <p>${o.uitleg}</p>
+      </div>
+    `).join('');
+
+    const factsEl = $('box3Facts');
+    if (factsEl) factsEl.innerHTML = DATA.box3Voorstel.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+
+    const ce = DATA.box3Voorstel.compoundEffect;
+    if (ce) {
+      const compIntro = $('compoundIntro');
+      if (compIntro) compIntro.textContent = ce.intro;
+
+      if ($('chartCompound')) new Chart($('chartCompound'), {
+        type: 'line',
+        data: {
+          labels: ce.jaren.map(j => 'jaar ' + j),
+          datasets: [
+            { label: 'Huidig stelsel (belast aan einde)', data: ce.gerealiseerdEinde, borderColor: palette.green, backgroundColor: palette.green, borderWidth: 2.5, tension: .25, pointRadius: 5, pointHoverRadius: 8, fill: false },
+            { label: 'Voorgestelde Box 3 (36% jaarlijks over ongerealiseerd)', data: ce.ongerealiseerdJaarlijks, borderColor: palette.accent, backgroundColor: palette.accent, borderWidth: 2.5, tension: .25, pointRadius: 5, pointHoverRadius: 8, fill: false }
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+          plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: €${c.parsed.y.toLocaleString('nl-NL', {maximumFractionDigits: 0})}` } } },
+          scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => '€' + (v/1000).toFixed(0) + 'k'}} }
+        }
+      });
+
+      const cijfEl = $('compoundCijfers');
+      if (cijfEl) {
+        const e = ce.eindcijfers;
+        cijfEl.innerHTML = `
+          <div class="ce-row">
+            <div class="ce-cell">
+              <div class="ce-label">Na 30 jaar, huidig stelsel</div>
+              <div class="ce-num ce-good">€${e.na_30jr_huidig_netto.toLocaleString('nl-NL')}</div>
+              <div class="ce-sub">netto na eindafrekening 36%</div>
+            </div>
+            <div class="ce-cell">
+              <div class="ce-label">Na 30 jaar, nieuwe Box 3</div>
+              <div class="ce-num ce-bad">€${e.na_30jr_nieuw_netto.toLocaleString('nl-NL')}</div>
+              <div class="ce-sub">jaarlijks afgeroomd, effectief 4,48% i.p.v. 7%</div>
+            </div>
+          </div>
+          <div class="ce-row">
+            <div class="ce-cell">
+              <div class="ce-label">Na 40 jaar, huidig stelsel</div>
+              <div class="ce-num ce-good">€${e.na_40jr_huidig_netto.toLocaleString('nl-NL')}</div>
+              <div class="ce-sub">netto na eindafrekening</div>
+            </div>
+            <div class="ce-cell">
+              <div class="ce-label">Na 40 jaar, nieuwe Box 3</div>
+              <div class="ce-num ce-bad">€${e.na_40jr_nieuw_netto.toLocaleString('nl-NL')}</div>
+              <div class="ce-sub">verlies van bijna €420.000 vermogen per 100k startkapitaal</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+  }
+
+  /* ====================================================================
+     PENSIOEN + AOW
+     ==================================================================== */
+  if (DATA.pensioenStelsel) {
+    const pi = $('pensioenIntro');
+    if (pi) pi.textContent = DATA.pensioenStelsel.intro;
+    const pg = $('pensioenGrid');
+    if (pg) pg.innerHTML = DATA.pensioenStelsel.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+  }
+
+  if ($('chartAOW') && DATA.aowLeeftijd) {
+    new Chart($('chartAOW'), {
+      type: 'line',
+      data: {
+        labels: DATA.aowLeeftijd.years,
+        datasets: [{
+          data: DATA.aowLeeftijd.values,
+          borderColor: palette.accent,
+          backgroundColor: ctx => grad(ctx, [[0, 'rgba(220,38,38,.30)'], [1, 'rgba(220,38,38,0)']]),
+          fill: true, tension: .25, borderWidth: 2.5,
+          pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8,
+          segment: { borderDash: ctx => ctx.p0DataIndex >= DATA.aowLeeftijd.years.length - 2 ? [6, 4] : undefined }
+        }]
+      },
+      options: lineOpts({
+        scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 64, suggestedMax: 71, ticks: {...baseScale.ticks, callback: v => v + ' jaar'}} },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' AOW-leeftijd: ' + c.parsed.y + ' jaar', afterLabel: c => c.dataIndex >= DATA.aowLeeftijd.years.length - 2 ? '(projectie)' : '' } } }
+      })
+    });
+  }
+
+  /* ====================================================================
+     HOOFDKANTOREN + PRODUCTIVITEIT
+     ==================================================================== */
+  if (DATA.hoofdkantorenVlucht) {
+    const intro = $('hoofdkantorenIntro');
+    if (intro) intro.textContent = DATA.hoofdkantorenVlucht.intro;
+    const lijn = $('hoofdkantorenLijn');
+    if (lijn) lijn.innerHTML = DATA.hoofdkantorenVlucht.items.map(it => `
+      <div class="hk-item">
+        <div class="hk-jaar">${it.jaar}</div>
+        <div class="hk-body">
+          <div class="hk-bedrijf">${it.bedrijf}</div>
+          <div class="hk-uitkomst">${it.uitkomst}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  if ($('chartProductiviteit') && DATA.productiviteit) {
+    new Chart($('chartProductiviteit'), {
+      type: 'line',
+      data: {
+        labels: DATA.productiviteit.years,
+        datasets: [{
+          data: DATA.productiviteit.values,
+          borderColor: palette.accent,
+          backgroundColor: ctx => grad(ctx, [[0, 'rgba(220,38,38,.25)'], [1, 'rgba(220,38,38,0)']]),
+          fill: true, tension: .25, borderWidth: 2.5,
+          pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8
+        }]
+      },
+      options: lineOpts({
+        scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 35, suggestedMax: 75, ticks: {...baseScale.ticks, callback: v => '€' + v} } },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' €' + c.parsed.y + '/uur' } } }
+      })
+    });
+  }
+
+  /* ====================================================================
      IDENTITEIT — religieuze affiliatie (multi-line)
      ==================================================================== */
   if ($('chartReligie')) new Chart($('chartReligie'), {
@@ -1591,7 +1807,7 @@
   /* ====================================================================
      SCROLL REVEAL
      ==================================================================== */
-  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block, .illusion-card, .defense-card, .affair-card, .kk-card, .bemoei-cat');
+  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block, .illusion-card, .defense-card, .affair-card, .kk-card, .bemoei-cat, .box3-onrecht-card, .hk-item');
   revealTargets.forEach(el => el.classList.add('reveal'));
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

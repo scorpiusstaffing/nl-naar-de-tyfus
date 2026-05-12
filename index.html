@@ -283,13 +283,71 @@
         <p>Van elke €100 die je extra verdient, gaat €87 terug naar de staat (belasting + premies + toeslagenverlies). De toeslagencarrousel maakt werken structureel onaantrekkelijk.</p>
       </div>
     </div>
+
+    <!-- BOX 3: nieuw, prominent blok onderin belasting-hoofdstuk -->
+    <div class="chapter-head" style="margin-top: 64px;">
+      <p class="kicker" style="border-top-color: var(--accent); color: var(--accent);">Wat erbij komt vanaf 2027</p>
+      <h3 class="h2" style="font-size: clamp(28px, 4vw, 48px); margin-bottom: 18px;">Box 3, het einde van <span class="hl">compound interest</span>. <br>Belasting op winst die er nog niet is.</h3>
+      <p class="lede" id="box3Intro"></p>
+    </div>
+
+    <div class="box3-onrecht" id="box3Onrecht"></div>
+
+    <div class="card wide" style="margin-top: 32px;">
+      <h3>Compound interest gekortwiekt: €100.000 startkapitaal bij 7% jaarrendement over 40 jaar</h3>
+      <p id="compoundIntro" style="font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 18px;"></p>
+      <div class="chart-wrap tall"><canvas id="chartCompound"></canvas></div>
+      <div class="compound-eindcijfers" id="compoundCijfers"></div>
+      <p class="src">Rekenmodel: Scenario A "huidig" laat het kapitaal 40 jaar groeien zonder tussentijdse belasting, 36% afdracht alleen bij verkoop aan het einde. Scenario B "voorgestelde Box 3" haalt elk jaar 36% over het gerealiseerde plus ongerealiseerde rendement weg, waardoor het effectieve rendement zakt van 7% naar 4,48%. Bron: eigen berekening op basis van wetsvoorstel en algebra van samengestelde rente.</p>
+    </div>
+
+    <div class="box3-facts" id="box3Facts"></div>
+
+    <div class="callout dark">
+      <div class="callout-num">−42%</div>
+      <div>
+        <h4>Na veertig jaar levert de nieuwe Box 3 een vermogensopbouw op die ruim vier op de tien euro lager ligt dan onder het huidige stelsel.</h4>
+        <p>Dat is geen klein boekhoudverschil. Dat is het verschil tussen wel of geen aanvullend pensioen, tussen wel of niet kunnen helpen met de aanbetaling op het huis van je kind, tussen wel of niet financieel onafhankelijk kunnen worden. De maatregel raakt vooral de mensen die hun leven lang sober hebben geleefd en hun spaargeld in beleggingen hebben gestopt, dezelfde groep die de pensioenstelselherziening al raakt en het gestaag teruggeschroefde fiscale ondernemerschap al voelde. Geen rijke top-1%, gewone middenklassen die hun toekomst zelf wilden regelen. <strong>De boodschap aan iedere spaarder en belegger in Nederland is helder: doe het ergens anders, of besteed het op.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     PENSIOEN + AOW
+     ===================================================== -->
+<section id="pensioen" class="chapter">
+  <div class="container">
+    <div class="chapter-head wide">
+      <p class="kicker">02b, Pensioen en AOW</p>
+      <h2 class="h2">Werk langer voor minder. <br>Draag het risico <span class="hl">zelf</span>.</h2>
+      <p class="lede" id="pensioenIntro"></p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card wide">
+        <h3>AOW-leeftijd Nederland (jaar)</h3>
+        <div class="chart-wrap"><canvas id="chartAOW"></canvas></div>
+        <p class="src">Bron: SVB en Ministerie SZW. Van 65 jaar (1957 tot 2013) naar 67 in 2025, en gekoppeld aan de levensverwachting: bij elk jaar extra leeftijd, 8 maanden extra werken. Projectie 2040: 70+ jaar.</p>
+      </div>
+    </div>
+
+    <div class="pensioen-grid" id="pensioenGrid"></div>
+
+    <div class="callout dark">
+      <div class="callout-num">€1.500 mrd</div>
+      <div>
+        <h4>Het Nederlandse pensioenvermogen, een van de grootste ter wereld per hoofd van de bevolking, wordt herverdeeld over individuele potten.</h4>
+        <p>Onder het oude stelsel droeg het fonds het beleggingsrisico, en kreeg elke deelnemer een toezegging over de uitkering. Onder het nieuwe stelsel verschuift het risico naar de deelnemer: bij een slecht beursjaar zakt direct de te bereiken uitkering, want het is jouw individuele pot die is gekrompen. Tegelijk daalt de AOW-leeftijd niet, maar stijgt mee met de levensverwachting. Met andere woorden: u werkt langer, betaalt mee aan een collectief dat ophoudt te bestaan, en draagt het beleggingsrisico voortaan zelf. Voor een nieuwe Nederlandse werkende met dertig nog te gaan jaren is dit een fundamenteel slechtere ruil dan zijn vader had.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- =====================================================
      WONEN
      ===================================================== -->
-<section id="wonen" class="chapter">
+<section id="wonen" class="chapter alt">
   <div class="container">
     <div class="chapter-head">
       <p class="kicker">03, Wonen</p>
@@ -529,6 +587,35 @@
 </section>
 
 <!-- =====================================================
+     HOOFDKANTOREN-VLUCHT + PRODUCTIVITEIT
+     ===================================================== -->
+<section id="hoofdkantoren" class="chapter">
+  <div class="container">
+    <div class="chapter-head wide">
+      <p class="kicker">05b, Hoofdkantoren en productiviteit</p>
+      <h2 class="h2">Niet alleen mensen vertrekken. <br><span class="hl">Bedrijven</span> ook.</h2>
+      <p class="lede" id="hoofdkantorenIntro"></p>
+    </div>
+
+    <div class="hoofdkantoren-tijdlijn" id="hoofdkantorenLijn"></div>
+
+    <div class="card wide" style="margin-top: 48px;">
+      <h3>Arbeidsproductiviteit per gewerkt uur Nederland (€, prijspeil 2024)</h3>
+      <div class="chart-wrap"><canvas id="chartProductiviteit"></canvas></div>
+      <p class="src">Bron: OESO Productivity Statistics en CBS arbeidsproductiviteit. Stagnatie sinds 2008: 16 jaar geen reële productiviteitsgroei per gewerkt uur. De BBP-groei in dezelfde periode komt vrijwel volledig uit bevolkingsgroei (immigratie) en uit méér gewerkte uren door deeltijders, niet uit innovatie of efficiëntie.</p>
+    </div>
+
+    <div class="callout dark">
+      <div class="callout-num">16 jaar</div>
+      <div>
+        <h4>Sinds 2008 is de productiviteit per gewerkt uur in Nederland niet meer reëel gegroeid.</h4>
+        <p>Dat is meer dan een statistische curiositeit. Productiviteit per uur is de enige duurzame bron van welvaartsgroei: meer waarde produceren in dezelfde tijd. Stagneert dat, dan kan een land alleen rijker worden door meer uren te draaien (langer werken, latere AOW, partners ook werken) of meer mensen te importeren (migratie). Beide doet Nederland. Maar als de productie per uur stagneert, betekent dat dat alle structurele winst uit de twee andere knoppen moet komen, en die zijn beide eindig. ASML, Unilever, Shell en DSM gingen niet weg uit bedrijfseconomische gril. Ze namen een afkortingsroute uit een land waarin innovatie steeds zwaarder belast en geregeld wordt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
      BRAIN DRAIN
      ===================================================== -->
 <section id="braindrain" class="chapter alt">
@@ -587,50 +674,96 @@
 <section id="identiteit" class="chapter alt">
   <div class="container">
     <div class="chapter-head wide">
-      <p class="kicker">07a, Identiteit</p>
-      <h2 class="h2">Iedereen mag alles zijn. <br>Niemand weet meer <span class="hl">wie</span>.</h2>
+      <p class="kicker">07a, Individualisering</p>
+      <h2 class="h2">Vrijheid werd leegte. <br>Leegte werd <span class="hl">crisis</span>.</h2>
       <p class="lede">
-        Tot diep in de jaren zestig leefde Nederland in een land van vier zuilen. Katholiek, hervormd, sociaal-democratisch, liberaal. Iedereen wist tot welke zuil hij hoorde. Je ging naar een katholieke school, las een katholieke krant, voetbalde in een katholieke club. Datzelfde gold voor de drie andere zuilen. Beklemmend misschien, maar wel iets dat moderne Nederlanders amper meer hebben: een duidelijke gedeelde identiteit, een gemeenschap, en het besef deel uit te maken van iets groters dan zichzelf.
+        Secularisering en ontkerkelijking zijn op zichzelf geen probleem. Een land kan prima werken zonder kerken, of zonder dominante religie. Het probleem is wat in plaats kwam van de oude gemeenschap. Vanaf 1965 ontmantelde Nederland zijn zuilen in razend tempo, en het werd niet vervangen door een nieuwe gedeelde identiteit. Het werd vervangen door <em>individualisering</em>. De boodschap aan elk individu, in opvoeding, op school, in de media: "Wees wie je wilt, kies wat je wilt, behoor tot niemand verplicht." Een halve eeuw later zien we het resultaat: niet meer vrijheid, maar zes meetbare crises die allemaal dezelfde wortel hebben.
       </p>
       <p class="lede">
-        Vanaf 1965 stortte dat in. Ontzuiling, secularisering, individualisering. Voorstanders noemen het 'vrijheid om zelf te kiezen wie je bent'. In de praktijk werd die vrijheid bij grote groepen geen identiteit, maar leegte. Het wekelijkse kerkbezoek daalde van zestig procent naar onder de vijf procent. Het aandeel Nederlanders zonder enige religieuze affiliatie groeide van vijf procent naar zevenenvijftig procent. Sinds 2000 zijn ongeveer achthonderd kerken gesloten of herbestemd. Wat ervoor in de plaats kwam is bij grote delen van de bevolking een postmoderne identiteitscrisis waarin iedereen alles kan zijn, maar niemand meer weet wie hij is. Hoge percentages eenzaamheid, mentale klachten en suïcidaal gedrag onder jongeren zijn daar de symptomen van. <strong>Tegelijk groeit er ondanks de algemene secularisering één identiteit doorheen: de Islam. Niet alleen door immigratie, maar ook door doorgegeven en versterkte religiositeit bij de tweede en derde generatie.</strong> Een land kan zonder dominante identiteit bestaan. Maar nooit zonder enige identiteit. In dat vacuüm vult zich altijd iets.
+        Hieronder die zes crises in cijfers. Eenzaamheid, mentale gezondheid, demografie, familievorming, gemeenschapsleven, en jongeren-suïcide. Alle zes zijn de afgelopen vijftien jaar dramatisch verslechterd, allemaal voorbij elk patroon dat eerdere generaties kenden, en allemaal tegelijk. <strong>Daarnaast groeit er, in het vacuüm dat de oude meerderheid achterliet, één duidelijke identiteit dóór: de Islam. Niet alleen door immigratie, ook door versterkte religiositeit bij de tweede en derde generatie.</strong> Een land kan zonder dominante identiteit bestaan. Maar nooit zonder enige identiteit. In dat vacuüm vult zich altijd iets.
+      </p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Crisis 1: Eenzaamheid, % Nederlanders dat zich (zeer) eenzaam voelt</h3>
+        <div class="chart-wrap"><canvas id="chartEenzaamheidNew"></canvas></div>
+        <p class="src">Bron: RIVM Eenzaamheidsmonitor, CBS Belevingen 82378. Van 35% (2008) naar 49% (2024). Bij 15- tot 24-jarigen en 75-plussers piekt het cijfer voorbij 50%.</p>
+      </div>
+      <div class="card">
+        <h3>Crisis 2: Mentale klachten 18- tot 25-jarigen (%)</h3>
+        <div class="chart-wrap"><canvas id="chartMentaalJongeren"></canvas></div>
+        <p class="src">Bron: Trimbos-instituut Monitor Mentale Gezondheid; CBS Gezondheidsenquête. Meer dan verdubbeld sinds 2008, één op vier jongvolwassenen kampt nu structureel met mentale klachten.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Crisis 3: Geboortecijfer Nederland (kinderen per vrouw)</h3>
+        <div class="chart-wrap"><canvas id="chartTFR"></canvas></div>
+        <p class="src">Bron: CBS Vruchtbaarheid 37422ned. Van 1,72 (2000) naar 1,38 (2024). Voor demografisch evenwicht is 2,1 nodig. Onder dit cijfer wordt elke generatie kleiner, en is migratie de enige groei.</p>
+      </div>
+      <div class="card">
+        <h3>Crisis 4: Eenoudergezinnen Nederland (×1.000)</h3>
+        <div class="chart-wrap"><canvas id="chartEenouder"></canvas></div>
+        <p class="src">Bron: CBS Huishoudens. Bijna verdubbeld sinds 2000 (430.000 naar 800.000), inmiddels één op vijf gezinnen.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Crisis 5: Vrijwilligerswerk volwassenen (%)</h3>
+        <div class="chart-wrap"><canvas id="chartVrijwilligers"></canvas></div>
+        <p class="src">Bron: CBS Vrijwilligerswerk en informele hulp. Van 38% naar 26% in vijftien jaar. Sportclubs, scoutings, kerken, vakbonden, school­besturen, hospices: het verenigingsleven loopt leeg.</p>
+      </div>
+      <div class="card">
+        <h3>Crisis 6: Suïcide onder 15- tot 25-jarigen Nederland (per jaar)</h3>
+        <div class="chart-wrap"><canvas id="chartSuicideYouth"></canvas></div>
+        <p class="src">Bron: CBS Doodsoorzakenstatistiek, Trimbos, Stichting 113. Meer dan verdubbeld sinds 2010. De groep die de meeste 'keuzevrijheid' heeft, draagt de zwaarste mentale rekening.</p>
+      </div>
+    </div>
+
+    <div class="callout dark">
+      <div class="callout-num">de zes</div>
+      <div>
+        <h4>Eenzaamheid, mentale klachten, demografie, familievorming, gemeenschapsleven, jongeren­suïcide: zes crises met één gemeenschappelijke wortel.</h4>
+        <p>Geen daarvan is een gevolg van secularisering als zodanig. Ze zijn allemaal het gevolg van een verkeerd geïnterpreteerde vrijheid, namelijk: het idee dat een individu het beste tot bloei komt zonder verplichtingen aan anderen. Het tegendeel blijkt waar. Mensen die ergens bij horen, eraan bijdragen, en ervan afhankelijk zijn, zijn gelukkiger, gezonder, en demografisch productiever. Dat zat in de oude zuilen, en dat zit nu in de gemeenschap die wél doorgroeit: de Islam, voor wie er geen 'identiteitsleegte' bestaat omdat er nooit twijfel werd gezaaid over de eigen positie.</p>
+      </div>
+    </div>
+
+    <div class="chapter-head" style="margin-top: 56px;">
+      <h3 style="font-family: var(--serif); font-weight: 700; font-size: 28px; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.015em;">Onderaan het vacuüm, één identiteit die wél doorgroeit.</h3>
+      <p class="lede">
+        De algemene secularisering werkt door. Tegelijk groeit één religie consequent dóór, in absolute aantallen én in religiositeit bij de tweede en derde generatie. Hieronder de cijfers.
       </p>
     </div>
 
     <div class="card wide">
       <h3>Religieuze affiliatie Nederlandse bevolking, 1960 tot 2023 (%)</h3>
       <div class="chart-wrap tall"><canvas id="chartReligie"></canvas></div>
-      <p class="src">Bron: CBS Religieuze betrokkenheid; SCP 'God in Nederland'; KASKI Radboud Universiteit. De rode lijn (geen religie) wisselt rond 2000 plaatsen met het totaal Christelijk. De groene lijn (Islam) groeit constant door.</p>
+      <p class="src">Bron: CBS Religieuze betrokkenheid, SCP 'God in Nederland', KASKI Radboud Universiteit. Rode lijn (geen religie) kruist rond 2000 het totaal Christelijk. Groene lijn (Islam) stijgt gestaag door.</p>
     </div>
 
     <div class="grid-2">
       <div class="card">
         <h3>Wekelijks kerkbezoek (%)</h3>
         <div class="chart-wrap"><canvas id="chartKerkgang"></canvas></div>
-        <p class="src">Bron: CBS, SCP. Van 60% naar 5% in zes decennia. De zaterdag- en zondagochtend zijn een ander land geworden.</p>
+        <p class="src">Bron: CBS, SCP. Van 60% naar 5% in zes decennia.</p>
       </div>
       <div class="card">
-        <h3>Aandeel moslims in de bevolking (%, plus 2050-projectie)</h3>
+        <h3>Aandeel moslims in de bevolking (%, plus PEW 2050-projectie)</h3>
         <div class="chart-wrap"><canvas id="chartIslam"></canvas></div>
-        <p class="src">Bron: CBS, PEW Research midden-scenario 2017. Veertien keer zo groot sinds 1971. Projectie 2050 op basis van continuerend migratiebeleid plus geboortes.</p>
+        <p class="src">Bron: CBS, PEW Research middenscenario 2017. Veertien keer zo groot sinds 1971.</p>
       </div>
     </div>
 
     <div class="card wide">
       <h3>18- tot 34-jarigen die zich (sterk) religieus noemen, per achtergrond (%)</h3>
       <div class="chart-wrap"><canvas id="chartReligieusJongeren"></canvas></div>
-      <p class="src">Bron: SCP 'Religie en migratie' 2022; WRR 'Samenleven in verscheidenheid' 2020. De tweede generatie van moslimherkomst is gemiddeld even religieus of religieuzer dan de eerste, een trend die in heel West-Europa zichtbaar is.</p>
+      <p class="src">Bron: SCP 'Religie en migratie' 2022, WRR 'Samenleven in verscheidenheid' 2020. De tweede generatie van moslimherkomst is gemiddeld even religieus of religieuzer dan de eerste, een trend die in heel West-Europa zichtbaar is.</p>
     </div>
 
     <div class="identiteit-grid" id="identiteitGrid"></div>
-
-    <div class="callout dark">
-      <div class="callout-num">het vacuüm</div>
-      <div>
-        <h4>Een samenleving zonder gedeelde identiteit is geen samenleving, het is een verzameling losse individuen die toevallig hetzelfde paspoort dragen.</h4>
-        <p>De Nederlandse hoofdcultuur heeft zichzelf in zestig jaar tijd ontmanteld. Geen zuilen, geen kerken, geen gemeenschapsverband, en het tegelijk groeiende idee dat 'er geen Nederlandse identiteit bestaat'. Wie dat lang genoeg volhoudt, krijgt geen pluriform Nederland, maar een Nederland waar één duidelijke identiteit alle ruimte krijgt die de oude meerderheid heeft weggegeven. De cijfers laten zien welke identiteit dat is, en hoe snel zij die ruimte invult.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1161,26 +1294,22 @@
     <h2 class="h2">Geen enkele grafiek bewijst <br>dat het slecht met Nederland gaat. <br><span class="hl">Twintig grafieken samen bewijzen het wel.</span></h2>
     <div class="prose">
       <p>
-        Een land kan rijker worden en tegelijk slechter af zijn. Een belastingdruk van 38% is niet ramp­zalig.
-        26% migratie­achtergrond niet onbeheers­baar. Een EU-bijdrage van €8 mld niet faillissement.
-        Een PISA-score van 459 niet verdoemd. Een woningtekort van 401.000 niet einde der dagen.
+        Een afzonderlijke statistiek bewijst zelden iets. Een belastingdruk van 38% is niet ramp­zalig. 26% inwoners met migratieachtergrond niet onbeheersbaar. Een EU-afdracht van €9 mld niet faillissement. Een PISA-score van 459 niet verdoemd. Een woningtekort van 415.000 niet einde der dagen. Stuk voor stuk verdedigbare cijfers. Stuk voor stuk te relativeren.
       </p>
       <p>
-        Maar tel ze samen. <strong>Onbetaalbare huizen</strong>, <strong>cumulerende belastingen</strong>,
-        een productieve elite die vertrekt naar Portugal en België, een instroom die per saldo
-        netto kost in plaats van bijdraagt, een onderwijssysteem dat zakt op elke meting,
-        een drugscriminaliteit van wereldformaat, <strong>regelgeving die verstikt</strong>,
-        een vertrouwen in elke instantie dat zakt, en <strong>een soevereiniteit die in stappen wordt weggegeven</strong>
-        aan een orgaan waar geen minister kan worden weggestuurd.
+        Maar tel ze samen, en het beeld kantelt. Huizen die in vijftien jaar drie keer duurder werden zonder dat lonen volgden. Een staat die meer dan vijftig verschillende belastingen, accijnzen en heffingen tegelijk in stand houdt. Een belasting vanaf 2027 op winst die nog niet gemaakt is, die compound interest sloopt en spaarders aanmoedigt te vertrekken. Een pensioenstelsel waarin het risico naar de individuele werknemer is verschoven terwijl de AOW-leeftijd doorstijgt richting 70. Een productiviteit per gewerkt uur die zestien jaar lang niet meer reëel is gegroeid. Hoofdkantoren die vertrekken naar Londen, Zürich en Frankfurt. Hoogopgeleide Nederlanders die jaarlijks met ongeveer 36.500 tegelijk emigreren. Een migratiebeleid waarbij twee derde van de vertrekkers hier nooit is geboren, omdat ook zij na een paar jaar de balans opmaken en doortrekken. Een woningtekort van 415.000, een onderwijssysteem dat al twee decennia op elke internationale meting zakt, een drugscriminaliteit die Italiaanse antimaffia-officieren publiek 'narcostaat' doet noemen, een vertrouwen in regering en parlement op een historisch dieptepunt, een soevereiniteit die in zeven verdragen en één herstelfonds aan een Brussel is overgedragen waar geen kiezer een minister kan wegsturen, en een eigen identiteit die zo grondig is gedemonteerd dat één op de twee Nederlanders zich (zeer) eenzaam voelt en het geboortecijfer naar 1,38 is gezakt.
       </p>
       <p>
-        Dat zijn de klassieke kenmerken van een rijk in late-fase verval. Niet één of twee, <strong>zeventien van de achttien</strong>.
-        Dat is geen toeval. Dat is een patroon.
+        Geen daarvan staat los van het andere. Wie de individuele cijfers leest, ziet incidenten. Wie ze in samenhang leest, ziet de zeventien klassieke kenmerken van een rijk in late-fase verval, allemaal tegelijk aanwezig, allemaal de afgelopen vijftien jaar in dezelfde richting bewegend.
       </p>
       <p class="emph">
-        Het goede nieuws: een rijk kan ook opstaan. Maar daarvoor moet je eerst eerlijk durven kijken
-        naar wat de cijfers zeggen. Dit rapport is die spiegel.
+        Dit rapport is de spiegel. Hij is niet vriendelijk, en hij is niet bedoeld om dat te zijn. Hij is samengesteld uit de openbare data van de Nederlandse staat zelf, die deze gegevens elke maand publiceert maar nooit naast elkaar legt. Wat u doet met wat u zag, is uw eigen verantwoordelijkheid. Maar zeg in elk geval niet meer dat u niet wist hoe het met Nederland gesteld was. <strong>De cijfers stonden er. Dit rapport heeft ze opgeteld.</strong>
       </p>
+    </div>
+
+    <div class="som-actie">
+      <a href="#top" class="btn primary">↑ terug naar het begin</a>
+      <a href="#bronnen" class="btn ghost">Bronnen­lijst</a>
     </div>
   </div>
 </section>

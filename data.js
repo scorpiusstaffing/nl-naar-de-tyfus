@@ -11,18 +11,18 @@ const DATA = {
      KILLER NUMBERS, Wall of Numbers (12 schokkers)
      ==================================================================== */
   killerNumbers: [
-    { value: "€600.000", label: "levenslange netto kosten van één niet-westerse asielmigrant", source: "WODC, J. van de Beek 2021" },
-    { value: "ca. 55%", label: "Syrische statushouders die na 5 jaar nog in de bijstand zit (cohort 2014-2019)", source: "CBS Cohortenonderzoek asielmigranten" },
-    { value: "36.500", label: "hoogopgeleide Nederlanders die per jaar emigreren", source: "CBS, eigen berekening (58k NL-geboren emigranten x 63% hoogopgeleid)" },
-    { value: "63%", label: "van vertrekkende Nederlanders is hoogopgeleid, het landelijk gemiddelde is 36%", source: "CBS Emigratie naar opleidingsniveau" },
-    { value: "x42", label: "huizenprijs sinds 1970, modale loon vermenigvuldigde x7", source: "CBS, Kadaster, NIBUD modaal salaris-reeks" },
-    { value: "55+", label: "verschillende belastingen en heffingen die je in 2026 betaalt", source: "Belastingdienst en lokale heffingen, eigen telling" },
+    { value: "36%", label: "voorgestelde belasting op ongerealiseerd rendement vermogen vanaf 2027, wereldwijd vrijwel uniek", source: "Wet werkelijk rendement Box 3, Min. Financiën" },
+    { value: "x42", label: "huizenprijs sinds 1970, modaal salaris vermenigvuldigde slechts x7", source: "CBS, Kadaster, NIBUD" },
+    { value: "−66%", label: "koopkracht voor pakje shag tussen 1999 en 2026, gemeten in modaal-netto/maand", source: "CBS Prijzen, Belastingdienst accijns" },
+    { value: "€600.000", label: "levenslange netto kosten van één gemiddelde niet-westerse asielmigrant", source: "WODC, J. van de Beek 2021" },
+    { value: "71%", label: "van wie Nederland verlaat is hier nooit geboren, kwam, faalde, vertrok", source: "CBS Emigratie naar geboorteland 2023" },
+    { value: "1,38", label: "Nederlands geboortecijfer 2024, vervanging vergt 2,1, demografische crisis loopt", source: "CBS Vruchtbaarheid 37422ned" },
+    { value: "49%", label: "Nederlanders dat zich (zeer) eenzaam voelt, sinds 2008 met veertien procentpunt gestegen", source: "RIVM Eenzaamheidsmonitor 2024" },
+    { value: "€1.500 mrd", label: "pensioenvermogen dat door WTP wordt herverdeeld, beleggingsrisico naar individu", source: "DNB en Pensioenfederatie" },
+    { value: "459", label: "PISA-leesscore 2022, laagste ooit voor NL (was 513 in 2003)", source: "OESO PISA" },
     { value: "€9,2 mld", label: "netto Nederlandse afdracht aan Brussel in 2025 (was €1,5 mld in 2000)", source: "Min. Financiën Miljoenennota 2025" },
-    { value: "459", label: "PISA-leesscore 2022, laagste ooit voor NL (513 in 2003)", source: "OESO PISA 2022, volgende meting eind 2025" },
-    { value: "17 van 18", label: "klassieke verval-indicatoren die NL nu vertoont", source: "samengesteld uit CBS, OESO, SCP, DNB" },
-    { value: "22.500", label: "geldende wetten en regelingen in 2025 (10.100 in 2000)", source: "Wetten.overheid.nl en ATR" },
-    { value: "61,5%", label: "stemde NEE tegen EU-grondwet in 2005, alsnog ingevoerd via Lissabon", source: "Kiesraad" },
-    { value: "€2,8 mrd", label: "directe kosten asielopvang COA in 2024, exclusief uitkeringen, zorg, onderwijs", source: "COA jaarverslag 2024" }
+    { value: "22.500", label: "geldende wetten en regelingen in 2025 (was 10.100 in 2000)", source: "Wetten.overheid.nl en ATR" },
+    { value: "9", label: "Nederlandse hoofdkantoren of beursfondsen die sinds 2020 vertrokken of vertrek overwegen", source: "AFM, KPMG Hoofdkantoren­monitor, FD" }
   ],
 
   /* ====================================================================
@@ -169,6 +169,63 @@ const DATA = {
         ]
       }
     ]
+  },
+
+  box3Voorstel: {
+    label: "Box 3 vanaf 2027, 36% belasting op werkelijk rendement, inclusief ongerealiseerd rendement",
+    source: "Min. Financiën wetsvoorstel Wet werkelijk rendement Box 3 (dec 2024); Tweede Kamer dossier 36 706; Hoge Raad Kerstarrest 2021; commentaar NOB, Bond voor Belastingbetalers, VEB, Eumedion",
+    sourceUrl: "https://www.rijksoverheid.nl/onderwerpen/box-3",
+    intro: "Vanaf 1 januari 2027 (uitgesteld vanaf 2025) gaat de Nederlandse vermogensbelasting in Box 3 over op een nieuw stelsel: 36% belasting op het werkelijke rendement, inclusief óngerealiseerd rendement. Wie aandelen of vastgoed bezit, betaalt jaarlijks belasting over de waardestijging, ook als hij niets verkocht heeft. Dat is wereldwijd vrijwel uniek voor particulier vermogen, levert acute liquiditeitsproblemen op, en sloopt het mechanisme dat lange­termijn vermogensopbouw mogelijk maakt: samengestelde rente.",
+    onrechtvaardig: [
+      { titel: "Papierwinst is geen winst", uitleg: "Wie een aandelenportefeuille bezit die in een jaar 8% stijgt, heeft géén euro op zijn rekening. Toch moet hij in december belasting betalen alsof hij die winst incasseerde. Als de koers in januari weer zakt, blijft de belastingschuld staan." },
+      { titel: "Geen verrekening van verliesjaren (volledig)", uitleg: "Beleggen kent slechte jaren. Onder de voorgestelde wet kan een verlies niet onbeperkt worden teruggewenteld. Wie 2025 +30% maakt en 2026 -25%, betaalt eerst de heffing, en hoeft de tweede klap maar deels te verrekenen." },
+      { titel: "Liquiditeit­dwang", uitleg: "Bij een vastgoed­portefeuille of MKB-aandelen­pakket ontbreekt vaak cash. De Belastingdienst eist hem niettemin. Resultaat: gedwongen verkoop op een onbestendig moment, juist door fiscaal beleid." },
+      { titel: "Wereldwijd vrijwel uniek", uitleg: "Geen enkele OESO-economie belast structureel ongerealiseerd rendement op particulier vermogen. Noorwegen probeerde het, met als zichtbaar gevolg een uittocht van vermogenden naar Zwitserland en Italië. Nederland kijkt daar niet naar." }
+    ],
+    facts: [
+      { stat: "36%", label: "tarief over werkelijk rendement (rente, dividend, huur, koers­winst)" },
+      { stat: "ongerealiseerd", label: "óók over waardestijging die nog niet is verzilverd, op aandelen, vastgoed en crypto" },
+      { stat: "€57.000", label: "heffingsvrij vermogen per persoon (gehuwd: dubbel)" },
+      { stat: "1 januari 2027", label: "geplande inwerkingtreding, voorstel ingediend bij Tweede Kamer december 2024" },
+      { stat: "wereldwijd uniek", label: "geen enkel ander OESO-land belast structureel ongerealiseerd rendement op particulier vermogen" },
+      { stat: "€14.400", label: "voorbeeld: portefeuille €500.000 stijgt 8% zonder verkoop, u betaalt over €40.000 papier­winst" }
+    ],
+    compoundEffect: {
+      label: "Compound interest gekortwiekt, €100.000 startkapitaal bij 7% jaarlijks rendement",
+      intro: "Vermogensopbouw werkt via samengestelde groei: het rendement van vorig jaar genereert dit jaar zelf nieuw rendement. Albert Einstein zou het 'het achtste wereldwonder' hebben genoemd. Belast je dat rendement elk jaar weg, dan blijft er minder over om verder te groeien. Het verschil over een loopbaan is dramatisch.",
+      jaren: [0, 5, 10, 15, 20, 25, 30, 35, 40],
+      gerealiseerdEinde: [100000, 140255, 196715, 275903, 386968, 542743, 761226, 1067659, 1497446],
+      ongerealiseerdJaarlijks: [100000, 124488, 154974, 192895, 240093, 298855, 372058, 463187, 576623],
+      eindcijfers: {
+        na_30jr_huidig_netto: 522785,
+        na_30jr_nieuw_netto: 372058,
+        na_40jr_huidig_netto: 996765,
+        na_40jr_nieuw_netto: 576623
+      }
+    }
+  },
+
+  pensioenStelsel: {
+    label: "Wet Toekomst Pensioenen (WTP), risico van collectief naar individueel",
+    source: "Min. SZW 'Wet Toekomst Pensioenen' (juli 2023, implementatie tot 2028); DNB pensioendekkingsmonitor; Pensioenfederatie; CPB analyse pensioenstelsel",
+    sourceUrl: "https://www.rijksoverheid.nl/onderwerpen/pensioen",
+    intro: "Per 1 juli 2023 is in Nederland de Wet Toekomst Pensioenen in werking getreden. Alle pensioenfondsen krijgen tot 1 januari 2028 om over te stappen van een stelsel met collectief gegarandeerde uitkering naar een stelsel van individuele potten met variabele uitkering. Het beleggingsrisico verschuift daarmee van fonds naar deelnemer. Het Nederlandse pensioenvermogen van bijna €1.500 miljard wordt eenmalig herverdeeld. Voor oudere werknemers betekent dat in veel gevallen een lagere te bereiken uitkering; voor jongere werknemers in theorie een hogere, mits beurzen meewerken.",
+    facts: [
+      { stat: "€1.500 mrd", label: "Nederlands pensioenvermogen dat onder de nieuwe wet wordt herverdeeld" },
+      { stat: "juli 2023", label: "inwerkingtreding WTP, implementatie pensioenfondsen tot 1 januari 2028" },
+      { stat: "collectief naar individueel", label: "elke deelnemer krijgt eigen pensioenpot, beleggingsrisico verschuift naar persoon" },
+      { stat: "10 mln+", label: "Nederlanders die direct of indirect met de transitie te maken krijgen" },
+      { stat: "deelnemer draagt risico", label: "lage dekkings­graden raken nu rechtstreeks de uitkering, niet meer (alleen) de premies van werkenden" }
+    ]
+  },
+
+  aowLeeftijd: {
+    label: "AOW-leeftijd Nederland (jaar)",
+    source: "SVB en Rijksoverheid; Min. SZW",
+    sourceUrl: "https://www.svb.nl/nl/aow/aow-leeftijd",
+    years:  [1957, 2000, 2013, 2018, 2022, 2025, 2027, 2030, 2040],
+    values: [65,   65,   65,   66,   66.6, 67,   67.5, 68.0, 70.0],
+    note: "Verhoging gekoppeld aan stijgende levensverwachting via SVB-formule; vanaf 2025 67 jaar; projectie 2040 op basis van CBS-levensverwachting"
   },
 
   marginaleDruk: {
@@ -487,6 +544,35 @@ const DATA = {
   },
 
   /* ====================================================================
+     4d. HOOFDKANTOREN-VLUCHT EN PRODUCTIVITEITSTAGNATIE
+     ==================================================================== */
+  hoofdkantorenVlucht: {
+    label: "Nederlandse hoofdkantoren die vertrokken of vertrek overwogen, 2018 tot 2026",
+    source: "AFM register, AEX-mutaties, Het Financieele Dagblad, NRC, persberichten betrokken bedrijven, KPMG 'Hoofdkantoren­monitor'",
+    sourceUrl: "https://www.afm.nl",
+    intro: "Hoofdkantoren zijn de hoogwaardige werkgelegenheid van een economie: directies, juristen, fiscalisten, R&D-strategie. Het zijn precies de banen die een land het meest zou willen behouden. Sinds 2018 verloor Nederland in hoog tempo zijn topbedrijven aan Londen, Zürich en Frankfurt. Vrijwel telkens noemden de betrokkenen één combinatie van oorzaken: dividendbelasting, ondernemers­klimaat, politieke onvoorspelbaarheid en hogere fiscale druk dan in vergelijkbare landen.",
+    items: [
+      { jaar: 2020, bedrijf: "Unilever",          uitkomst: "Hoofdkantoor naar Londen, na fusiediscussie en dividendbelasting-debacle" },
+      { jaar: 2021, bedrijf: "Shell",             uitkomst: "Hoofdkantoor Den Haag naar Londen, naamswijziging Royal Dutch Shell naar Shell plc" },
+      { jaar: 2022, bedrijf: "DSM",               uitkomst: "Fusie met Firmenich, hoofdkantoor naar Kaiseraugst (Zwitserland)" },
+      { jaar: 2023, bedrijf: "Boskalis",          uitkomst: "Beursnotering Amsterdam beëindigd na overname HAL" },
+      { jaar: 2024, bedrijf: "Wolters Kluwer",    uitkomst: "Sterk groeiende VK-noteringsoverweging, hoofdkantoor formeel nog NL" },
+      { jaar: 2024, bedrijf: "ASML",              uitkomst: "Eindhovense top eist publiekelijk dat 'vestigingsklimaat verbetert', anders 'gevolgen onvermijdelijk'" },
+      { jaar: 2024, bedrijf: "Heineken",          uitkomst: "Nederlandse hoofdfunctie verlies, internationale leiding deels naar Singapore en Londen" },
+      { jaar: 2025, bedrijf: "Booking.com",       uitkomst: "Discussie over fiscaal vertrek, actieve lobby voor speciale regelingen" },
+      { jaar: 2025, bedrijf: "Familiebedrijven en MKB+", uitkomst: "Toenemende migratie naar België, Zwitserland en Dubai, gemeld door belastingadviseurs (BDO, EY)" }
+    ]
+  },
+
+  productiviteit: {
+    label: "Arbeidsproductiviteit per gewerkt uur Nederland (€, prijspeil 2024)",
+    source: "OESO Productivity Statistics; Eurostat 'GDP per hour worked'; CBS arbeidsproductiviteit",
+    sourceUrl: "https://stats.oecd.org/Index.aspx?DataSetCode=PDB_LV",
+    years: [1980, 1990, 2000, 2008, 2015, 2020, 2024],
+    values: [42, 50, 60, 68, 68, 69, 69]
+  },
+
+  /* ====================================================================
      5. BRAIN DRAIN, slimste eruit, laagste erin
      ==================================================================== */
   brainDrain: {
@@ -521,6 +607,65 @@ const DATA = {
       "Veiligheid / criminaliteit"
     ],
     percentages: [54, 51, 44, 41, 37, 33, 22, 18]
+  },
+
+  /* ====================================================================
+     5a. ZES CRISES VAN INDIVIDUALISERING
+     ==================================================================== */
+  individualiseringCrises: {
+    label: "Zes crises die volgen uit zestig jaar individualisering",
+    source: "RIVM eenzaamheidsmonitor; CBS Vrijwilligerswerk; CBS Vruchtbaarheid; CBS Eenoudergezinnen; CBS Doodsoorzakenstatistiek; SCP Mentale gezondheid jongeren; Trimbos-instituut",
+    sourceUrl: "https://www.rivm.nl",
+    intro: "Secularisering en ontkerkelijking zijn op zichzelf geen probleem. Het probleem is wat in hun plaats kwam: individualisering zonder vervangende gemeenschap. Het Nederland van losse individuen heeft niet meer vrijheid opgeleverd, het heeft een keten van meetbare crises voortgebracht. Hieronder zes ervan, allemaal met cijfers die de afgelopen vijftien jaar dramatisch zijn verslechterd."
+  },
+
+  eenzaamheid: {
+    label: "Aandeel Nederlanders dat zich (zeer) eenzaam voelt (%)",
+    source: "RIVM Eenzaamheids­monitor; CBS Belevingen 82378",
+    sourceUrl: "https://www.rivm.nl/leefstijl/eenzaamheid",
+    years: [2008, 2012, 2016, 2019, 2020, 2022, 2024],
+    values: [35, 39, 43, 46, 51, 47, 49]
+  },
+
+  vrijwilligerswerk: {
+    label: "Aandeel volwassenen actief in vrijwilligerswerk (%)",
+    source: "CBS Vrijwilligerswerk en informele hulp; SCP Sociale staat",
+    sourceUrl: "https://www.cbs.nl",
+    years: [2008, 2012, 2015, 2018, 2020, 2022, 2024],
+    values: [38, 36, 32, 30, 28, 27, 26]
+  },
+
+  geboortecijfer: {
+    label: "Totaal vruchtbaarheidscijfer Nederland (TFR, kinderen per vrouw)",
+    source: "CBS Vruchtbaarheid; Eurostat fertility rates",
+    sourceUrl: "https://www.cbs.nl/nl-nl/cijfers/detail/37422ned",
+    years: [1970, 1980, 1990, 2000, 2010, 2015, 2020, 2023, 2024],
+    values: [2.57, 1.60, 1.62, 1.72, 1.79, 1.66, 1.55, 1.43, 1.38],
+    drempel: 2.1
+  },
+
+  eenoudergezinnen: {
+    label: "Aantal eenoudergezinnen Nederland (×1.000)",
+    source: "CBS Huishoudens",
+    sourceUrl: "https://www.cbs.nl",
+    years: [2000, 2005, 2010, 2015, 2020, 2024],
+    values: [430, 488, 555, 620, 720, 800]
+  },
+
+  suicideJongeren: {
+    label: "Suïcide onder 15- tot 25-jarigen Nederland (aantal per jaar)",
+    source: "CBS Doodsoorzakenstatistiek; Trimbos-instituut Jongeren­monitor; Stichting 113 Zelfmoordpreventie",
+    sourceUrl: "https://www.113.nl",
+    years: [2010, 2014, 2018, 2020, 2022, 2023, 2024],
+    values: [110, 148, 200, 218, 235, 240, 235]
+  },
+
+  mentaleKlachtenJongeren: {
+    label: "Aandeel 18- tot 25-jarigen met mentale klachten (%)",
+    source: "Trimbos-instituut Monitor Mentale Gezondheid; CBS Gezondheids­enquête",
+    sourceUrl: "https://www.trimbos.nl",
+    years: [2008, 2012, 2017, 2020, 2022, 2024],
+    values: [11, 14, 19, 23, 25, 26]
   },
 
   /* ====================================================================
