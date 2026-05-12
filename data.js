@@ -12,7 +12,7 @@ const DATA = {
      ==================================================================== */
   killerNumbers: [
     { value: "36%", label: "voorgestelde belasting op ongerealiseerd rendement vermogen vanaf 2027, wereldwijd vrijwel uniek", source: "Wet werkelijk rendement Box 3, Min. Financiën" },
-    { value: "x42", label: "huizenprijs sinds 1970, modaal salaris vermenigvuldigde slechts x7", source: "CBS, Kadaster, NIBUD" },
+    { value: "2,2 → 11,5", label: "aantal modale jaarsalarissen voor een gemiddelde koopwoning, 1971 naar 2024", source: "CBS Modaal jaarsalaris, Kadaster gemiddelde verkoopprijs" },
     { value: "28 → 36", label: "gemiddelde leeftijd waarop een Nederlander zijn eerste koopwoning verwerft (1995 naar 2024)", source: "Kadaster Starters­monitor, NVM kwartaalrapportages" },
     { value: "€600.000", label: "levenslange netto kosten van één gemiddelde niet-westerse asielmigrant", source: "WODC, J. van de Beek 2021" },
     { value: "71%", label: "van wie Nederland verlaat is hier nooit geboren, kwam, faalde, vertrok", source: "CBS Emigratie naar geboorteland 2023" },
@@ -32,8 +32,8 @@ const DATA = {
     label: "Wat is er ontkoppeld?",
     source: "CBS, Kadaster, NIBUD, ECB, DNB, eigen berekening",
     facts: [
-      { stat: "×42", label: "huizenprijs sinds begin jaren '70, werk­en­den moeten levens lang lenen om een dak te kopen" },
-      { stat: "×7", label: "modaal jaarinkomen in dezelfde periode, lonen lopen sloomer dan steen" },
+      { stat: "×28", label: "huizenprijs sinds 1971, in dezelfde periode steeg het modale brutosalaris circa ×5,3" },
+      { stat: "×5,3", label: "modaal brutosalaris in dezelfde periode (NLG 17.000 in 1971 naar €41.000 in 2024)" },
       { stat: "×11", label: "geldhoeveelheid in de eurozone sinds 1980, er is letterlijk meer geld dan goederen" },
       { stat: "×4.7", label: "vermogenskloof, top-10% bezit 65% van het Nederlandse vermogen" }
     ]
@@ -44,7 +44,7 @@ const DATA = {
     source: "CBS / Kadaster / NIBUD modaal salaris-reeks; eigen berekening",
     sourceUrl: "https://www.cbs.nl",
     years: [1970, 1980, 1990, 2000, 2010, 2015, 2020, 2024],
-    values: [2.1, 3.0, 4.3, 5.5, 7.0, 7.8, 9.5, 11.8]
+    values: [2.2, 3.0, 4.3, 5.5, 7.0, 7.8, 9.5, 11.5]
   },
 
   koopkrachtVergelijking: {
@@ -331,7 +331,7 @@ const DATA = {
     source: "CBS en Kadaster, Prijsindex bestaande koopwoningen",
     sourceUrl: "https://www.cbs.nl/nl-nl/cijfers/detail/83906NED",
     years: [1971, 1980, 1990, 1995, 2000, 2008, 2013, 2018, 2022, 2024, 2025, 2026],
-    values: [11000, 70000, 90000, 99000, 172000, 254000, 213000, 287000, 435000, 470000, 485000, 495000]
+    values: [17000, 70000, 90000, 99000, 172000, 254000, 213000, 287000, 435000, 470000, 485000, 495000]
   },
 
   woningtekort: {
