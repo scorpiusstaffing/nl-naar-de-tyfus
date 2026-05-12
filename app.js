@@ -1,11 +1,11 @@
 /* ==========================================================================
-   NL NAAR DE TYFUS — APP v2
+   NL NAAR DE TYFUS, APP v2
    ========================================================================== */
 
 (function () {
   'use strict';
 
-  /* GLOBAL DEFAULTS — dark theme */
+  /* GLOBAL DEFAULTS, dark theme */
   const palette = {
     accent:  '#dc2626',
     accent2: '#f97316',
@@ -66,7 +66,7 @@
   const $ = id => document.getElementById(id);
 
   /* ====================================================================
-     CHART 1 — Huizenprijs ÷ modaal salaris
+     CHART 1, Huizenprijs ÷ modaal salaris
      ==================================================================== */
   if ($('chartHuizenLoon')) new Chart($('chartHuizenLoon'), {
     type: 'line',
@@ -87,7 +87,7 @@
   });
 
   /* ====================================================================
-     CHART 2 — M3 geldgroei
+     CHART 2, M3 geldgroei
      ==================================================================== */
   if ($('chartM3')) new Chart($('chartM3'), {
     type: 'line',
@@ -108,7 +108,7 @@
   });
 
   /* ====================================================================
-     CHART 3 — Marginale druk
+     CHART 3, Marginale druk
      ==================================================================== */
   if ($('chartMarginaal')) new Chart($('chartMarginaal'), {
     type: 'bar',
@@ -132,7 +132,7 @@
   });
 
   /* ====================================================================
-     CHART 4 — Macro belastingdruk
+     CHART 4, Macro belastingdruk
      ==================================================================== */
   if ($('chartBelasting')) new Chart($('chartBelasting'), {
     type: 'line',
@@ -153,7 +153,7 @@
   });
 
   /* ====================================================================
-     CHART 5 — BTW
+     CHART 5, BTW
      ==================================================================== */
   if ($('chartBTW')) new Chart($('chartBTW'), {
     type: 'line',
@@ -177,7 +177,7 @@
   });
 
   /* ====================================================================
-     CHART 6 — Energiebelasting
+     CHART 6, Energiebelasting
      ==================================================================== */
   if ($('chartEnergiebel')) new Chart($('chartEnergiebel'), {
     type: 'bar',
@@ -195,7 +195,7 @@
   });
 
   /* ====================================================================
-     CHART 7 — Huizenprijzen
+     CHART 7, Huizenprijzen
      ==================================================================== */
   if ($('chartHuizen')) new Chart($('chartHuizen'), {
     type: 'line',
@@ -216,7 +216,7 @@
   });
 
   /* ====================================================================
-     CHART 8 — Tekort
+     CHART 8, Tekort
      ==================================================================== */
   if ($('chartTekort')) new Chart($('chartTekort'), {
     type: 'bar',
@@ -235,7 +235,7 @@
   });
 
   /* ====================================================================
-     CHART 9 — Migratie stacked
+     CHART 9, Migratie stacked
      ==================================================================== */
   if ($('chartMigratie')) new Chart($('chartMigratie'), {
     type: 'bar',
@@ -255,7 +255,7 @@
   });
 
   /* ====================================================================
-     CHART 10 — Migratie-achtergrond
+     CHART 10, Migratie-achtergrond
      ==================================================================== */
   if ($('chartAchtergrond')) new Chart($('chartAchtergrond'), {
     type: 'line',
@@ -276,7 +276,7 @@
   });
 
   /* ====================================================================
-     CHART 11 — Migratiemotief (donut)
+     CHART 11, Migratiemotief (donut)
      ==================================================================== */
   if ($('chartMotief')) new Chart($('chartMotief'), {
     type: 'doughnut',
@@ -312,7 +312,7 @@
   });
 
   /* ====================================================================
-     CHART 12 — Asielaanvragen
+     CHART 12, Asielaanvragen
      ==================================================================== */
   if ($('chartAsiel')) new Chart($('chartAsiel'), {
     type: 'bar',
@@ -331,7 +331,7 @@
   });
 
   /* ====================================================================
-     CHART 13 — Herkomst
+     CHART 13, Herkomst
      ==================================================================== */
   if ($('chartHerkomst')) new Chart($('chartHerkomst'), {
     type: 'bar',
@@ -351,7 +351,7 @@
   });
 
   /* ====================================================================
-     CHART 14 — Bijstand naar achtergrond
+     CHART 14, Bijstand naar achtergrond
      ==================================================================== */
   if ($('chartBijstand')) new Chart($('chartBijstand'), {
     type: 'bar',
@@ -377,7 +377,7 @@
   });
 
   /* ====================================================================
-     CHART 15 — Statushouder na 5 jaar (donut)
+     CHART 15, Statushouder na 5 jaar (donut)
      ==================================================================== */
   if ($('chartStatus')) new Chart($('chartStatus'), {
     type: 'doughnut',
@@ -394,13 +394,13 @@
       responsive: true, maintainAspectRatio: false, cutout: '60%',
       plugins: {
         legend: { display: true, position: 'right', labels: { boxWidth: 10, font: { size: 11 }, color: palette.ink2 } },
-        tooltip: { callbacks: { label: c => ` ${c.parsed}% — ${c.label}` } }
+        tooltip: { callbacks: { label: c => ` ${c.parsed}%, ${c.label}` } }
       }
     }
   });
 
   /* ====================================================================
-     CHART 16 — Arbeidsparticipatie
+     CHART 16, Arbeidsparticipatie
      ==================================================================== */
   if ($('chartArbeid')) new Chart($('chartArbeid'), {
     type: 'bar',
@@ -425,7 +425,7 @@
   });
 
   /* ====================================================================
-     CHART 17 — Brain drain (grouped bar)
+     CHART 17, Brain drain (grouped bar)
      ==================================================================== */
   if ($('chartBrainDrain')) new Chart($('chartBrainDrain'), {
     type: 'bar',
@@ -444,7 +444,7 @@
   });
 
   /* ====================================================================
-     CHART 18 — Bestemming
+     CHART 18, Bestemming
      ==================================================================== */
   if ($('chartBestemming')) new Chart($('chartBestemming'), {
     type: 'bar',
@@ -464,7 +464,7 @@
   });
 
   /* ====================================================================
-     CHART 19 — Motieven
+     CHART 19, Motieven
      ==================================================================== */
   if ($('chartMotieven')) new Chart($('chartMotieven'), {
     type: 'bar',
@@ -489,7 +489,7 @@
   });
 
   /* ====================================================================
-     CHART 20 — Vertrouwen
+     CHART 20, Vertrouwen
      ==================================================================== */
   if ($('chartVertrouwen')) new Chart($('chartVertrouwen'), {
     type: 'line',
@@ -509,7 +509,7 @@
   });
 
   /* ====================================================================
-     CHART 21 — Sociaal contact
+     CHART 21, Sociaal contact
      ==================================================================== */
   if ($('chartEenzaam')) new Chart($('chartEenzaam'), {
     type: 'line',
@@ -530,7 +530,7 @@
   });
 
   /* ====================================================================
-     CHART 22 — EU bijdrage
+     CHART 22, EU bijdrage
      ==================================================================== */
   if ($('chartEU')) new Chart($('chartEU'), {
     type: 'bar',
@@ -549,7 +549,7 @@
   });
 
   /* ====================================================================
-     CHART 23 — Zorgpremie
+     CHART 23, Zorgpremie
      ==================================================================== */
   if ($('chartZorgpremie')) new Chart($('chartZorgpremie'), {
     type: 'line',
@@ -570,31 +570,51 @@
   });
 
   /* ====================================================================
-     CHART 24 — Energierekening
+     SALDERING grid + intro
      ==================================================================== */
-  if ($('chartEnergie')) new Chart($('chartEnergie'), {
+  if (typeof DATA !== 'undefined' && DATA.salderingsregeling) {
+    const introEl = $('salderingIntro');
+    if (introEl) introEl.textContent = DATA.salderingsregeling.intro;
+    const gridEl = $('salderingGrid');
+    if (gridEl) gridEl.innerHTML = DATA.salderingsregeling.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
+     CHART portiek explosies
+     ==================================================================== */
+  if ($('chartPortiek')) new Chart($('chartPortiek'), {
     type: 'bar',
     data: {
-      labels: DATA.energieprijs.years,
+      labels: DATA.portiekExplosies.years,
       datasets: [{
-        data: DATA.energieprijs.values,
-        backgroundColor: ctx => {
-          const v = ctx.parsed.y ?? 0;
-          if (v >= 3000) return palette.accent;
-          if (v >= 2000) return palette.accent2;
-          return palette.accent3;
-        },
-        borderRadius: 4, maxBarThickness: 50
+        data: DATA.portiekExplosies.values,
+        backgroundColor: ctx => grad(ctx, [[0,palette.accent],[1,'rgba(220,38,38,.15)']]),
+        borderRadius: 4, maxBarThickness: 60
       }]
     },
     options: barOpts({
-      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => '€' + v}} },
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' €' + c.parsed.y.toLocaleString('nl-NL') } } }
+      scales: { x: {...baseScale}, y: {...baseScale, ticks: {...baseScale.ticks, callback: v => v.toLocaleString('nl-NL')}} },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + c.parsed.y.toLocaleString('nl-NL') + ' explosies of brandstichtingen' } } }
     })
   });
 
+  /* PORTIEK GRID facts */
+  if ($('portiekGrid')) {
+    $('portiekGrid').innerHTML = DATA.portiekFacts.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+  }
+
   /* ====================================================================
-     CHART 25 — PISA
+     CHART 25, PISA
      ==================================================================== */
   if ($('chartPISA')) new Chart($('chartPISA'), {
     type: 'line',
@@ -614,7 +634,7 @@
   });
 
   /* ====================================================================
-     CHART 26 — Cocaine
+     CHART 26, Cocaine
      ==================================================================== */
   if ($('chartCoke')) new Chart($('chartCoke'), {
     type: 'bar',
@@ -633,7 +653,7 @@
   });
 
   /* ====================================================================
-     CHART 27 — Liquidaties
+     CHART 27, Liquidaties
      ==================================================================== */
   if ($('chartLiqui')) new Chart($('chartLiqui'), {
     type: 'line',
@@ -653,7 +673,7 @@
   });
 
   /* ====================================================================
-     CHART 28 — Regeldruk
+     CHART 28, Regeldruk
      ==================================================================== */
   if ($('chartRegels')) new Chart($('chartRegels'), {
     type: 'line',
@@ -674,7 +694,7 @@
   });
 
   /* ====================================================================
-     CHART 29 — Burn-out
+     CHART 29, Burn-out
      ==================================================================== */
   if ($('chartBurnout')) new Chart($('chartBurnout'), {
     type: 'line',
@@ -695,7 +715,7 @@
   });
 
   /* ====================================================================
-     CHART 30 — Wachttijd GGZ
+     CHART 30, Wachttijd GGZ
      ==================================================================== */
   if ($('chartWachttijd')) new Chart($('chartWachttijd'), {
     type: 'bar',
@@ -714,7 +734,7 @@
   });
 
   /* ====================================================================
-     CHART 31 — Zzp'ers
+     CHART 31, Zzp'ers
      ==================================================================== */
   if ($('chartZZP')) new Chart($('chartZZP'), {
     type: 'line',
@@ -735,7 +755,7 @@
   });
 
   /* ====================================================================
-     VS STACK — internationale vergelijking (6 metrics × 6 landen)
+     VS STACK, internationale vergelijking (6 metrics × 6 landen)
      ==================================================================== */
   if ($('vsStack')) {
     const vs = DATA.internationaleVergelijking.metrics;
@@ -783,7 +803,7 @@
   }
 
   /* ====================================================================
-     CHART 46 — Voedselbanken
+     CHART 46, Voedselbanken
      ==================================================================== */
   if ($('chartVoedselbank')) new Chart($('chartVoedselbank'), {
     type: 'line',
@@ -804,7 +824,7 @@
   });
 
   /* ====================================================================
-     DEFENSE GRID — 10 critici weerlegd
+     DEFENSE GRID, 10 critici weerlegd
      ==================================================================== */
   if ($('defenseGrid')) {
     $('defenseGrid').innerHTML = DATA.optimistDefenses.items.map((it, i) => `
@@ -827,7 +847,7 @@
   }
 
   /* ====================================================================
-     AFFAIR GRID — toeslagenaffaire
+     AFFAIR GRID, toeslagenaffaire
      ==================================================================== */
   if ($('affairGrid')) {
     $('affairGrid').innerHTML = DATA.toeslagenAffaire.facts.map(f => `
@@ -837,11 +857,11 @@
       </div>
     `).join('');
     const q = $('affairQuote'); if (q) q.textContent = '"' + DATA.toeslagenAffaire.quote + '"';
-    const c = $('affairCite'); if (c) c.textContent = '— ' + DATA.toeslagenAffaire.quoteSource;
+    const c = $('affairCite'); if (c) c.textContent = ', ' + DATA.toeslagenAffaire.quoteSource;
   }
 
   /* ====================================================================
-     ARMOEDE GRID — werkende armen / voedselbanken
+     ARMOEDE GRID, werkende armen / voedselbanken
      ==================================================================== */
   if ($('armoedeGrid')) {
     $('armoedeGrid').innerHTML = DATA.armoedeProfielen.facts.map(f => `
@@ -877,7 +897,7 @@
   }
 
   /* ====================================================================
-     RANGLIJST-ILLUSIE — dynamische cards
+     RANGLIJST-ILLUSIE, dynamische cards
      ==================================================================== */
   if ($('illusionGrid')) {
     $('illusionGrid').innerHTML = DATA.ranglijstIllusie.items.map((it, i) => `
@@ -903,7 +923,7 @@
   }
 
   /* ====================================================================
-     QUOTES GRID — meerdere stemmen van vertrekkers
+     QUOTES GRID, meerdere stemmen van vertrekkers
      ==================================================================== */
   if ($('quotesGrid')) {
     $('quotesGrid').innerHTML = DATA.emigrantQuotes.map(q => `
@@ -916,7 +936,7 @@
   }
 
   /* ====================================================================
-     CHART 32 — Geboorteland emigranten (donut)
+     CHART 32, Geboorteland emigranten (donut)
      ==================================================================== */
   if ($('chartGeboorteland')) new Chart($('chartGeboorteland'), {
     type: 'doughnut',
@@ -944,7 +964,7 @@
   });
 
   /* ====================================================================
-     PROFIEL STACK — 5 vertrekkers-profielen
+     PROFIEL STACK, 5 vertrekkers-profielen
      ==================================================================== */
   if ($('profileStack')) {
     const profs = DATA.vertrekkersProfielen.profielen;
@@ -979,14 +999,14 @@
         </div>
         <blockquote class="prof-quote">
           <p>${p.quote.text}</p>
-          <cite>— ${p.quote.source}</cite>
+          <cite>, ${p.quote.source}</cite>
         </blockquote>
       </div>
     `).join('');
   }
 
   /* ====================================================================
-     CHART 33 — Expat retentie
+     CHART 33, Expat retentie
      ==================================================================== */
   if ($('chartExpatRet')) new Chart($('chartExpatRet'), {
     type: 'line',
@@ -1007,7 +1027,7 @@
   });
 
   /* ====================================================================
-     CHART 34 — Student stay rate
+     CHART 34, Student stay rate
      ==================================================================== */
   if ($('chartStayRate')) new Chart($('chartStayRate'), {
     type: 'line',
@@ -1028,7 +1048,7 @@
   });
 
   /* ====================================================================
-     CHART 35 — EU arbeidsmigrant vertrek
+     CHART 35, EU arbeidsmigrant vertrek
      ==================================================================== */
   if ($('chartArbVertrek')) new Chart($('chartArbVertrek'), {
     type: 'bar',
@@ -1047,7 +1067,7 @@
   });
 
   /* ====================================================================
-     CHART 36 — InterNations ranking
+     CHART 36, InterNations ranking
      ==================================================================== */
   if ($('chartInternations')) new Chart($('chartInternations'), {
     type: 'line',
@@ -1071,7 +1091,7 @@
   });
 
   /* ====================================================================
-     CHART 37 — Huurexplosie (multi-line)
+     CHART 37, Huurexplosie (multi-line)
      ==================================================================== */
   if ($('chartHuurExplosie')) new Chart($('chartHuurExplosie'), {
     type: 'line',
@@ -1091,7 +1111,7 @@
   });
 
   /* ====================================================================
-     CHART 38 — Bij ouders wonen
+     CHART 38, Bij ouders wonen
      ==================================================================== */
   if ($('chartBijOuders')) new Chart($('chartBijOuders'), {
     type: 'line',
@@ -1112,7 +1132,7 @@
   });
 
   /* ====================================================================
-     CHART 39 — Wachttijd sociale huur
+     CHART 39, Wachttijd sociale huur
      ==================================================================== */
   if ($('chartWachtSocHuur')) new Chart($('chartWachtSocHuur'), {
     type: 'bar',
@@ -1136,7 +1156,7 @@
   });
 
   /* ====================================================================
-     CHART 40 — Functioneel analfabetisme
+     CHART 40, Functioneel analfabetisme
      ==================================================================== */
   if ($('chartAnalfabeet')) new Chart($('chartAnalfabeet'), {
     type: 'bar',
@@ -1155,7 +1175,7 @@
   });
 
   /* ====================================================================
-     CHART 41 — School segregatie
+     CHART 41, School segregatie
      ==================================================================== */
   if ($('chartSegregatie')) new Chart($('chartSegregatie'), {
     type: 'line',
@@ -1176,7 +1196,7 @@
   });
 
   /* ====================================================================
-     CHART 42 — Lerarentekort
+     CHART 42, Lerarentekort
      ==================================================================== */
   if ($('chartLerarenTekort')) new Chart($('chartLerarenTekort'), {
     type: 'bar',
@@ -1195,7 +1215,7 @@
   });
 
   /* ====================================================================
-     CHART 43 — Steekincidenten
+     CHART 43, Steekincidenten
      ==================================================================== */
   if ($('chartSteek')) new Chart($('chartSteek'), {
     type: 'line',
@@ -1215,7 +1235,7 @@
   });
 
   /* ====================================================================
-     CHART 44 — Cyber crime
+     CHART 44, Cyber crime
      ==================================================================== */
   if ($('chartCyber')) new Chart($('chartCyber'), {
     type: 'bar',
@@ -1234,7 +1254,7 @@
   });
 
   /* ====================================================================
-     CHART 45 — Ervaren onveiligheid
+     CHART 45, Ervaren onveiligheid
      ==================================================================== */
   if ($('chartOnveilig')) new Chart($('chartOnveilig'), {
     type: 'line',
@@ -1268,7 +1288,7 @@
   }
 
   /* ====================================================================
-     TAX STACK — 55+ belastingen, gegroepeerd
+     TAX STACK, 55+ belastingen, gegroepeerd
      ==================================================================== */
   if ($('taxStack')) {
     $('taxStack').innerHTML = DATA.belastingstapel.categories.map(cat => `
@@ -1295,7 +1315,7 @@
   }
 
   /* ====================================================================
-     VERVAL-CHECKLIST — 17 vervaltekenen
+     VERVAL-CHECKLIST, 17 vervaltekenen
      ==================================================================== */
   if ($('vervalGrid')) {
     $('vervalGrid').innerHTML = DATA.vervalCheck.indicators.map((it,i) => `

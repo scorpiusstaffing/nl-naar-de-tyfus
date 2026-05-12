@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NL NAAR DE TYFUS — DATA v2
+   NL NAAR DE TYFUS, DATA v2
    --------------------------------------------------------------------------
    Bronnen: CBS, Eurostat, WODC (Van de Beek 2021), OESO, IND, COA, DNB,
    SCP, NIDI, Belastingdienst, BIS, FRED, Wereldbank.
@@ -8,39 +8,39 @@
 const DATA = {
 
   /* ====================================================================
-     KILLER NUMBERS — Wall of Numbers (12 schokkers)
+     KILLER NUMBERS, Wall of Numbers (12 schokkers)
      ==================================================================== */
   killerNumbers: [
     { value: "€600.000", label: "levenslange netto kosten van één niet-westerse asielmigrant", source: "WODC / J. van de Beek 2021" },
     { value: "60%", label: "Syrische statushouders die na 5 jaar nog in de bijstand zit", source: "CBS Cohortenonderzoek" },
-    { value: "1 op 4", label: "geëmigreerde Nederlanders die nooit meer terugkeert", source: "SCP/NIDI" },
-    { value: "63%", label: "van vertrekkende Nederlanders is hoogopgeleid", source: "CBS — landelijk: 36%" },
-    { value: "×42", label: "huizenprijs in 53 jaar — modale loon: ×7", source: "CBS / Kadaster sinds 1971" },
+    { value: "36.500", label: "hoogopgeleide Nederlanders die per jaar emigreren", source: "CBS, eigen berekening (58k NL-geboren emigranten × 63% hoogopgeleid)" },
+    { value: "63%", label: "van vertrekkende Nederlanders is hoogopgeleid", source: "CBS, landelijk: 36%" },
+    { value: "×42", label: "huizenprijs in 53 jaar, modale loon: ×7", source: "CBS / Kadaster sinds 1971" },
     { value: "55+", label: "verschillende belastingen en heffingen die je nu betaalt", source: "Belastingdienst + lokale heffingen" },
-    { value: "€8.6 mld", label: "netto bijdrage aan Brussel in 2023 — 5× zoveel als in 2000", source: "Min. Financiën" },
-    { value: "459", label: "PISA leesscore — laagste OOIT voor NL (was 513 in 2003)", source: "OESO 2022" },
+    { value: "€8.6 mld", label: "netto bijdrage aan Brussel in 2023, 5× zoveel als in 2000", source: "Min. Financiën" },
+    { value: "459", label: "PISA leesscore, laagste OOIT voor NL (was 513 in 2003)", source: "OESO 2022" },
     { value: "17 van 18", label: "klassieke verval-indicatoren die NL nu vertoont", source: "samengesteld uit CBS, OESO, SCP, DNB" },
-    { value: "21.900", label: "geldende regels in 2023 — was 10.100 in 2000", source: "Wetten.overheid.nl / ATR" },
-    { value: "61.5%", label: "stemde NEE tegen EU-grondwet — alsnog ingevoerd", source: "Kiesraad 2005" },
-    { value: "€2.4 mrd/jr", label: "directe kosten asielopvang COA — exclusief uitkeringen, zorg, onderwijs", source: "COA jaarverslag 2023" }
+    { value: "21.900", label: "geldende regels in 2023, was 10.100 in 2000", source: "Wetten.overheid.nl / ATR" },
+    { value: "61.5%", label: "stemde NEE tegen EU-grondwet, alsnog ingevoerd", source: "Kiesraad 2005" },
+    { value: "€2.4 mrd/jr", label: "directe kosten asielopvang COA, exclusief uitkeringen, zorg, onderwijs", source: "COA jaarverslag 2023" }
   ],
 
   /* ====================================================================
-     1. DE GROTE ONTKOPPELING — wat is er stuk?
+     1. DE GROTE ONTKOPPELING, wat is er stuk?
      ==================================================================== */
   ontkoppeling: {
     label: "Wat is er ontkoppeld?",
-    source: "CBS, Kadaster, NIBUD, ECB, DNB — eigen berekening",
+    source: "CBS, Kadaster, NIBUD, ECB, DNB, eigen berekening",
     facts: [
-      { stat: "×42", label: "huizenprijs sinds begin jaren '70 — werk­en­den moeten levens lang lenen om een dak te kopen" },
-      { stat: "×7", label: "modaal jaarinkomen in dezelfde periode — lonen lopen sloomer dan steen" },
-      { stat: "×11", label: "geldhoeveelheid in de eurozone sinds 1980 — er is letterlijk meer geld dan goederen" },
-      { stat: "×4.7", label: "vermogenskloof — top-10% bezit 65% van het Nederlandse vermogen" }
+      { stat: "×42", label: "huizenprijs sinds begin jaren '70, werk­en­den moeten levens lang lenen om een dak te kopen" },
+      { stat: "×7", label: "modaal jaarinkomen in dezelfde periode, lonen lopen sloomer dan steen" },
+      { stat: "×11", label: "geldhoeveelheid in de eurozone sinds 1980, er is letterlijk meer geld dan goederen" },
+      { stat: "×4.7", label: "vermogenskloof, top-10% bezit 65% van het Nederlandse vermogen" }
     ]
   },
 
   huizenLonenRatio: {
-    label: "Huizenprijs ÷ modaal jaarsalaris — hoeveel jaarsalarissen kost een gemiddeld huis?",
+    label: "Huizenprijs ÷ modaal jaarsalaris, hoeveel jaarsalarissen kost een gemiddeld huis?",
     source: "CBS / Kadaster / NIBUD modaal salaris-reeks; eigen berekening",
     sourceUrl: "https://www.cbs.nl",
     years: [1970, 1980, 1990, 2000, 2010, 2015, 2020, 2024],
@@ -48,7 +48,7 @@ const DATA = {
   },
 
   m3Geldgroei: {
-    label: "Geldhoeveelheid M3 eurozone (geïndexeerd, 1980=100) — geld groeit, koopkracht niet",
+    label: "Geldhoeveelheid M3 eurozone (geïndexeerd, 1980=100), geld groeit, koopkracht niet",
     source: "ECB Statistical Data Warehouse; BIS",
     sourceUrl: "https://sdw.ecb.europa.eu",
     years: [1980, 1990, 2000, 2008, 2015, 2020, 2023],
@@ -56,7 +56,7 @@ const DATA = {
   },
 
   /* ====================================================================
-     2. DE BELASTINGSTAPEL — 45 belastingen + cumulatieve marginale druk
+     2. DE BELASTINGSTAPEL, 45 belastingen + cumulatieve marginale druk
      ==================================================================== */
   belastingstapel: {
     label: "55+ belastingen, heffingen en premies die je in 2024 betaalt",
@@ -151,7 +151,7 @@ const DATA = {
 
   belastingdruk: {
     label: "Belasting- en premiedruk Nederland (% BBP)",
-    source: "CBS / Eurostat — incl. sociale premies",
+    source: "CBS / Eurostat, incl. sociale premies",
     sourceUrl: "https://ec.europa.eu/eurostat",
     years: [1960, 1970, 1980, 1990, 2000, 2010, 2018, 2020, 2022, 2023],
     values: [30.1, 35.5, 41.3, 39.4, 38.4, 36.0, 38.8, 39.3, 38.2, 38.5]
@@ -159,7 +159,7 @@ const DATA = {
 
   btw: {
     label: "BTW algemeen tarief (%)",
-    source: "Belastingdienst — historische tarieven",
+    source: "Belastingdienst, historische tarieven",
     sourceUrl: "https://www.belastingdienst.nl",
     events: [
       { year: 1969, value: 12, note: "Invoering BTW" },
@@ -176,18 +176,18 @@ const DATA = {
 
   energiebelasting: {
     label: "Energiebelasting + ODE op stroom (ct/kWh, 1e schijf)",
-    source: "Belastingdienst — Tarieven milieubelastingen",
+    source: "Belastingdienst, Tarieven milieubelastingen",
     sourceUrl: "https://www.belastingdienst.nl",
     years: [1996, 2000, 2005, 2010, 2015, 2020, 2023],
     values: [1.34, 5.83, 6.99, 11.14, 11.96, 12.32, 12.60]
   },
 
   /* ====================================================================
-     3. WONEN — onbetaalbaar
+     3. WONEN, onbetaalbaar
      ==================================================================== */
   huizenprijzen: {
     label: "Gemiddelde verkoopprijs bestaande koopwoning (€)",
-    source: "CBS / Kadaster — Prijsindex bestaande koopwoningen",
+    source: "CBS / Kadaster, Prijsindex bestaande koopwoningen",
     sourceUrl: "https://www.cbs.nl/nl-nl/cijfers/detail/83906NED",
     years: [1971, 1980, 1990, 1995, 2000, 2008, 2013, 2018, 2022, 2024],
     values: [11000, 70000, 90000, 99000, 172000, 254000, 213000, 287000, 435000, 470000]
@@ -195,15 +195,15 @@ const DATA = {
 
   woningtekort: {
     label: "Geschat woningtekort",
-    source: "ABF Research / Ministerie BZK — Primos",
+    source: "ABF Research / Ministerie BZK, Primos",
     sourceUrl: "https://www.rijksoverheid.nl",
     years: [2013, 2017, 2019, 2021, 2023, 2024],
     values: [120000, 200000, 294000, 279000, 390000, 401000]
   },
 
   huurExplosie: {
-    label: "Vrije-sector huurprijs 75 m² (€/maand) — drie grote steden",
-    source: "Pararius huurmonitor; NVM Wonen — kwartaalrapportages",
+    label: "Vrije-sector huurprijs 75 m² (€/maand), drie grote steden",
+    source: "Pararius huurmonitor; NVM Wonen, kwartaalrapportages",
     sourceUrl: "https://www.pararius.nl",
     years: [2010, 2014, 2018, 2020, 2022, 2024],
     amsterdam: [1250, 1480, 1850, 2050, 2300, 2500],
@@ -213,14 +213,14 @@ const DATA = {
 
   bijOudersWonen: {
     label: "Aandeel 25-34 jarigen dat nog bij ouders woont (%)",
-    source: "CBS — Huishoudens naar leeftijd; Eurostat",
+    source: "CBS, Huishoudens naar leeftijd; Eurostat",
     sourceUrl: "https://www.cbs.nl",
     years: [2005, 2010, 2015, 2018, 2020, 2023],
     values: [10.5, 13.0, 16.5, 19.0, 21.0, 23.0]
   },
 
   wachttijdSocHuur: {
-    label: "Gemiddelde wachttijd sociale huur — grote steden (jaren)",
+    label: "Gemiddelde wachttijd sociale huur, grote steden (jaren)",
     source: "WoningNet jaarrapporten; gemeentelijke woon­ruimte­bemiddeling",
     sourceUrl: "https://www.woningnet.nl",
     steden: ["Amsterdam", "Utrecht", "Den Haag", "Eindhoven", "Rotterdam", "Groningen"],
@@ -228,11 +228,11 @@ const DATA = {
   },
 
   /* ====================================================================
-     4. MIGRATIE — wie komt er, en wat voegen ze toe?
+     4. MIGRATIE, wie komt er, en wat voegen ze toe?
      ==================================================================== */
   bevolking: {
     label: "Bevolking Nederland (miljoen)",
-    source: "CBS Statline — Bevolking",
+    source: "CBS Statline, Bevolking",
     sourceUrl: "https://www.cbs.nl",
     years: [1900, 1950, 1970, 1980, 1990, 2000, 2010, 2015, 2020, 2024],
     values: [5.1, 10.0, 13.0, 14.1, 14.9, 15.9, 16.6, 16.9, 17.4, 17.94]
@@ -240,7 +240,7 @@ const DATA = {
 
   migratieAchtergrond: {
     label: "Aandeel inwoners met migratie­achtergrond (%)",
-    source: "CBS Statline — Bevolking naar migratie­achtergrond (37325)",
+    source: "CBS Statline, Bevolking naar migratie­achtergrond (37325)",
     sourceUrl: "https://www.cbs.nl/nl-nl/cijfers/detail/37325",
     years: [1972, 1980, 1990, 2000, 2010, 2015, 2020, 2023],
     values: [9.2, 11.0, 13.2, 17.5, 20.2, 22.1, 24.0, 26.6]
@@ -248,7 +248,7 @@ const DATA = {
 
   immigratieEmigratie: {
     label: "Immigratie vs emigratie (x1000)",
-    source: "CBS Statline — Migratie 70739ned",
+    source: "CBS Statline, Migratie 70739ned",
     sourceUrl: "https://www.cbs.nl/nl-nl/cijfers/detail/70739ned",
     years: [2000, 2005, 2010, 2015, 2017, 2019, 2020, 2021, 2022, 2023],
     immigratie: [132.9, 92.3, 154.4, 166.9, 235.0, 269.9, 220.8, 252.5, 403.1, 337.4],
@@ -257,8 +257,8 @@ const DATA = {
   },
 
   migratieMotief: {
-    label: "Immigratie naar migratiemotief 2022 — wie kwam er werkelijk?",
-    source: "CBS / IND — Immigratie naar verblijfsdoel; EU-mobiliteit apart geregistreerd",
+    label: "Immigratie naar migratiemotief 2022, wie kwam er werkelijk?",
+    source: "CBS / IND, Immigratie naar verblijfsdoel; EU-mobiliteit apart geregistreerd",
     sourceUrl: "https://www.ind.nl",
     motieven: ["Asiel + statushouder", "Gezinshereniging", "Studie", "EU-arbeid (vaak laaggeschoold)", "Kennismigrant (hoogopgeleid)", "Oekraïne-richtlijn", "Overig"],
     aantallen: [48, 60, 65, 95, 33, 108, 18],
@@ -267,27 +267,27 @@ const DATA = {
 
   asielKosten: {
     label: "Wat kost één niet-westerse asielmigrant levenslang netto?",
-    source: "WODC / Jan van de Beek 'Borderless welfare state' 2021 — levensloopberekening",
+    source: "WODC / Jan van de Beek 'Borderless welfare state' 2021, levensloopberekening",
     sourceUrl: "https://www.demo-demo.nl",
     facts: [
       { stat: "€600.000", label: "gemiddelde netto fiscale kosten over levensloop (uitkeringen + zorg + onderwijs − belastingen)" },
       { stat: "€480.000", label: "gemiddelde netto kosten 2e generatie van dezelfde herkomst" },
       { stat: "€-100.000", label: "gemiddelde netto bijdrage van een 'kennismigrant' (zij dragen wél bij)" },
-      { stat: "€2.4 mrd", label: "directe COA-opvangkosten 2023 — exclusief uitkering, zorg, onderwijs, juridisch" },
+      { stat: "€2.4 mrd", label: "directe COA-opvangkosten 2023, exclusief uitkering, zorg, onderwijs, juridisch" },
       { stat: "€87/dag", label: "gemiddelde COA-dagprijs per asielzoeker in opvang (2023)" }
     ]
   },
 
   bijstandsAfhankelijkheid: {
     label: "% in bijstand naar migratie-achtergrond (2023)",
-    source: "CBS — Bijstandsuitkeringen naar herkomst",
+    source: "CBS, Bijstandsuitkeringen naar herkomst",
     sourceUrl: "https://www.cbs.nl",
     groepen: ["Nederlandse achtergrond", "Westerse migratieachtergrond", "Marokkaans", "Turks", "Surinaams", "Antilliaans", "Somalisch", "Eritrees (statushouder)", "Syrisch (statushouder)"],
     percentages: [2.5, 3.6, 11.0, 7.5, 6.5, 8.5, 32.0, 60.0, 55.0]
   },
 
   statushouderNa5Jaar: {
-    label: "Status­houders 5 jaar na verblijfsvergunning — arbeidsmarktpositie",
+    label: "Status­houders 5 jaar na verblijfsvergunning, arbeidsmarktpositie",
     source: "CBS 'Cohortenonderzoek asielmigranten'; SZW",
     sourceUrl: "https://www.cbs.nl",
     categorieen: ["Werkt (vaak deeltijd)", "Bijstand", "Inkomen partner/familie", "Studie", "Overig"],
@@ -295,7 +295,7 @@ const DATA = {
   },
 
   arbeidsparticipatie: {
-    label: "Arbeidsparticipatie 15–75 jaar (%) — 2023",
+    label: "Arbeidsparticipatie 15–75 jaar (%), 2023",
     source: "CBS Arbeidsdeelname naar migratie­achtergrond",
     sourceUrl: "https://www.cbs.nl",
     groepen: ["Nederlandse achtergrond", "Westerse migratieachtergrond", "Niet-westerse 1e gen.", "Niet-westerse 2e gen.", "Statushouders na 5 jaar"],
@@ -304,7 +304,7 @@ const DATA = {
 
   herkomstImmigranten2022: {
     label: "Herkomst immigranten 2022 (top 10, x1000)",
-    source: "CBS Statline — Immigratie naar herkomst",
+    source: "CBS Statline, Immigratie naar herkomst",
     sourceUrl: "https://www.cbs.nl",
     landen: ["Oekraïne", "India", "Polen", "Syrië", "Turkije", "Duitsland", "Roemenië", "Bulgarije", "China", "Italië"],
     aantallen: [108.0, 27.0, 24.0, 22.0, 14.0, 12.0, 11.0, 9.0, 7.0, 6.5]
@@ -319,20 +319,20 @@ const DATA = {
   },
 
   /* ====================================================================
-     4b. WIE EMIGREERT ER ECHT? — de halve waarheid in 'emigratie­cijfers'
+     4b. WIE EMIGREERT ER ECHT?, de halve waarheid in 'emigratie­cijfers'
      ==================================================================== */
   emigratieGeboorteland: {
-    label: "Emigratie naar geboorteland 2023 — de grote misvatting",
-    source: "CBS — Emigratie naar geboorteland; CBS 70739ned tabblad herkomst",
+    label: "Emigratie naar geboorteland 2023, de grote misvatting",
+    source: "CBS, Emigratie naar geboorteland; CBS 70739ned tabblad herkomst",
     sourceUrl: "https://www.cbs.nl",
-    intro: "Tweederde van wie 'Nederland verlaat' is hier nooit geboren. Het zijn mensen die kwamen — en weer gingen.",
+    intro: "Tweederde van wie 'Nederland verlaat' is hier nooit geboren. Het zijn mensen die kwamen, en weer gingen.",
     categorieen: ["Geboren in Nederland", "Geboren in EU", "Geboren in Azië", "Geboren in Afrika", "Geboren elders"],
     aantallen: [58.0, 78.0, 32.0, 18.0, 12.3],
     percentages: [29.3, 39.4, 16.2, 9.1, 6.2]
   },
 
   vertrekkersProfielen: {
-    label: "Vijf groepen die Nederland verlaten — wie zij zijn, waarom ze gaan",
+    label: "Vijf groepen die Nederland verlaten, wie zij zijn, waarom ze gaan",
     source: "CBS Cohortonderzoek migratie; NUFFIC 'Stay Rate'; ROA Maastricht; ABU/NBBU; InterNations Expat Insider 2016-2023; SCP/NIDI emigratie-onderzoek",
     sourceUrl: "https://www.nuffic.nl",
     profielen: [
@@ -400,7 +400,7 @@ const DATA = {
           { reden: "Eigen land verbeterd", pct: 33 }
         ],
         quote: {
-          text: "Mijn vader werkte hier zes jaar in een Westland-kas. We woonden met 8 in een huis in Vlaardingen. Hij verdiende €2.200 netto. Nu verdient hij in Wrocław €1.800 netto — maar woont thuis. De winst is nul, de pijn is alles.",
+          text: "Mijn vader werkte hier zes jaar in een Westland-kas. We woonden met 8 in een huis in Vlaardingen. Hij verdiende €2.200 netto. Nu verdient hij in Wrocław €1.800 netto, maar woont thuis. De winst is nul, de pijn is alles.",
           source: "Pools-Nederlandse student (22), citaat Univ. Utrecht ABU-onderzoek 2022"
         }
       },
@@ -414,10 +414,10 @@ const DATA = {
           { reden: "Wachttijd integratie/werk in NL te lang", pct: 41 },
           { reden: "Heimwee / familie", pct: 39 },
           { reden: "Klimaat / culturele afstand", pct: 31 },
-          { reden: "Afwijzing aanvraag — verplicht vertrek", pct: 22 }
+          { reden: "Afwijzing aanvraag, verplicht vertrek", pct: 22 }
         ],
         quote: {
-          text: "Ik kreeg in 2019 een verblijfsvergunning. Vier jaar later kreeg ik nog steeds geen werk in mijn vak — ik ben tandarts. Ik leerde Nederlands, ik wachtte op herregistratie. In Duitsland was ik binnen 18 maanden weer aan het werk. Ik werk nu in Bonn.",
+          text: "Ik kreeg in 2019 een verblijfsvergunning. Vier jaar later kreeg ik nog steeds geen werk in mijn vak, ik ben tandarts. Ik leerde Nederlands, ik wachtte op herregistratie. In Duitsland was ik binnen 18 maanden weer aan het werk. Ik werk nu in Bonn.",
           source: "Syrische tandarts (44), Utrecht → Bonn, citaat WRR-onderzoek statushouders 2023"
         }
       }
@@ -425,7 +425,7 @@ const DATA = {
   },
 
   expatRetentie: {
-    label: "Kennismigrant retentie — % nog in Nederland na X jaar",
+    label: "Kennismigrant retentie, % nog in Nederland na X jaar",
     source: "OESO International Migration Outlook; CBS kennismigrantenstroom",
     sourceUrl: "https://www.oecd.org/migration/",
     jaren: [1, 3, 5, 7, 10],
@@ -433,7 +433,7 @@ const DATA = {
   },
 
   studentStayRate: {
-    label: "Internationale student — % nog in NL 1 jaar na afstuderen (Stay Rate)",
+    label: "Internationale student, % nog in NL 1 jaar na afstuderen (Stay Rate)",
     source: "NUFFIC 'Stay Rate' jaarrapport; ROA Maastricht",
     sourceUrl: "https://www.nuffic.nl",
     years: [2010, 2013, 2015, 2017, 2019, 2021, 2023],
@@ -441,7 +441,7 @@ const DATA = {
   },
 
   internationsRank: {
-    label: "InterNations Expat Insider — wereldranking NL als expat-land",
+    label: "InterNations Expat Insider, wereldranking NL als expat-land",
     source: "InterNations 'Expat Insider' annual ranking (n>12.000/jaar)",
     sourceUrl: "https://www.internations.org",
     years: [2016, 2018, 2019, 2020, 2021, 2022, 2023],
@@ -449,19 +449,19 @@ const DATA = {
   },
 
   arbeidsmigrantTerugkeer: {
-    label: "EU-arbeidsmigranten — % vertrokken binnen 5 jaar (cohort 2015-2018)",
-    source: "ABU / NBBU / CBS — Migratie van EU-arbeidskrachten",
+    label: "EU-arbeidsmigranten, % vertrokken binnen 5 jaar (cohort 2015-2018)",
+    source: "ABU / NBBU / CBS, Migratie van EU-arbeidskrachten",
     sourceUrl: "https://www.abu.nl",
     landen: ["Polen", "Roemenië", "Bulgarije", "Hongarije", "Tsjechië"],
     percentages: [60, 53, 48, 64, 71]
   },
 
   /* ====================================================================
-     5. BRAIN DRAIN — slimste eruit, laagste erin
+     5. BRAIN DRAIN, slimste eruit, laagste erin
      ==================================================================== */
   brainDrain: {
     label: "Opleidingsniveau emigrant (uit NL) vs immigrant (in NL)",
-    source: "CBS — Migratie naar onderwijsniveau; SCP/NIDI emigratie-onderzoek 2020",
+    source: "CBS, Migratie naar onderwijsniveau; SCP/NIDI emigratie-onderzoek 2020",
     sourceUrl: "https://www.scp.nl",
     categorieen: ["Hoogopgeleid (HBO/WO)", "Middelbaar opgeleid", "Laagopgeleid"],
     emigrant: [63, 26, 11],
@@ -470,7 +470,7 @@ const DATA = {
 
   bestemmingEmigranten: {
     label: "Top bestemmingen Nederlandse emigranten (2022, x1000)",
-    source: "CBS — Emigratie naar bestemming",
+    source: "CBS, Emigratie naar bestemming",
     sourceUrl: "https://www.cbs.nl",
     landen: ["België", "Duitsland", "Spanje", "VK", "Frankrijk", "VS", "Portugal", "Zwitserland", "Zweden", "Australië"],
     aantallen: [10.8, 9.2, 4.3, 3.6, 2.9, 2.4, 1.6, 1.3, 1.0, 0.9]
@@ -518,52 +518,59 @@ const DATA = {
      7. SOEVEREINITEIT
      ==================================================================== */
   euOverdracht: {
-    label: "Overdracht bevoegdheden naar Brussel — tijdlijn",
+    label: "Overdracht bevoegdheden naar Brussel, tijdlijn",
     source: "Europese Commissie; Kamerstukken; Raad van State",
     sourceUrl: "https://www.raadvanstate.nl",
     items: [
-      { jaar: 1957, gebeurtenis: "Verdrag van Rome — EEG", impact: "Kolen, staal, landbouw naar Brussel" },
+      { jaar: 1957, gebeurtenis: "Verdrag van Rome, EEG", impact: "Kolen, staal, landbouw naar Brussel" },
       { jaar: 1986, gebeurtenis: "Europese Akte", impact: "Interne markt, einde unanimiteit op veel terreinen" },
       { jaar: 1992, gebeurtenis: "Verdrag van Maastricht", impact: "EU opgericht, monetair beleid naar Frankfurt" },
-      { jaar: 2002, gebeurtenis: "Invoering euro", impact: "Gulden weg — geen eigen monetair beleid meer" },
-      { jaar: 2005, gebeurtenis: "Referendum EU-Grondwet", impact: "61.5% NEE — toch ingevoerd via Lissabon" },
+      { jaar: 2002, gebeurtenis: "Invoering euro", impact: "Gulden weg, geen eigen monetair beleid meer" },
+      { jaar: 2005, gebeurtenis: "Referendum EU-Grondwet", impact: "61.5% NEE, toch ingevoerd via Lissabon" },
       { jaar: 2007, gebeurtenis: "Verdrag van Lissabon", impact: "Geen referendum; bevoegdheid op asiel, justitie, buitenland uitgebreid" },
-      { jaar: 2016, gebeurtenis: "Oekraïne-referendum", impact: "61% NEE — toch geratificeerd" },
+      { jaar: 2016, gebeurtenis: "Oekraïne-referendum", impact: "61% NEE, toch geratificeerd" },
       { jaar: 2018, gebeurtenis: "Raadgevend referendum afgeschaft", impact: "Burger heeft geen correctie-instrument meer" },
-      { jaar: 2020, gebeurtenis: "EU Herstelfonds (NextGenEU) — €750 mld", impact: "Eerste keer EU-schulden namens lidstaten — NL medeaansprakelijk" },
+      { jaar: 2020, gebeurtenis: "EU Herstelfonds (NextGenEU), €750 mld", impact: "Eerste keer EU-schulden namens lidstaten, NL medeaansprakelijk" },
       { jaar: 2021, gebeurtenis: "EU Green Deal & Fit-for-55", impact: "Klimaat-, energie-, stikstofbeleid Europees opgelegd" }
     ]
   },
 
   nettoEUBijdrage: {
     label: "Netto NL afdracht aan EU (€ mld)",
-    source: "Europese Commissie — EU Budget; Min. Financiën",
+    source: "Europese Commissie, EU Budget; Min. Financiën",
     sourceUrl: "https://ec.europa.eu",
     years: [2000, 2005, 2010, 2015, 2018, 2020, 2022, 2023],
     values: [1.5, 2.6, 1.9, 3.7, 3.4, 5.1, 6.5, 8.6]
   },
 
   vetorechtIngeleverd: {
-    label: "Beleidsterreinen waar NL géén vetorecht meer heeft — historische optelsom",
+    label: "Beleidsterreinen waar NL géén vetorecht meer heeft, historische optelsom",
     source: "Raad van State 'Staat van de EU'; Kamerstukken bij Lissabon-verdrag; Europese Commissie",
     sourceUrl: "https://www.raadvanstate.nl",
     facts: [
       { stat: "60+", label: "beleidsterreinen waar unanimiteit verdween sinds 1986 (Europese Akte → Lissabon)" },
       { stat: "30%", label: "wetsvoorstellen in Tweede Kamer met directe EU-grondslag (RUG Groningen-onderzoek)" },
       { stat: "70%", label: "regelgeving voor agrarische sector volgt rechtstreeks uit Brussel (LEI-WUR)" },
-      { stat: "€750 mld", label: "EU Herstelfonds — eerste keer EU-schulden namens lidstaten, NL medeaansprakelijk" }
+      { stat: "€750 mld", label: "EU Herstelfonds, eerste keer EU-schulden namens lidstaten, NL medeaansprakelijk" }
     ]
   },
 
   /* ====================================================================
      8. ENERGIE / ZORG / KOOPKRACHT
      ==================================================================== */
-  energieprijs: {
-    label: "Jaarlijkse energierekening huishouden (€)",
-    source: "CBS / NIBUD",
-    sourceUrl: "https://www.cbs.nl",
-    years: [2015, 2018, 2020, 2021, 2022, 2023, 2024],
-    values: [1700, 1750, 1800, 2160, 3500, 2400, 2100]
+  salderingsregeling: {
+    label: "Salderingsregeling, hoe de overheid 1,5 miljoen huishoudens een rekening stuurt",
+    source: "CBS Energie, Min. EZK, Consumentenbond zonnepanelen-onderzoek 2023, Tweede Kamer dossier 35594",
+    sourceUrl: "https://www.consumentenbond.nl",
+    intro: "Tot 2027 mag elke kWh die je zonnepaneel teruglevert aan het net gesaldeerd worden tegen je verbruik. Eén kWh terug telt als één kWh verbruik. Die belofte verleidde 1,5 miljoen Nederlandse huishoudens om gemiddeld €8.000 te investeren in panelen. De Rijksoverheid promootte het actief: 'Goed voor het milieu en voor uw portemonnee.' In 2023 werd de afbouw aangekondigd. Vanaf 2027 verdwijnt het voordeel stapsgewijs, in 2031 staat het op nul. Voor wie investeerde verlengt de terugverdientijd zich van zes-zeven naar twaalf-vijftien jaar. Wie ouder dan zestig is op aanschafdatum, verdient het simpelweg nooit terug. Dat is geen technocratische marktcorrectie, dat is staatsbeleid dat een belofte aan de eigen burger heeft verbroken.",
+    facts: [
+      { stat: "1,5 mln", label: "huishoudens met zonnepanelen op het dak (CBS 2023)" },
+      { stat: "€8.000", label: "gemiddelde investering per huishouden (Consumentenbond)" },
+      { stat: "6 à 7 jr", label: "oorspronkelijke terugverdientijd onder volledige saldering" },
+      { stat: "12 à 15 jr", label: "terugverdientijd na afbouw (2027 tot 2031)" },
+      { stat: "€200 tot €500", label: "jaarlijks voordeel dat per huishouden verdampt" },
+      { stat: "2027", label: "start afbouw, in 2031 op nul" }
+    ]
   },
 
   zorgpremie: {
@@ -575,7 +582,7 @@ const DATA = {
   },
 
   reëleKoopkracht: {
-    label: "Reële koopkracht modaal huishouden — index 2000=100",
+    label: "Reële koopkracht modaal huishouden, index 2000=100",
     source: "CBS; NIBUD",
     sourceUrl: "https://www.cbs.nl",
     years: [2000, 2005, 2010, 2015, 2018, 2020, 2022, 2023],
@@ -596,15 +603,15 @@ const DATA = {
   },
 
   functioneelAnalfabetisme: {
-    label: "% 15-jarigen onder PISA-niveau 2 (functioneel analfabeet) — lezen",
-    source: "OESO PISA — niveau-verdeling; Inspectie van het Onderwijs",
+    label: "% 15-jarigen onder PISA-niveau 2 (functioneel analfabeet), lezen",
+    source: "OESO PISA, niveau-verdeling; Inspectie van het Onderwijs",
     sourceUrl: "https://www.oecd.org/pisa/",
     years: [2003, 2009, 2015, 2018, 2022],
     values: [11, 14, 18, 24, 33]
   },
 
   schoolSegregatie: {
-    label: "Aandeel basisscholen met >50% migratie­achtergrond (%) — Randstad",
+    label: "Aandeel basisscholen met >50% migratie­achtergrond (%), Randstad",
     source: "DUO Schoolregister; Universiteit van Amsterdam onderzoeksprogramma 'Schoolsegregatie'",
     sourceUrl: "https://www.duo.nl",
     years: [2003, 2010, 2015, 2020, 2023],
@@ -613,7 +620,7 @@ const DATA = {
 
   lerarentekort: {
     label: "Openstaande vacatures basis- + voortgezet onderwijs (× 1.000)",
-    source: "Ministerie OCW — Trendrapportage Arbeidsmarkt; DUO",
+    source: "Ministerie OCW, Trendrapportage Arbeidsmarkt; DUO",
     sourceUrl: "https://www.rijksoverheid.nl",
     years: [2015, 2018, 2020, 2022, 2024],
     values: [2.1, 4.2, 5.5, 7.8, 9.4]
@@ -639,11 +646,32 @@ const DATA = {
   },
 
   steekincidenten: {
-    label: "Steekincidenten jongeren (12-25 jaar)",
-    source: "Politie — Operationeel Centrum Eenheid Rotterdam; CBS Geweldsdelicten",
+    label: "Steekincidenten jongeren (12 tot 25 jaar)",
+    source: "Politie, Operationeel Centrum Eenheid Rotterdam, CBS Geweldsdelicten",
     sourceUrl: "https://www.politie.nl",
     years: [2010, 2015, 2018, 2020, 2022, 2023],
     values: [410, 580, 870, 1190, 1340, 1280]
+  },
+
+  portiekExplosies: {
+    label: "Explosies en aanslagen op woningen Nederland (politiecijfers)",
+    source: "Politie Nederland kerncijfers Eenheden; Erasmus Universiteit onderzoek Drugscriminaliteit 2024; Algemene Rekenkamer rapport ondermijnende criminaliteit",
+    sourceUrl: "https://www.politie.nl",
+    years: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    values: [85, 110, 175, 220, 350, 760, 1230]
+  },
+
+  portiekFacts: {
+    label: "De portiekbom als geweldsvorm: feiten",
+    source: "Politie Nederland; Erasmus Universiteit (Pieter Tops, Cyrille Fijnaut); jaarverslagen OM",
+    facts: [
+      { stat: "1.230", label: "ontploffingen en brandstichtingen bij woningen in 2024 (ruim veertien keer 2018)" },
+      { stat: "ca. 1 op 3", label: "treft een verkeerd adres, onschuldige bewoners worden slachtoffer" },
+      { stat: "€500 tot €2.500", label: "vergoeding die jonge daders krijgen, vaak Snapchat- of Telegram-rekrutering" },
+      { stat: "14 tot 17 jr", label: "gemiddelde leeftijd van de uitvoerders (volgens politiebron 2024)" },
+      { stat: "ca. 5%", label: "oplossings­percentage, het overgrote deel blijft onopgelost" },
+      { stat: "Rotterdam, Amsterdam, Tilburg, Eindhoven, Almere", label: "steden met de hoogste concentratie" }
+    ]
   },
 
   cyberCrime: {
@@ -674,73 +702,73 @@ const DATA = {
   },
 
   /* ====================================================================
-     11b. INTERNATIONALE VERGELIJKING — NL vs vergelijkbare landen
+     11b. INTERNATIONALE VERGELIJKING, NL vs vergelijkbare landen
      ==================================================================== */
   internationaleVergelijking: {
-    label: "Nederland naast 5 vergelijkbare landen — wie loopt voor, wie loopt vast?",
-    source: "Eurostat 'Tax revenue stats'; OESO Better Life Index; Numbeo Property Price/Income; OESO PISA 2022; OECD Government at a Glance",
+    label: "Nederland naast vijf vergelijkbare West-Europese landen, op zes metrics waarop het verschil pijnlijk zichtbaar is",
+    source: "Eurostat (bevolkingsdichtheid, woningprijs-inkomen-ratio); TNO/CBS NEA en Eurofound (burn-out); OESO PISA 2022; CPB Kansrijk belastingbeleid en OECD Taxing Wages 2023 (marginale druk); OECD Government at a Glance (vertrouwen)",
     sourceUrl: "https://ec.europa.eu/eurostat",
     metrics: [
       {
-        naam: "Belasting- en premiedruk (% BBP, 2023)",
+        naam: "Bevolkingsdichtheid (inwoners per km², 2023)",
         landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
-        waarden: [38.5, 39.5, 42.4, 27.1, 22.7, 35.4],
-        nl_positie: "hoger dan Duitsland en Ierland, fors hoger dan Zwitserland"
+        waarden: [521, 233, 384, 220, 76, 112],
+        nl_positie: "Veruit het dichtstbevolkte land van de groep. Bijna 2,5 keer Duitsland, bijna 7 keer Ierland. Bij gelijkblijvende immigratie loopt dit door."
       },
       {
-        naam: "Huizenprijs ÷ mediaan jaarinkomen (centrum, 2024)",
+        naam: "Huizenprijs gedeeld door mediaan jaarinkomen (centrum stad, 2024)",
         landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
         waarden: [11.8, 9.4, 8.1, 14.2, 10.6, 13.5],
-        nl_positie: "extreem hoog — alleen Zwitserland en Portugal duurder, beide met aanzienlijk hoger inkomen of zonneklimaat"
+        nl_positie: "Een Nederlandse koper geeft bijna twaalf jaarsalarissen uit voor een stedelijk huis. Alleen Zwitserland en Portugal zitten hoger, beide met aantoonbaar hogere mediaaninkomens of een zonklimaat als compensatie."
       },
       {
-        naam: "Cocaïne-onderschept per hoofd (kg/100k inw., 2022)",
+        naam: "Burn-outklachten beroepsbevolking (%, 2023)",
         landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
-        waarden: [310, 4, 1100, 1, 2, 5],
-        nl_positie: "Rotterdam + Antwerpen = wereld-drugshub. Duitsland is overigens vaak doorvoer"
+        waarden: [20.6, 14.0, 12.0, 13.0, 11.0, 9.0],
+        nl_positie: "Hoogste burn-outpercentage van de groep, ruim anderhalf keer Duitsland en meer dan twee keer Portugal. Eén op de vijf werkende Nederlanders heeft klachten."
       },
       {
-        naam: "PISA leesvaardigheid 2022",
+        naam: "PISA-leesvaardigheid 2022 (score)",
         landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
         waarden: [459, 480, 479, 483, 516, 477],
-        nl_positie: "onderaan deze groep — was in 2003 nog boven al deze landen"
+        nl_positie: "Laagste score van de groep. In 2003 scoorde Nederland nog ruim boven alle hier vergeleken landen."
       },
       {
-        naam: "Aantal woningen tekort (× duizend, 2023)",
+        naam: "Effectieve marginale belastingdruk anderhalf maal modaal met kind (%, 2023)",
         landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
-        waarden: [401, 700, 70, 30, 140, 50],
-        nl_positie: "veruit grootste relatieve tekort — Duitsland heeft 5× meer bevolking met 1.7× tekort"
+        waarden: [87, 49, 65, 28, 43, 39],
+        nl_positie: "Nederland heeft de hoogste effectieve marginale druk van de groep. Van elke extra euro houdt een Nederlands gezin met kind 13 cent over, een Zwitsers gezin 72 cent. Werken loont structureel minder."
       },
       {
-        naam: "Vertrouwen in regering (% (heel)veel, 2023)",
+        naam: "Vertrouwen in de eigen regering (% (heel)veel, 2023)",
         landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
         waarden: [28, 52, 39, 78, 45, 35],
-        nl_positie: "diep onder buurlanden — Zwitserland scoort bijna drie keer hoger"
+        nl_positie: "Diep onder elk vergelijkbaar land. Zwitserland scoort bijna drie keer hoger, Duitsland bijna twee keer."
       }
     ]
   },
 
   /* ====================================================================
-     11c. WERKDRUK / ZORG / JONGEREN — de stille epidemie
+     11c. WERKDRUK / ZORG / JONGEREN, de stille epidemie
      ==================================================================== */
   burnoutCijfers: {
-    label: "Burn-outklachten beroepsbevolking (%) — TNO/CBS Nationale Enquête Arbeidsomstandigheden",
-    source: "TNO/CBS NEA — Burn-outklachten 2007-2023",
+    label: "Burn-outklachten beroepsbevolking (%), TNO/CBS Nationale Enquête Arbeidsomstandigheden",
+    source: "TNO/CBS NEA, Burn-outklachten 2007-2023",
     sourceUrl: "https://www.cbs.nl",
     years: [2007, 2011, 2015, 2019, 2021, 2023],
     values: [11.0, 13.1, 14.6, 17.0, 17.0, 20.6]
   },
 
   wachtlijstenZorg: {
-    label: "Wachttijd specialistische GGZ — gemiddeld aantal weken",
-    source: "NZa — Wachttijdmonitor GGZ; Vektis",
+    label: "Wachttijd specialistische GGZ, gemiddeld aantal weken",
+    source: "NZa, Wachttijdmonitor GGZ; Vektis",
     sourceUrl: "https://www.nza.nl",
     years: [2018, 2020, 2021, 2022, 2023],
     values: [14, 19, 22, 25, 23]
   },
 
   jongerenPerspectief: {
-    label: "Jongeren (18–35) over de toekomst van Nederland — 2024",
+    label: "Jongeren (18–35) over de toekomst van Nederland, 2024",
     source: "I&O Research / EenVandaag opiniepanel jongerenpeiling 2024",
     sourceUrl: "https://www.ioresearch.nl",
     facts: [
@@ -752,7 +780,7 @@ const DATA = {
   },
 
   zzpDruk: {
-    label: "Aantal zzp'ers in Nederland (× 1000) — vlucht uit loondienst",
+    label: "Aantal zzp'ers in Nederland (× 1000), vlucht uit loondienst",
     source: "CBS Arbeidsmarktstatistiek",
     sourceUrl: "https://www.cbs.nl",
     years: [2003, 2010, 2015, 2019, 2022, 2023],
@@ -760,19 +788,19 @@ const DATA = {
   },
 
   /* ====================================================================
-     11d. EXTRA EMIGRANT-QUOTES — meer stem aan vertrekkers
+     11d. EXTRA EMIGRANT-QUOTES, meer stem aan vertrekkers
      ==================================================================== */
   emigrantQuotes: [
     {
       quote: "Ik werk 60 uur, betaal me suf, krijg geen huis. Mijn buren zitten in de bijstand die ik betaal. Als ik klaag heet dat racisme. Ik ga naar Portugal.",
-      source: "Anoniem — enquête Universiteit Maastricht 2022 (n=1.247 emigranten)"
+      source: "Anoniem, enquête Universiteit Maastricht 2022 (n=1.247 emigranten)"
     },
     {
       quote: "We zijn vertrokken voor de kinderen. Niet om wat ze nu meemaken, maar om wat ze straks niet meer zouden hebben: een achtertuin, ruimte, een school waar je nog Nederlands spreekt.",
-      source: "Voormalig accountant in Belgisch Limburg — interview NIDI emigratiepanel 2021"
+      source: "Voormalig accountant in Belgisch Limburg, interview NIDI emigratiepanel 2021"
     },
     {
-      quote: "In Zwitserland verdien ik 1.6× wat ik in Nederland verdiende. Ik betaal ongeveer dezelfde belasting in euro's. Dat is geen kleine optimalisatie — dat is een ander leven.",
+      quote: "In Zwitserland verdien ik 1.6× wat ik in Nederland verdiende. Ik betaal ongeveer dezelfde belasting in euro's. Dat is geen kleine optimalisatie, dat is een ander leven.",
       source: "Software engineer (32), verhuisd Eindhoven → Zürich, 2022"
     },
     {
@@ -782,28 +810,28 @@ const DATA = {
   ],
 
   /* ====================================================================
-     11d2. MAAR WAT DAN MET...? — 10 standaard tegenargumenten weerlegd
+     11d2. MAAR WAT DAN MET...?, 10 standaard tegenargumenten weerlegd
      ==================================================================== */
   optimistDefenses: {
-    label: "Tien meest gehoorde tegenargumenten — en het killer-feit dat ze sloopt",
+    label: "Tien meest gehoorde tegenargumenten, en het killer-feit dat ze sloopt",
     source: "UWV, CBS Inactiviteit, Voedselbanken Nederland, Eurostat, OESO, NIDI, RIVM, Transparency International, WWF Living Planet Index NL, Min. Financiën",
     items: [
       {
         claim: "\"De werkloosheid is toch laag? 3,5%.\"",
         weerleg: [
-          { feit: "1,4 mln Nederlanders zit in bijstand, WW of WIA — buiten de werkloosheidscijfers", bron: "UWV, CBS" },
+          { feit: "1,4 mln Nederlanders zit in bijstand, WW of WIA, buiten de werkloosheidscijfers", bron: "UWV, CBS" },
           { feit: "Bijstand: ~400k · WIA/WAO: ~800k · WW: ~200k", bron: "UWV jaarcijfers 2023" },
-          { feit: "Totaal inactief 15-64: 2,5 mln — bijna een op vijf van de beroepsbevolking", bron: "CBS Arbeidsdeelname" },
+          { feit: "Totaal inactief 15-64: 2,5 mln, bijna een op vijf van de beroepsbevolking", bron: "CBS Arbeidsdeelname" },
           { feit: "Definitie 'werkloos' = actief zoekend + beschikbaar. Wie ontmoedigd thuiszit, telt niet mee", bron: "ILO/Eurostat methodologie" }
         ]
       },
       {
         claim: "\"Armoede neemt structureel af.\"",
         weerleg: [
-          { feit: "Voedselbanken: van 50.000 klanten (2008) naar 200.000 (2024) — verviervoudigd", bron: "Voedselbanken Nederland" },
+          { feit: "Voedselbanken: van 50.000 klanten (2008) naar 200.000 (2024), verviervoudigd", bron: "Voedselbanken Nederland" },
           { feit: "8% van werkenden leeft onder de armoedegrens (\"werkende armen\")", bron: "SCP 'Armoede in Kaart' 2023" },
-          { feit: "220.000 kinderen groeien op in armoede — 1 op 12", bron: "SCP / Kinderombudsman" },
-          { feit: "Energie­banken zijn pas in 2022 ontstaan — een armoede-categorie die geen bestaan had", bron: "Rijksoverheid 2022" }
+          { feit: "220.000 kinderen groeien op in armoede, 1 op 12", bron: "SCP / Kinderombudsman" },
+          { feit: "Energie­banken zijn pas in 2022 ontstaan, een armoede-categorie die geen bestaan had", bron: "Rijksoverheid 2022" }
         ]
       },
       {
@@ -812,50 +840,50 @@ const DATA = {
           { feit: "BBP-groei wordt gedreven door bevolkingsgroei (immigratie), niet productiviteit", bron: "Eurostat productivity per hour worked" },
           { feit: "Productiviteit per gewerkt uur stagneert sinds 2008", bron: "OESO Productivity Statistics" },
           { feit: "Mediaan reëel besteedbaar inkomen daalde 2010-2023", bron: "CBS Mediaan inkomen, gecorrigeerd voor inflatie" },
-          { feit: "BBP/capita-stijging gaat naar bedrijfswinsten en kapitaal — niet naar lonen", bron: "DNB Vermogensverdeling 2023" }
+          { feit: "BBP/capita-stijging gaat naar bedrijfswinsten en kapitaal, niet naar lonen", bron: "DNB Vermogensverdeling 2023" }
         ]
       },
       {
         claim: "\"De criminaliteit daalt al jaren.\"",
         weerleg: [
-          { feit: "Aangifte-bereidheid daalde van 35% (2012) naar 21% (2023) — dalende cijfers verbergen ongemelde criminaliteit", bron: "CBS Veiligheidsmonitor" },
-          { feit: "Cybercrime / online fraude steeg ×10 sinds 2015 — daar ligt de criminaliteit nu", bron: "Politie cybercrime­team" },
+          { feit: "Aangifte-bereidheid daalde van 35% (2012) naar 21% (2023), dalende cijfers verbergen ongemelde criminaliteit", bron: "CBS Veiligheidsmonitor" },
+          { feit: "Cybercrime / online fraude steeg ×10 sinds 2015, daar ligt de criminaliteit nu", bron: "Politie cybercrime­team" },
           { feit: "Steekincidenten jongeren ×3 sinds 2010", bron: "Politie operationeel centrum" },
-          { feit: "Rotterdam haven onderschept 60 ton cocaïne/jaar — Italiaanse aanklagers noemen NL openlijk een narcostaat", bron: "Douane NL; Direzione Nazionale Antimafia 2022" }
+          { feit: "Rotterdam haven onderschept 60 ton cocaïne/jaar, Italiaanse aanklagers noemen NL openlijk een narcostaat", bron: "Douane NL; Direzione Nazionale Antimafia 2022" }
         ]
       },
       {
         claim: "\"We hebben de hoogste levensverwachting van Europa.\"",
         weerleg: [
-          { feit: "NL gedaald van top-5 (2010) naar plek #15-18 (2023) — Spanje, Italië, Frankrijk, Zwitserland scoren hoger", bron: "Eurostat life expectancy" },
-          { feit: "'Gezonde levensjaren' (HLY-indicator): NL 65 jaar — Zweden 73, Spanje 74", bron: "Eurostat Healthy Life Years" },
-          { feit: "Levensverwachting van laagopgeleide Nederlandse mannen: 78. Voor hoogopgeleide: 87 — gat van 9 jaar", bron: "CBS Levensverwachting naar opleidings­niveau" }
+          { feit: "NL gedaald van top-5 (2010) naar plek #15-18 (2023), Spanje, Italië, Frankrijk, Zwitserland scoren hoger", bron: "Eurostat life expectancy" },
+          { feit: "'Gezonde levensjaren' (HLY-indicator): NL 65 jaar, Zweden 73, Spanje 74", bron: "Eurostat Healthy Life Years" },
+          { feit: "Levensverwachting van laagopgeleide Nederlandse mannen: 78. Voor hoogopgeleide: 87, gat van 9 jaar", bron: "CBS Levensverwachting naar opleidings­niveau" }
         ]
       },
       {
         claim: "\"We hebben migranten nodig voor de vergrijzing.\"",
         weerleg: [
-          { feit: "NIDI: alleen kennismigratie draagt netto bij — niet-westerse migratie verergert druk op verzorgingsstaat", bron: "NIDI 'Verkenning bevolking 2050'" },
-          { feit: "Gemiddelde leeftijd asielmigrant: 28. Zij worden zelf oud — de demografische 'verjonging' is tijdelijk", bron: "IND asylum-trends" },
-          { feit: "Fertiliteit blijft 1,5 — voor bevolkings­vervanging is 2,1 nodig. Migratie schuift het probleem alleen voor zich uit", bron: "CBS Vruchtbaarheidscijfers" },
+          { feit: "NIDI: alleen kennismigratie draagt netto bij, niet-westerse migratie verergert druk op verzorgingsstaat", bron: "NIDI 'Verkenning bevolking 2050'" },
+          { feit: "Gemiddelde leeftijd asielmigrant: 28. Zij worden zelf oud, de demografische 'verjonging' is tijdelijk", bron: "IND asylum-trends" },
+          { feit: "Fertiliteit blijft 1,5, voor bevolkings­vervanging is 2,1 nodig. Migratie schuift het probleem alleen voor zich uit", bron: "CBS Vruchtbaarheidscijfers" },
           { feit: "Per Westeuropees scenario zou NL bij gelijke immigratie­snelheid in 2070 een bevolking van 22 miljoen hebben", bron: "Primos 2024 / NIDI" }
         ]
       },
       {
         claim: "\"De EU geeft ons vrede, welvaart en stabiliteit.\"",
         weerleg: [
-          { feit: "Netto bijdrage 2023: €8,6 mld — 5,7× wat het was in 2000", bron: "Min. Financiën, Miljoenennota" },
+          { feit: "Netto bijdrage 2023: €8,6 mld, 5,7× wat het was in 2000", bron: "Min. Financiën, Miljoenennota" },
           { feit: "Eerste keer EU-schulden namens lidstaten: €750 mrd Herstelfonds. NL medeaansprakelijk", bron: "EU Next Generation EU 2020" },
           { feit: "60+ beleidsterreinen hebben Nederland geen vetorecht meer", bron: "Raad van State 'Staat van de EU'" },
-          { feit: "Drie nationale referenda gewonnen door NEE-stem — alle drie genegeerd of het instrument afgeschaft", bron: "Kiesraad 2005, 2016, 2018" }
+          { feit: "Drie nationale referenda gewonnen door NEE-stem, alle drie genegeerd of het instrument afgeschaft", bron: "Kiesraad 2005, 2016, 2018" }
         ]
       },
       {
         claim: "\"Nederland is een rechtsstaat.\"",
         weerleg: [
-          { feit: "Toeslagenaffaire: 26.000 ouders door de Belastingdienst onterecht als fraudeur bestempeld — financieel verwoest, kinderen uit huis geplaatst", bron: "Parlementaire Ondervragings­commissie Kinderopvang­toeslag 2020" },
-          { feit: "Etnisch profileren door overheidsalgoritme bevestigd — gezinnen met dubbele nationaliteit kregen automatisch verhoogd fraude-risico", bron: "Autoriteit Persoonsgegevens 2020" },
-          { feit: "Tien jaar oneerlijk Box 3-vermogens­belasting — Hoge Raad oordeelde uiteindelijk dat het systeem ongrondwettelijk was", bron: "Hoge Raad Kerstarrest 2021" },
+          { feit: "Toeslagenaffaire: 26.000 ouders door de Belastingdienst onterecht als fraudeur bestempeld, financieel verwoest, kinderen uit huis geplaatst", bron: "Parlementaire Ondervragings­commissie Kinderopvang­toeslag 2020" },
+          { feit: "Etnisch profileren door overheidsalgoritme bevestigd, gezinnen met dubbele nationaliteit kregen automatisch verhoogd fraude-risico", bron: "Autoriteit Persoonsgegevens 2020" },
+          { feit: "Tien jaar oneerlijk Box 3-vermogens­belasting, Hoge Raad oordeelde uiteindelijk dat het systeem ongrondwettelijk was", bron: "Hoge Raad Kerstarrest 2021" },
           { feit: "Stikstofbeleid: boeren onteigend zonder normale planologische procedure, op EU-rechterlijk bevel", bron: "Raad van State 2019 PAS-uitspraak" }
         ]
       },
@@ -864,24 +892,24 @@ const DATA = {
         weerleg: [
           { feit: "WWF Living Planet Report: -25% biodiversiteit Nederland sinds 1990", bron: "WWF Living Planet Index NL" },
           { feit: "Natura 2000-gebieden vrijwel allemaal in slechte staat van instandhouding", bron: "European Environment Agency" },
-          { feit: "Gas afgesloten, kernenergie nooit gebouwd — Nederland is energiemand-import­afhankelijk", bron: "TenneT / CBS Energie­balans" },
-          { feit: "CO2-uitstoot per capita: NL 8,1 ton — EU-gemiddelde 6,7 ton", bron: "Eurostat 2022" }
+          { feit: "Gas afgesloten, kernenergie nooit gebouwd, Nederland is energiemand-import­afhankelijk", bron: "TenneT / CBS Energie­balans" },
+          { feit: "CO2-uitstoot per capita: NL 8,1 ton, EU-gemiddelde 6,7 ton", bron: "Eurostat 2022" }
         ]
       },
       {
-        claim: "\"We wonen ruimer dan ooit — m² per persoon stijgt.\"",
+        claim: "\"We wonen ruimer dan ooit, m² per persoon stijgt.\"",
         weerleg: [
-          { feit: "M² per inwoner stijgt vooral door dat ouderen alleen overblijven in eengezinswoningen — niet door dat jongeren meer ruimte krijgen", bron: "CBS Wonen / NVM" },
+          { feit: "M² per inwoner stijgt vooral door dat ouderen alleen overblijven in eengezinswoningen, niet door dat jongeren meer ruimte krijgen", bron: "CBS Wonen / NVM" },
           { feit: "25-34 jarigen die nog bij ouders wonen: gestegen van 10% naar 23%", bron: "CBS / Eurostat" },
           { feit: "Gemiddelde leeftijd starter op de koopmarkt: 36 jaar (was 28 in 1995)", bron: "Kadaster / NVM Starters­monitor" },
-          { feit: "Wachttijd sociale huur Amsterdam: 14,5 jaar — Utrecht 12, Den Haag 8,5", bron: "WoningNet jaarrapportages" }
+          { feit: "Wachttijd sociale huur Amsterdam: 14,5 jaar, Utrecht 12, Den Haag 8,5", bron: "WoningNet jaarrapportages" }
         ]
       }
     ]
   },
 
   /* ====================================================================
-     11e. DE RANGLIJST-ILLUSIE — wat de top-10 lijstjes verbergen
+     11e. DE RANGLIJST-ILLUSIE, wat de top-10 lijstjes verbergen
      ==================================================================== */
   ranglijstIllusie: {
     label: "Acht populaire ranglijsten die de werkelijke Nederlandse toestand verbergen",
@@ -893,22 +921,22 @@ const DATA = {
         claimSub: "(2023, score 7.4/10)",
         werkelijk: [
           "Onder de 30 jaar zakt NL naar plek #17 in dezelfde WHR-meting",
-          "Antidepressiva-gebruik 7,1% — top 5 in de EU",
+          "Antidepressiva-gebruik 7,1%, top 5 in de EU",
           "20,6% van werkenden heeft burn-outklachten",
-          "47% voelt zich (zeer) eenzaam — RIVM 2022",
+          "47% voelt zich (zeer) eenzaam, RIVM 2022",
           "Het 'geluk' is een Cantril-ladder zelfrapportage, geen objectieve meting"
         ],
         bron: "WHR 2023/2024 jeugdsplit; Lareb / SFK; TNO-CBS NEA; RIVM gezondheids­onderzoek"
       },
       {
-        ranking: "OESO Better Life Index — work-life balance",
+        ranking: "OESO Better Life Index, work-life balance",
         claim: "#1 werk-privé balans van de OESO",
         claimSub: "(slechts 0,4% werkt 50+ uur)",
         werkelijk: [
           "De index meet 'lange uren', niet 'zinvolle uren'",
-          "NL is Europees kampioen deeltijdwerk — 50% van vrouwen werkt <20 uur",
+          "NL is Europees kampioen deeltijdwerk, 50% van vrouwen werkt <20 uur",
           "Productiviteit per gewerkt uur stagneert sinds 2008",
-          "800.000 mantelzorgers zijn 'overbelast' — SCP",
+          "800.000 mantelzorgers zijn 'overbelast', SCP",
           "Burn-out cijfer (20,6%) past niet bij een land met écht goede balans"
         ],
         bron: "OESO BLI 2023; CBS Arbeidsdeelname; SCP Mantelzorg 2023"
@@ -916,13 +944,13 @@ const DATA = {
       {
         ranking: "Euro Health Consumer Index",
         claim: "Beste zorgstelsel van Europa",
-        claimSub: "(EHCI 2018 — laatste meting)",
+        claimSub: "(EHCI 2018, laatste meting)",
         werkelijk: [
-          "De EHCI is in 2019 gestaakt wegens financierings­problemen — niemand meet dit nog",
+          "De EHCI is in 2019 gestaakt wegens financierings­problemen, niemand meet dit nog",
           "Wachttijd specialistische GGZ: 23 weken",
           "Kanker 5-jaars overlevings­ratio: NL gezakt naar plek #11 EU (Zwitserland #1)",
-          "Premie basisverzekering ×1.72 sinds 2006 — bij eigen risico ×2.5",
-          "Huisartsentekort treft 14% van de praktijken — LHV"
+          "Premie basisverzekering ×1.72 sinds 2006, bij eigen risico ×2.5",
+          "Huisartsentekort treft 14% van de praktijken, LHV"
         ],
         bron: "Health Consumer Powerhouse (gestaakt); NZa wachttijdmonitor; Eurostat cancer survival; Vektis; LHV"
       },
@@ -931,11 +959,11 @@ const DATA = {
         claim: "Top 5 meest gelijke land OESO",
         claimSub: "(Gini 0,29 na herverdeling)",
         werkelijk: [
-          "De Gini meet inkomen — nadat toeslagen en uitkeringen zijn verrekend",
-          "Vermogens-Gini Nederland: 0,78 — Top 3 ongelijkste van de hele OESO",
+          "De Gini meet inkomen, nadat toeslagen en uitkeringen zijn verrekend",
+          "Vermogens-Gini Nederland: 0,78, Top 3 ongelijkste van de hele OESO",
           "Top 1% bezit ~30% van het Nederlandse vermogen",
-          "Top 10% bezit ~65% — onderste 50% bezit ~0% (vaak negatief)",
-          "Het herverdeel-effect verbergt dat werkenden marginaal 49-87% afdragen — terwijl uitkering-ontvangers vrijwel niets bijdragen"
+          "Top 10% bezit ~65%, onderste 50% bezit ~0% (vaak negatief)",
+          "Het herverdeel-effect verbergt dat werkenden marginaal 49-87% afdragen, terwijl uitkering-ontvangers vrijwel niets bijdragen"
         ],
         bron: "OESO Income Distribution Database; Credit Suisse Global Wealth Report; CBS Vermogensverdeling"
       },
@@ -944,9 +972,9 @@ const DATA = {
         claim: "Een van de minst corrupte landen",
         claimSub: "(Transparency Intl. #8, 2023)",
         werkelijk: [
-          "Was #5 in 2014 — gedaald met 3 plekken in tien jaar",
+          "Was #5 in 2014, gedaald met 3 plekken in tien jaar",
           "Toeslagenaffaire: 26.000 ouders financieel verwoest, kinderen weggehaald, etnisch geprofileerd door overheidsalgoritmes",
-          "Moord op advocaat Derk Wiersum (2019) en journalist Peter R. de Vries (2021) — de staat kon haar eigen gerechts­dienaren niet beschermen",
+          "Moord op advocaat Derk Wiersum (2019) en journalist Peter R. de Vries (2021), de staat kon haar eigen gerechts­dienaren niet beschermen",
           "Lobby-transparantie onder EU-gemiddelde (ALTER-EU)",
           "Drugs-infiltratie van het juridisch apparaat (Marengo, Caloh Wagoh)"
         ],
@@ -957,11 +985,11 @@ const DATA = {
         claim: "Persvrijheid altijd top 10",
         claimSub: "(2002: wereld #1)",
         werkelijk: [
-          "RSF 2024: Nederland gezakt naar plek #30 — sterkste daling van enig EU-land",
+          "RSF 2024: Nederland gezakt naar plek #30, sterkste daling van enig EU-land",
           "Moord op Peter R. de Vries (2021) bij klaarlichte dag op de Lange Leidsedwars­straat",
           "PersVeilig meldde 271 incidenten van agressie / intimidatie tegen journalisten in 2022",
           "Mediaconcentratie: DPG + Mediahuis bezitten 80% van NL print",
-          "Persveiligheid-budget gekort tijdens kabinet Rutte IV — pas teruggedraaid na bedreigingen"
+          "Persveiligheid-budget gekort tijdens kabinet Rutte IV, pas teruggedraaid na bedreigingen"
         ],
         bron: "Reporters Without Borders World Press Freedom Index 2002-2024; PersVeilig.nl; Commissariaat voor de Media"
       },
@@ -972,9 +1000,9 @@ const DATA = {
         werkelijk: [
           "UvA daalde van plek #50 (2014) naar #58 (2024)",
           "TU Delft van #15 (2010) naar #47 (2024)",
-          "PISA leesvaardigheid −54 punten (1 schooljaar) sinds 2003 — alleen Australië zakte sneller",
+          "PISA leesvaardigheid −54 punten (1 schooljaar) sinds 2003, alleen Australië zakte sneller",
           "33% van Nederlandse 15-jarigen is functioneel analfabeet",
-          "9.400 onvervulde vacatures voor leraren — 1 op 6 kinderen krijgt les van onbevoegden"
+          "9.400 onvervulde vacatures voor leraren, 1 op 6 kinderen krijgt les van onbevoegden"
         ],
         bron: "QS World University Rankings 2010-2024; OESO PISA 2003-2022; OCW Trendrapportage Arbeidsmarkt"
       },
@@ -983,10 +1011,10 @@ const DATA = {
         claim: "Top 5 concurrent­vermogen wereldwijd",
         claimSub: "(WEF 2019, plek #4)",
         werkelijk: [
-          "Het WEF heeft deze ranglijst sinds 2020 niet meer gepubliceerd — niet vergelijkbaar",
-          "R&D-uitgaven 2,3% BBP — onder EU-streefdoel van 3%",
-          "Maakindustrie van 22% BBP (1980) naar 12% (2023) — bijna gehalveerd",
-          "ASML onder geopolitieke druk — export­vergunningen verdwijnen",
+          "Het WEF heeft deze ranglijst sinds 2020 niet meer gepubliceerd, niet vergelijkbaar",
+          "R&D-uitgaven 2,3% BBP, onder EU-streefdoel van 3%",
+          "Maakindustrie van 22% BBP (1980) naar 12% (2023), bijna gehalveerd",
+          "ASML onder geopolitieke druk, export­vergunningen verdwijnen",
           "ABN AMRO 2023: 14% van Nederlandse bedrijven overweegt vertrek wegens lasten en stikstof"
         ],
         bron: "WEF GCI 2019 (laatste editie); Eurostat R&D; CBS Economische sectoren; ABN AMRO Sector­update 2023"
@@ -995,19 +1023,19 @@ const DATA = {
   },
 
   /* ====================================================================
-     11f. RECHTSSTAAT IN VERVAL — toeslagenaffaire
+     11f. RECHTSSTAAT IN VERVAL, toeslagenaffaire
      ==================================================================== */
   toeslagenAffaire: {
-    label: "Toeslagenaffaire — toen de staat zijn eigen burgers verklaarde tot fraudeur",
+    label: "Toeslagenaffaire, toen de staat zijn eigen burgers verklaarde tot fraudeur",
     source: "Parlementaire Ondervragings­commissie Kinderopvang­toeslag 'Ongekend onrecht' 2020; Autoriteit Persoonsgegevens 'Werkwijze Belastingdienst' 2020; Adviescommissie Uitvoering Toeslagen",
     sourceUrl: "https://www.tweedekamer.nl/kamerstukken/detail?id=2020D52803",
     facts: [
       { stat: "26.000", label: "ouders door de Belastingdienst onterecht als toeslagenfraudeur bestempeld" },
-      { stat: "1.675", label: "kinderen onder gedwongen voogdij geplaatst, deels uit huis gehaald — vaak rechtstreeks gevolg van financiële ruïne door de affaire" },
-      { stat: "€100k+", label: "gemiddelde schuld die slachtoffers terug moesten betalen (vaak meer) — inclusief boetes, rente en invorderingskosten" },
+      { stat: "1.675", label: "kinderen onder gedwongen voogdij geplaatst, deels uit huis gehaald, vaak rechtstreeks gevolg van financiële ruïne door de affaire" },
+      { stat: "€100k+", label: "gemiddelde schuld die slachtoffers terug moesten betalen (vaak meer), inclusief boetes, rente en invorderingskosten" },
       { stat: "5×", label: "zo vaak werden gezinnen met dubbele nationaliteit als 'risico' gemarkeerd door het overheidsalgoritme" },
       { stat: "12 jaar", label: "duurde het voordat het schandaal politieke gevolgen kreeg (eerste signalen 2009, kabinet viel 2021)" },
-      { stat: "€5,5 mrd", label: "geschatte compensatiekosten — gefinancierd uit publieke middelen, niet betaald door de daders" }
+      { stat: "€5,5 mrd", label: "geschatte compensatiekosten, gefinancierd uit publieke middelen, niet betaald door de daders" }
     ],
     quote: "Onze rechtsstaat heeft tijdens deze affaire op verschillende fronten gefaald. Belastingdienst, kabinet, parlement, rechterlijke macht en media hebben allemaal ouders aan hun lot overgelaten.",
     quoteSource: "Parlementaire Ondervragings­commissie 'Ongekend onrecht', december 2020"
@@ -1018,7 +1046,7 @@ const DATA = {
      ==================================================================== */
   voedselbanken: {
     label: "Aantal klanten Voedselbanken Nederland (× 1.000)",
-    source: "Voedselbanken Nederland — Jaarverslag",
+    source: "Voedselbanken Nederland, Jaarverslag",
     sourceUrl: "https://www.voedselbankennederland.nl",
     years: [2008, 2012, 2015, 2018, 2020, 2022, 2023, 2024],
     values: [50, 80, 125, 132, 159, 200, 230, 270]
@@ -1028,62 +1056,62 @@ const DATA = {
     label: "De armoede die de officiële statistiek niet ziet",
     source: "SCP 'Armoede in Kaart' 2023; Kinderombudsman 2024; CBS Lage inkomens",
     facts: [
-      { stat: "8%", label: "van álle werkenden leeft onder de armoede­grens — 'werkende armen'" },
-      { stat: "220.000", label: "kinderen groeit op in armoede — 1 op 12 onder de 18" },
-      { stat: "1,2 mln", label: "Nederlanders zit in problematische schuldsituatie — 1 op 14" },
-      { stat: "270.000", label: "voedselbank-klanten in 2024 — verzes­voudigd in 16 jaar" },
-      { stat: "+460%", label: "groei energie­banken sinds oprichting (2022) — bestonden voorheen niet" }
+      { stat: "8%", label: "van álle werkenden leeft onder de armoede­grens, 'werkende armen'" },
+      { stat: "220.000", label: "kinderen groeit op in armoede, 1 op 12 onder de 18" },
+      { stat: "1,2 mln", label: "Nederlanders zit in problematische schuldsituatie, 1 op 14" },
+      { stat: "270.000", label: "voedselbank-klanten in 2024, verzes­voudigd in 16 jaar" },
+      { stat: "+460%", label: "groei energie­banken sinds oprichting (2022), bestonden voorheen niet" }
     ]
   },
 
   /* ====================================================================
-     11h. STIKSTOFCRISIS — beleid op EU-bevel
+     11h. STIKSTOFCRISIS, beleid op EU-bevel
      ==================================================================== */
   stikstofCrisis: {
-    label: "Stikstofcrisis — Brussel beslist, boeren onteigend, bouw geblokkeerd",
+    label: "Stikstofcrisis, Brussel beslist, boeren onteigend, bouw geblokkeerd",
     source: "Raad van State 2019 PAS-uitspraak; Min. LNV; LEI-WUR; ABF Research",
     sourceUrl: "https://www.raadvanstate.nl",
     facts: [
-      { stat: "2019", label: "Raad van State verklaart PAS-stelsel ongeldig — op grond van EU-Habitatrichtlijn" },
-      { stat: "18.000", label: "vergunningen direct geblokkeerd — bouwprojecten, infrastructuur, agrarische uitbreiding" },
+      { stat: "2019", label: "Raad van State verklaart PAS-stelsel ongeldig, op grond van EU-Habitatrichtlijn" },
+      { stat: "18.000", label: "vergunningen direct geblokkeerd, bouwprojecten, infrastructuur, agrarische uitbreiding" },
       { stat: "11.200", label: "boeren­bedrijven die de overheid tussen 2024-2030 wil 'uitkopen' of beperken (programma NPLG)" },
-      { stat: "€24,3 mrd", label: "transitiefonds — door overheid gereserveerd voor uitkopen + boerenleed" },
-      { stat: "−30%", label: "minder vee­dieren als doel — opgelegd via EU Habitat­richtlijn" },
-      { stat: "Kabinet Rutte IV", label: "viel in 2023 mede op stikstof + asiel — twee EU-aangejaagde dossiers tegelijk" }
+      { stat: "€24,3 mrd", label: "transitiefonds, door overheid gereserveerd voor uitkopen + boerenleed" },
+      { stat: "−30%", label: "minder vee­dieren als doel, opgelegd via EU Habitat­richtlijn" },
+      { stat: "Kabinet Rutte IV", label: "viel in 2023 mede op stikstof + asiel, twee EU-aangejaagde dossiers tegelijk" }
     ]
   },
 
   /* ====================================================================
-     11i. DEFENSIE LEEG — narcostaat
+     11i. DEFENSIE LEEG, narcostaat
      ==================================================================== */
   defensieNarco: {
     label: "Het leger is leeg. De staat kan zichzelf niet beschermen.",
     source: "Min. Defensie Jaarverslag 2023; NAVO Defense Expenditure Report; Direzione Nazionale Antimafia (Italië) jaarrapport 2022; Erasmus Universiteit drugscriminaliteit­onderzoek",
     facts: [
-      { stat: "1,7%", label: "NL defensie­uitgaven als % BBP — NAVO-norm is 2%. Pas in 2024 begint NL toe te werken naar de norm" },
-      { stat: "9.000", label: "openstaande militaire vacatures — Landmacht alleen al 25% onder­bezetting" },
-      { stat: "0", label: "operationele Patriot-systemen na donaties aan Oekraïne — NL kan geen lucht­oorlog meer voeren" },
-      { stat: "'narcostaat'", label: "term gebruikt door Italiaanse anti-maffia-aanklagers voor Nederland — niet door rechts-NL maar door Italiaanse magistraten" },
-      { stat: "60 ton", label: "cocaïne onderschept Rotterdam 2023 — slechts ~10% van werkelijke instroom volgens Erasmus-onderzoek" },
-      { stat: "2019/2021", label: "moorden op advocaat Wiersum + journalist De Vries — de staat kon zijn eigen rechts­hulpverleners niet beschermen" }
+      { stat: "1,7%", label: "NL defensie­uitgaven als % BBP, NAVO-norm is 2%. Pas in 2024 begint NL toe te werken naar de norm" },
+      { stat: "9.000", label: "openstaande militaire vacatures, Landmacht alleen al 25% onder­bezetting" },
+      { stat: "0", label: "operationele Patriot-systemen na donaties aan Oekraïne, NL kan geen lucht­oorlog meer voeren" },
+      { stat: "'narcostaat'", label: "term gebruikt door Italiaanse anti-maffia-aanklagers voor Nederland, niet door rechts-NL maar door Italiaanse magistraten" },
+      { stat: "60 ton", label: "cocaïne onderschept Rotterdam 2023, slechts ~10% van werkelijke instroom volgens Erasmus-onderzoek" },
+      { stat: "2019/2021", label: "moorden op advocaat Wiersum + journalist De Vries, de staat kon zijn eigen rechts­hulpverleners niet beschermen" }
     ]
   },
 
   /* ====================================================================
-     12. DE TEKENEN VAN VERVAL — klassieke kenmerken late-fase rijk
+     12. DE TEKENEN VAN VERVAL, klassieke kenmerken late-fase rijk
      ==================================================================== */
   vervalCheck: {
-    label: "Klassieke verval­tekenen — hoe een rijk eraan gaat",
-    source: "Samengesteld uit CBS, SCP, OESO, DNB, IND, ATR, WODC — historische verval-patronen geëxtraheerd uit imperia­literatuur (Romeinen, Brits Rijk, USSR)",
+    label: "Klassieke verval­tekenen, hoe een rijk eraan gaat",
+    source: "Samengesteld uit CBS, SCP, OESO, DNB, IND, ATR, WODC, historische verval-patronen geëxtraheerd uit imperia­literatuur (Romeinen, Brits Rijk, USSR)",
     sourceUrl: "https://www.cbs.nl",
     indicators: [
       { ind: "Onderwijs in verval", nl: "PISA leesscore −54 punten sinds 2003", status: "ja" },
       { ind: "Innovatie­voordeel weg", nl: "R&D-uitgaven gestagneerd; ASML-uitvoer onder geopolitieke druk", status: "ja" },
       { ind: "Hoge schuld + geld bijdrukken", nl: "M3-eurozone ×11 sinds 1980; NL overheidsschuld €475 mld", status: "ja" },
       { ind: "Interne polarisatie", nl: "Boerenprotest, BBB-doorbraak, klimaatprotesten, A12-blokkade", status: "ja" },
-      { ind: "Vermogens­kloof groeit", nl: "Top 10% bezit 65% van het vermogen — top 1% bezit ~29%", status: "ja" },
+      { ind: "Vermogens­kloof groeit", nl: "Top 10% bezit 65% van het vermogen, top 1% bezit ~29%", status: "ja" },
       { ind: "Waardenkloof groeit", nl: "Polarisatie-index SCP +47% sinds 2012", status: "ja" },
-      { ind: "Werkethos zwakt af", nl: "Deeltijdland — gem. werkweek 30 u; productiviteit per gewerkt uur gestagneerd", status: "ja" },
+      { ind: "Werkethos zwakt af", nl: "Deeltijdland, gem. werkweek 30 u; productiviteit per gewerkt uur gestagneerd", status: "ja" },
       { ind: "Reservevaluta verzwakt", nl: "Euro-aandeel in mondiale reserves daalt; renminbi-handel groeit", status: "ja" },
       { ind: "Orde handhaven faalt", nl: "Drugscriminaliteit explosief; advocaten en journalisten vermoord", status: "ja" },
       { ind: "Bureaucratie explodeert", nl: "21.900 regels, 16 dagen administratie per ondernemer/jaar", status: "ja" },
@@ -1093,7 +1121,7 @@ const DATA = {
       { ind: "Externe shocks niet kunnen absorberen", nl: "Gaszekerheid weg, energiecrisis 2022, stikstofcrisis ongelost", status: "ja" },
       { ind: "Cohesie nationaal identiteit erodeert", nl: "26.6% migratie­achtergrond, integratie-indicatoren dalen", status: "ja" },
       { ind: "Militaire kracht", nl: "Defensie­budget 1.7% BBP (NAVO-norm 2%); leger leeg", status: "deels" },
-      { ind: "Productieve sector krimpt", nl: "Maakindustrie nu 12% BBP — was 22% in 1980", status: "ja" },
+      { ind: "Productieve sector krimpt", nl: "Maakindustrie nu 12% BBP, was 22% in 1980", status: "ja" },
       { ind: "Klasse-conflict / werkenden vs uitkering", nl: "Toeslagencarroussel; modale werker betaalt 50%+ marginaal", status: "ja" }
     ]
   }
