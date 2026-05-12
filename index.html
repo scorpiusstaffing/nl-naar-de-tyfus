@@ -43,6 +43,7 @@
         <a href="#ontkoppeling">02 Ontkoppeling</a>
         <a href="#wonen">03 Wonen</a>
         <a href="#zorg">09 Verbroken beloftes</a>
+        <a href="#demografie">02c Demografie</a>
         <a href="#regels">12 Regeldruk</a>
         <a href="#armoede">17 Armoede</a>
       </div>
@@ -345,9 +346,68 @@
 </section>
 
 <!-- =====================================================
+     DEMOGRAFIE — HET ECHTE GROTE VERHAAL
+     ===================================================== -->
+<section id="demografie" class="chapter alt">
+  <div class="container">
+    <div class="chapter-head wide">
+      <p class="kicker">02c, Demografie</p>
+      <h2 class="h2">Het echte grote verhaal, <br>dat <span class="hl">geen politicus</span> rechtstreeks vertelt.</h2>
+      <p class="lede" id="demografieIntro"></p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Aandeel Nederlanders ouder dan 65 (% van bevolking)</h3>
+        <div class="chart-wrap"><canvas id="chartAandeel65"></canvas></div>
+        <p class="src">Bron: CBS Statline Bevolking naar leeftijd; PRIMOS-prognose 2024 (middenscenario); Eurostat EUROPOP2023. Stippellijn vanaf 2024 is prognose. In 2050 is bijna drie op de tien Nederlanders ouder dan 65.</p>
+      </div>
+      <div class="card">
+        <h3>Werkende leeftijden (20-64) per persoon van 65+ (Potential Support Ratio)</h3>
+        <div class="chart-wrap"><canvas id="chartPSR"></canvas></div>
+        <p class="src">Bron: CBS, NIDI, UN World Population Prospects 2022. Met huidig migratiesaldo (rode lijn) zakt de PSR naar 2,0 in 2050. Zonder migratie naar 1,7 (oranje stippellijn). Een PSR onder 2 wordt internationaal als kritiek beschouwd voor het instandhouden van pensioen- en zorgstelsels.</p>
+      </div>
+    </div>
+
+    <div class="chapter-head" style="margin-top: 64px;">
+      <h3 style="font-family: var(--serif); font-weight: 700; font-size: 28px; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.015em;">Het VN-rapport dat in plain sight ligt.</h3>
+      <p class="lede">
+        In maart 2000 publiceerde de Population Division van de Verenigde Naties het rapport "Replacement Migration: Is It a Solution to Declining and Ageing Populations?". Het onderzocht acht landen en twee regio's, waaronder de EU-15 waarvan Nederland deel uitmaakte. De conclusie was zo politiek explosief dat het rapport in het brede Nederlandse debat vrijwel nooit wordt geciteerd, ook al staat het al een kwart eeuw vrij toegankelijk op de VN-website. Hieronder de kerncijfers voor de EU-15, en de doorvertaling naar Nederland anno 2025.
+      </p>
+    </div>
+
+    <div class="vn-facts" id="vnFacts"></div>
+
+    <div class="card wide" style="margin-top: 32px;">
+      <h3>Drie scenario's voor Nederland tot 2050, hoeveel netto migratie is er per jaar nodig?</h3>
+      <div class="scenarios-stack" id="nlScenariosStack"></div>
+      <p class="src">Bron: NIDI 'Verkenning bevolking 2050' (2024); CBS PRIMOS Bevolkingsprognose 2024-2070; eigen berekening op basis van VN-methodologie toegepast op CBS-uitgangscijfers 2024. Het huidig netto migratiesaldo schommelt rond +80.000 tot +140.000 per jaar, dus tussen scenario A en B.</p>
+    </div>
+
+    <div class="callout dark">
+      <div class="callout-num callout-num-text">het rookgordijn</div>
+      <div>
+        <h4>Migratie wordt verkocht als cultureel of humanitair dossier. Het is in werkelijkheid de stille reddingsboei van de verzorgingsstaat.</h4>
+        <p>Wie de cijfers naast elkaar legt, ziet de logica: zonder substantiële migratie zakt de Potential Support Ratio onder 2, kan het pensioen- en zorgstelsel niet meer worden gefinancierd zoals afgesproken, moeten AOW-leeftijden verder omhoog, of moet de belasting op werkenden zwaar stijgen. De gemakkelijkste politieke uitweg is migratie, en dáár wordt al twintig jaar op gestuurd. Maar het is een uitweg waar geen kabinet expliciet over wil praten, want het is moeilijk uit te leggen waarom je 80.000 tot 140.000 mensen per jaar moet importeren om je AOW veilig te stellen, in een land waar tegelijk een woningtekort van 415.000, oplopende stikstof­problemen en groeiende sociale onrust bestaan. Daarom heet het in het publieke debat altijd anders: humanitair, economisch, cultureel verrijkend. De VN-getallen vertellen wat het in werkelijkheid is: een demografische compensatie­operatie.</p>
+      </div>
+    </div>
+
+    <div class="callout dark">
+      <div class="callout-num callout-num-text">de implicaties</div>
+      <div>
+        <h4>Wat dit beleid betekent voor de samenleving, becijferd in concrete druk op vier fronten.</h4>
+        <p>
+          <strong>Wonen:</strong> 80.000 tot 140.000 extra inwoners per jaar betekent 35.000 tot 60.000 extra benodigde woningen per jaar, bovenop het bestaande tekort van 415.000. NL bouwde in 2024 ongeveer 70.000 woningen, dus ruim de helft van alle nieuwbouw gaat naar instroom in plaats van naar wegwerken achterstand. <strong>Ruimte:</strong> Nederland is met 521 inwoners per km² al het dichtstbevolkte vergelijkbare land in Europa. Bij scenario B (stabiele beroepsbevolking) groeit dat tot ca. 600/km² in 2050, vergelijkbaar met Singapore. <strong>Integratie:</strong> de huidige instroom haalt internationaal gemeten matig in op arbeidsmarkt­participatie en taalvaardigheid, met effecten op verzorgingsstaat-saldo en sociale cohesie die elders in dit rapport zijn gedocumenteerd. <strong>Cultureel:</strong> bij de huidige TFR-verhouding (autochtoon 1,38, gemiddelde islamitische achtergrond 2,3) verschuift de bevolking­samenstelling structureel, ook zonder verdere migratie. <strong>De som:</strong> dit beleid is dus geen kortetermijn­fix, het is een richting waarvan de optelsom over 25 jaar een wezenlijk ander Nederland oplevert. Of dat goed of slecht is, is een politieke vraag. Of de cijfers helder communicatief in beeld worden gebracht, is dat ook. Het antwoord daarop is in vrijwel elk regeerakkoord van de afgelopen 25 jaar: nee.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
      WONEN
      ===================================================== -->
-<section id="wonen" class="chapter alt">
+<section id="wonen" class="chapter">
   <div class="container">
     <div class="chapter-head">
       <p class="kicker">03, Wonen</p>

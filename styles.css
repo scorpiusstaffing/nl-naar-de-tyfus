@@ -894,6 +894,56 @@ ul { list-style: none; }
 .ce-bad  { color: var(--accent); }
 .ce-sub { font-size: 11px; color: var(--ink-3); line-height: 1.45; }
 
+/* ---------------------------- SCENARIOS (Demografie) -------------------- */
+.scenarios-stack { display: grid; gap: 14px; margin: 24px 0 8px; }
+.scenario-row {
+  display: grid;
+  grid-template-columns: 54px 1fr 180px;
+  grid-template-areas:
+    "letter doel    nodig"
+    "letter comm    comm";
+  gap: 16px 22px;
+  padding: 22px 24px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent-3);
+  border-radius: 10px;
+  align-items: baseline;
+}
+.scenario-row.scenario-a { border-left-color: var(--accent-3); }
+.scenario-row.scenario-b { border-left-color: var(--accent-2); }
+.scenario-row.scenario-c { border-left-color: var(--accent); }
+.scenario-letter {
+  grid-area: letter;
+  font-family: var(--serif); font-weight: 800; font-size: 38px;
+  color: var(--accent); letter-spacing: -0.025em; line-height: 1;
+  opacity: .55;
+}
+.scenario-row.scenario-a .scenario-letter { color: var(--accent-3); }
+.scenario-row.scenario-b .scenario-letter { color: var(--accent-2); }
+.scenario-row.scenario-c .scenario-letter { color: var(--accent); opacity: .9; }
+.scenario-doel {
+  grid-area: doel;
+  font-family: var(--serif); font-weight: 700; font-size: 17px;
+  color: var(--ink); line-height: 1.35;
+}
+.scenario-nodig {
+  grid-area: nodig;
+  font-family: var(--serif); font-weight: 800; font-size: 22px;
+  color: var(--accent); text-align: right; letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+.scenario-row.scenario-a .scenario-nodig { color: var(--accent-3); }
+.scenario-row.scenario-b .scenario-nodig { color: var(--accent-2); }
+.scenario-comm {
+  grid-area: comm;
+  font-size: 13.5px; color: var(--ink-2); line-height: 1.55;
+}
+@media (max-width: 720px) {
+  .scenario-row { grid-template-columns: 44px 1fr; grid-template-areas: "letter doel" "letter nodig" "comm comm"; padding: 18px 20px; }
+  .scenario-nodig { text-align: left; }
+}
+
 /* ---------------------------- PENSIOEN GRID ----------------------------- */
 .pensioen-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
@@ -1012,12 +1062,12 @@ ul { list-style: none; }
 }
 
 /* ---------------------------- AFFAIR GRID — toeslagen/armoede/stikstof - */
-.affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid, .saldering-grid, .portiek-grid, .identiteit-grid {
+.affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid, .saldering-grid, .portiek-grid, .identiteit-grid, .vn-facts {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   margin: 48px 0;
 }
-@media (max-width: 880px) { .affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid, .saldering-grid, .portiek-grid, .identiteit-grid { grid-template-columns: 1fr 1fr; gap: 12px; } }
-@media (max-width: 560px) { .affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid, .saldering-grid, .portiek-grid, .identiteit-grid { grid-template-columns: 1fr; } }
+@media (max-width: 880px) { .affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid, .saldering-grid, .portiek-grid, .identiteit-grid, .vn-facts { grid-template-columns: 1fr 1fr; gap: 12px; } }
+@media (max-width: 560px) { .affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid, .saldering-grid, .portiek-grid, .identiteit-grid, .vn-facts { grid-template-columns: 1fr; } }
 
 .affair-card {
   padding: 28px 24px;

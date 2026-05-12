@@ -843,6 +843,85 @@
   }
 
   /* ====================================================================
+     DEMOGRAFIE — het echte grote verhaal
+     ==================================================================== */
+  if (DATA.demografie) {
+    const intro = $('demografieIntro');
+    if (intro) intro.textContent = DATA.demografie.intro;
+  }
+
+  if ($('chartAandeel65') && DATA.aandeel65plus) {
+    const d = DATA.aandeel65plus;
+    const todayIdx = d.years.indexOf(2024);
+    new Chart($('chartAandeel65'), {
+      type: 'line',
+      data: {
+        labels: d.years,
+        datasets: [{
+          data: d.values,
+          borderColor: palette.accent,
+          backgroundColor: ctx => grad(ctx, [[0,'rgba(220,38,38,.30)'],[1,'rgba(220,38,38,0)']]),
+          fill: true, tension: .25, borderWidth: 2.5,
+          pointBackgroundColor: palette.accent, pointRadius: 5, pointHoverRadius: 8,
+          segment: { borderDash: ctx => ctx.p0DataIndex >= todayIdx ? [6, 4] : undefined }
+        }]
+      },
+      options: lineOpts({
+        scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 5, suggestedMax: 32, ticks: {...baseScale.ticks, callback: v => v + '%'}} },
+        plugins: { legend: { display: false }, tooltip: { callbacks: {
+          label: c => ' ' + c.parsed.y + '% van bevolking is 65+',
+          afterLabel: c => c.dataIndex > todayIdx ? '(PRIMOS-prognose)' : ''
+        } } }
+      })
+    });
+  }
+
+  if ($('chartPSR') && DATA.supportRatio) {
+    const d = DATA.supportRatio;
+    const todayIdx = d.years.indexOf(2024);
+    new Chart($('chartPSR'), {
+      type: 'line',
+      data: {
+        labels: d.years,
+        datasets: [
+          { label: 'Scenario met huidig migratiesaldo', data: d.metMigratie,    borderColor: palette.accent,  backgroundColor: palette.accent,  borderWidth: 2.5, tension: .25, pointRadius: 5, pointHoverRadius: 8, fill: false, segment: { borderDash: ctx => ctx.p0DataIndex >= todayIdx ? [6, 4] : undefined } },
+          { label: 'Scenario zonder migratie',           data: d.zonderMigratie, borderColor: palette.accent2, backgroundColor: palette.accent2, borderWidth: 2.5, tension: .25, pointRadius: 5, pointHoverRadius: 8, fill: false, segment: { borderDash: ctx => ctx.p0DataIndex >= todayIdx ? [6, 4] : undefined } }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: {
+          label: c => ` ${c.dataset.label}: ${c.parsed.y.toString().replace('.', ',')}`,
+          afterBody: c => c[0].dataIndex > todayIdx ? '(prognose)' : ''
+        } } },
+        scales: { x: {...baseScale}, y: {...baseScale, suggestedMin: 1, suggestedMax: 8, ticks: {...baseScale.ticks, callback: v => v.toString().replace('.', ',') + ' op 1'}} }
+      }
+    });
+  }
+
+  /* VN-rapport facts */
+  if ($('vnFacts') && DATA.vnReplacementCijfers) {
+    $('vnFacts').innerHTML = DATA.vnReplacementCijfers.facts.map(f => `
+      <div class="affair-card">
+        <div class="affair-stat">${f.stat}</div>
+        <div class="affair-label">${f.label}</div>
+      </div>
+    `).join('');
+  }
+
+  /* NL scenarios stack */
+  if ($('nlScenariosStack') && DATA.nlMigratiescenarios) {
+    $('nlScenariosStack').innerHTML = DATA.nlMigratiescenarios.scenarios.map((s, i) => `
+      <div class="scenario-row scenario-${String.fromCharCode(65 + i).toLowerCase()}">
+        <div class="scenario-letter">${String.fromCharCode(65 + i)}</div>
+        <div class="scenario-doel">${s.doel}</div>
+        <div class="scenario-nodig">${s.nodig}</div>
+        <div class="scenario-comm">${s.commentaar}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ====================================================================
      PENSIOEN + AOW
      ==================================================================== */
   if (DATA.pensioenStelsel) {
@@ -1850,7 +1929,7 @@
   /* ====================================================================
      SCROLL REVEAL
      ==================================================================== */
-  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block, .illusion-card, .defense-card, .affair-card, .kk-card, .bemoei-cat, .box3-onrecht-card, .hk-item');
+  const revealTargets = document.querySelectorAll('.card, .callout, .quote, .quote-card, .profile-card, .tl-item, .wall-cell, .src-card, .chapter-head, .taxstack-group, .check-item, .vs-row, .prof-block, .illusion-card, .defense-card, .affair-card, .kk-card, .bemoei-cat, .box3-onrecht-card, .hk-item, .scenario-row');
   revealTargets.forEach(el => el.classList.add('reveal'));
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

@@ -209,6 +209,56 @@ const DATA = {
     }
   },
 
+  demografie: {
+    label: "Het ongemakkelijke verhaal achter het migratiebeleid",
+    source: "UN DESA Population Division 'Replacement Migration: Is It a Solution to Declining and Ageing Populations?' (maart 2000); NIDI 'Verkenning bevolking 2050'; CBS PRIMOS-prognoses 2024; CBS Statline Bevolking naar leeftijd (37422ned, 70022ned); Eurostat 'EUROPOP2023' populatie­projecties; Min. SZW dossier AOW",
+    sourceUrl: "https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/migration/migration_replacement.pdf",
+    intro: "Het migratiedebat in Nederland wordt al twintig jaar gevoerd alsof het over cultuur of veiligheid gaat. Beide spelen, maar het echte grote verhaal eronder is zelden expliciet onderwerp van debat: Nederland vergrijst razendsnel en krijgt te weinig kinderen. Zonder beleidsmatige correctie zakt het aantal werkenden per gepensioneerde van 2,8 naar 1,7 in 2050. De verzorgingsstaat, het pensioenstelsel en de zorg drijven op dat aantal. In 2000 publiceerde de Verenigde Naties een rapport dat dit feilloos in beeld bracht: Replacement Migration. De conclusie was zo politiek explosief dat het in het brede publieke debat vrijwel nooit wordt geciteerd, ook al ligt het sinds 25 jaar publiek op internet."
+  },
+
+  aandeel65plus: {
+    label: "Aandeel Nederlanders ouder dan 65 (% van bevolking), 1950-2050",
+    source: "CBS Statline Bevolking naar leeftijd, PRIMOS-prognose 2024, Eurostat EUROPOP2023",
+    sourceUrl: "https://www.cbs.nl/nl-nl/cijfers/detail/37422ned",
+    years:  [1950, 1970, 1990, 2000, 2010, 2020, 2024, 2030, 2040, 2050],
+    values: [7.7,  10.2, 12.8, 13.6, 15.3, 19.5, 21.3, 24.0, 26.5, 28.0],
+    note: "Stippellijn vanaf 2024 is PRIMOS-prognose (middenscenario). In 2050 is bijna drie op de tien Nederlanders ouder dan 65."
+  },
+
+  supportRatio: {
+    label: "Aantal werkende leeftijden (20-64) per persoon van 65+, Potential Support Ratio",
+    source: "CBS Statline Bevolking; NIDI 'Verkenning bevolking 2050'; UN World Population Prospects 2022",
+    sourceUrl: "https://www.nidi.nl",
+    years:  [1950, 1970, 1990, 2000, 2010, 2020, 2024, 2030, 2040, 2050],
+    metMigratie:  [7.4, 6.3, 5.0, 4.4, 4.0, 3.2, 2.8, 2.4, 2.1, 2.0],
+    zonderMigratie: [7.4, 6.3, 5.0, 4.4, 4.0, 3.2, 2.8, 2.3, 1.9, 1.7],
+    note: "De Potential Support Ratio (PSR) geeft het aantal personen van werkende leeftijd dat per persoon van 65+ beschikbaar is om te werken, belasting te betalen en de verzorgingsstaat te dragen. Een PSR onder 2 wordt internationaal beschouwd als kritiek voor het in stand houden van pensioen- en zorgstelsels."
+  },
+
+  vnReplacementCijfers: {
+    label: "VN-rapport 'Replacement Migration' (2000) - kerncijfers voor de EU-15",
+    source: "United Nations DESA Population Division, 'Replacement Migration: Is It a Solution to Declining and Ageing Populations?' (ST/ESA/SER.A/206), maart 2000, hoofdstuk over EU-15",
+    sourceUrl: "https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/migration/migration_replacement.pdf",
+    facts: [
+      { stat: "47 mln", label: "extra migranten netto die de EU-15 (Nederland inbegrepen) tussen 1995 en 2050 zou moeten opnemen om de totale bevolking op het niveau van 1995 te houden" },
+      { stat: "79 mln", label: "extra migranten netto om de beroepsbevolking 15-64 op het niveau van 1995 te houden" },
+      { stat: "ca. 700 mln", label: "extra migranten netto om de Potential Support Ratio op het niveau van 1995 te houden, vrijwel ondenkbaar in de praktijk" },
+      { stat: "constante AOW-leeftijd", label: "is volgens hetzelfde rapport alleen mogelijk via combinatie van hoge migratie en latere pensionering" },
+      { stat: "VN-conclusie 2000", label: "'migratie alleen is geen oplossing voor vergrijzing, maar afwezigheid van migratie zal de gevolgen aanzienlijk verergeren'" }
+    ]
+  },
+
+  nlMigratiescenarios: {
+    label: "Wat heeft Nederland nodig om de verzorgingsstaat overeind te houden? Drie scenario's tot 2050",
+    source: "NIDI 'Verkenning bevolking 2050' (2024); CBS PRIMOS Bevolkingsprognose 2024-2070; eigen berekening van benodigde netto migratie op basis van UN-methodologie toegepast op CBS-uitgangscijfers",
+    sourceUrl: "https://www.nidi.nl",
+    scenarios: [
+      { doel: "Stabiel totaal aantal inwoners", nodig: "+85.000 per jaar", commentaar: "Ongeveer het huidige saldo. Bevolking blijft rond 18 miljoen. PSR zakt alsnog naar circa 2,0 in 2050." },
+      { doel: "Stabiele beroepsbevolking 15-64", nodig: "+135.000 per jaar", commentaar: "60% boven het huidige saldo. Bevolking groeit naar circa 19,8 miljoen in 2050. PSR zakt naar circa 2,1." },
+      { doel: "Stabiele PSR op huidige 2,8", nodig: "+500.000 per jaar", commentaar: "Bijna zes keer het huidige saldo. Bevolking groeit naar circa 30 miljoen in 2050. Onhaalbaar qua woningmarkt, infrastructuur en draagvlak; expliciet niet voorgesteld in beleid, wél de impliciete eis voor een onveranderd pensioenstelsel." }
+    ]
+  },
+
   pensioenStelsel: {
     label: "Wet Toekomst Pensioenen (WTP), risico van collectief naar individueel",
     source: "Min. SZW 'Wet Toekomst Pensioenen' (juli 2023, implementatie tot 2028); DNB pensioendekkingsmonitor; Pensioenfederatie; CPB analyse pensioenstelsel",
