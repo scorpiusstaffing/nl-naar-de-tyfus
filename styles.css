@@ -626,6 +626,49 @@ ul { list-style: none; }
 /* ---------------------------- TEXT HELPERS ------------------------------- */
 .h2 .hl { color: var(--accent); }
 
+/* ---------------------------- WEERWOORD (institutionele kritiek) -------- */
+.weerwoord {
+  margin: 36px 0 0;
+  padding: 22px 26px;
+  background: rgba(255,255,255,.018);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--ink-4);
+  border-radius: 8px;
+}
+.weerwoord-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 14px;
+}
+.weerwoord-tag {
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 700;
+  padding: 4px 10px;
+  background: var(--bg-2);
+  border-radius: 999px;
+}
+.weerwoord-claim {
+  font-family: var(--serif); font-style: italic;
+  font-size: 16px; color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--line);
+}
+.weerwoord-reply-label {
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+  margin-bottom: 8px;
+}
+.weerwoord-reply {
+  font-size: 14px; color: var(--ink-2); line-height: 1.7;
+}
+.weerwoord-reply strong { color: var(--ink); font-weight: 600; }
+.weerwoord-reply em { font-style: italic; color: var(--ink); }
+.weerwoord-bron {
+  margin-top: 12px;
+  font-size: 11px; color: var(--ink-4); letter-spacing: .02em;
+}
+
 /* ---------------------------- TAX STACK ---------------------------------- */
 .taxstack {
   display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
