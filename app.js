@@ -569,7 +569,7 @@
   });
 
   /* ====================================================================
-     KOOPKRACHT 1999 vs 2026 — vergelijkingscards
+     KOOPKRACHT 1999 vs 2026, vergelijkingscards
      ==================================================================== */
   if (typeof DATA !== 'undefined' && DATA.koopkrachtVergelijking) {
     const introEl = $('koopkrachtIntro');
@@ -658,7 +658,7 @@
   }
 
   /* ====================================================================
-     BEMOEIZUCHT — gegroepeerde regels-lijst met bron per item
+     BEMOEIZUCHT, gegroepeerde regels-lijst met bron per item
      ==================================================================== */
   if ($('bemoeiGrid') && DATA.bemoeizucht) {
     $('bemoeiGrid').innerHTML = DATA.bemoeizucht.categorieen.map(cat => `
@@ -772,7 +772,7 @@
   });
 
   /* ====================================================================
-     BOX 3 — onrecht, facts, compound interest
+     BOX 3, onrecht, facts, compound interest
      ==================================================================== */
   if (DATA.box3Voorstel) {
     const intro = $('box3Intro');
@@ -859,7 +859,7 @@
   }
 
   /* ====================================================================
-     DEMOGRAFIE — het echte grote verhaal
+     DEMOGRAFIE, het echte grote verhaal
      ==================================================================== */
   if (DATA.demografie) {
     const intro = $('demografieIntro');
@@ -1012,7 +1012,7 @@
   }
 
   /* ====================================================================
-     IDENTITEIT — religieuze affiliatie (multi-line)
+     IDENTITEIT, religieuze affiliatie (multi-line)
      ==================================================================== */
   if ($('chartReligie')) new Chart($('chartReligie'), {
     type: 'line',
@@ -1893,7 +1893,7 @@
   revealTargets.forEach(el => io.observe(el));
 
   /* ====================================================================
-     NAV — dropdown-categorieën (desktop) + mobile hamburger
+     NAV, dropdown-categorieën (desktop) + mobile hamburger
      ==================================================================== */
   const navCats = document.querySelectorAll('.nav-cat');
   function closeAllCats(except) {

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NL NAAR DE TYFUS — STYLES
+   NL NAAR DE TYFUS, STYLES
    ========================================================================== */
 
 /* -------------------------------- RESET ---------------------------------- */
@@ -590,7 +590,7 @@ ul { list-style: none; }
 .src-card h4 { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
 .src-card ul { margin-bottom: 18px; }
 .src-card li { font-size: 13px; color: var(--ink-2); padding: 5px 0; line-height: 1.5; }
-.src-card li::before { content: '— '; color: var(--accent); margin-right: 4px; }
+.src-card li::before { content: '› '; color: var(--accent); margin-right: 4px; }
 .src-card a { font-size: 12px; color: var(--accent); letter-spacing: .04em; }
 .src-card a:hover { text-decoration: underline; }
 .disclaimer {
@@ -1077,7 +1077,7 @@ ul { list-style: none; }
   border-top: 1px solid var(--line-2);
 }
 
-/* ---------------------------- DEFENSE GRID — critici-weerlegging -------- */
+/* ---------------------------- DEFENSE GRID, critici-weerlegging --------- */
 .defense-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin: 48px 0; }
 
 .defense-card {
@@ -1146,7 +1146,7 @@ ul { list-style: none; }
   font-size: 11px; color: var(--ink-4); letter-spacing: .02em;
 }
 
-/* ---------------------------- AFFAIR GRID — toeslagen/armoede/stikstof - */
+/* ---------------------------- AFFAIR GRID, toeslagen/armoede/stikstof -- */
 .affair-grid, .armoede-grid, .stikstof-grid, .defensie-grid, .saldering-grid, .portiek-grid, .identiteit-grid, .vn-facts {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   margin: 48px 0;
