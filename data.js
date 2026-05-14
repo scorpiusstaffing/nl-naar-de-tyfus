@@ -179,10 +179,10 @@ const DATA = {
   },
 
   box3Voorstel: {
-    label: "Voorstel Box 3, 36% belasting op werkelijk rendement, inclusief ongerealiseerd rendement",
-    source: "Wetsvoorstel Wet werkelijk rendement Box 3, ingediend bij Tweede Kamer december 2024; Min. Financiën dossier 36 706; Hoge Raad Kerstarrest 2021; uitvoerings­toets Belastingdienst 2025; commentaar NOB, Bond voor Belastingbetalers, VEB, Eumedion",
+    label: "Wet werkelijk rendement Box 3, 36% belasting op werkelijk rendement, inclusief ongerealiseerd rendement",
+    source: "Wetsvoorstel Wet werkelijk rendement Box 3, Kamerstuk 36.748; Tweede Kamer aanvaard 12 februari 2026; Eerste Kamer behandeling lopend; Hoge Raad Kerstarrest 2021; uitvoerings­toets Belastingdienst 2025; commentaar NOB, Bond voor Belastingbetalers, VEB, Eumedion",
     sourceUrl: "https://www.rijksoverheid.nl/onderwerpen/box-3",
-    intro: "Onder het voorgestelde stelsel wordt de Nederlandse vermogensbelasting in Box 3 omgezet naar een heffing van 36% op het werkelijke rendement, inclusief óngerealiseerd rendement. Wie aandelen, beleggings­fondsen of verhuurd vastgoed bezit, betaalt jaarlijks belasting over de waarde­stijging, ook als hij niets verkocht heeft. Het wetsvoorstel is in december 2024 ingediend bij de Tweede Kamer. Beoogde invoer­datum was 1 januari 2025, vervolgens uitgesteld naar 2027, en gezien recente uitvoerings­problemen bij de Belastingdienst en de complexiteit van de waarderings­logica wordt 2028 inmiddels door diverse fiscaal­specialisten als realistischer genoemd. De systematiek zelf is in de wandelgang vrijwel uniek voor particulier vermogen wereldwijd, en sloopt het mechanisme dat lange­termijn vermogensopbouw mogelijk maakt: samengestelde rente.",
+    intro: "De Tweede Kamer aanvaardde op 12 februari 2026 het wetsvoorstel Wet werkelijk rendement Box 3 (Kamerstuk 36.748). Behandeling Eerste Kamer is lopend. Beoogde ingangsdatum: 1 januari 2028, na uitstel vanaf 1 januari 2027. Onder het nieuwe stelsel wordt de vermogensbelasting in Box 3 omgezet naar een heffing van 36% over het werkelijke rendement. De systematiek splitst twee soorten vermogen. Voor effecten, cryptovaluta en spaargeld geldt een vermogensaanwasbelasting: jaarlijks 36% over de waarde­ontwikkeling, óók over óngerealiseerde meerwaarde. Voor onroerend goed en aandelen in startende ondernemingen geldt een vermogens­winst­belasting: 36% alleen bij realisatie. De aanwas­variant is in deze vorm wereldwijd vrijwel uniek voor particulier vermogen, en sloopt het mechanisme dat lange­termijn vermogensopbouw mogelijk maakt: samengestelde rente.",
     onrechtvaardig: [
       { titel: "Papierwinst is geen winst", uitleg: "Wie een aandelenportefeuille bezit die in een jaar 8% stijgt, heeft géén euro op zijn rekening. Toch moet hij in december belasting betalen alsof hij die winst incasseerde. Als de koers in januari weer zakt, blijft de belastingschuld staan." },
       { titel: "Geen verrekening van verliesjaren (volledig)", uitleg: "Beleggen kent slechte jaren. Onder de voorgestelde wet kan een verlies niet onbeperkt worden teruggewenteld. Wie 2025 +30% maakt en 2026 -25%, betaalt eerst de heffing, en hoeft de tweede klap maar deels te verrekenen." },
@@ -190,12 +190,13 @@ const DATA = {
       { titel: "Wereldwijd vrijwel uniek", uitleg: "Geen enkele OESO-economie belast structureel ongerealiseerd rendement op particulier vermogen. Noorwegen probeerde het, met als zichtbaar gevolg een uittocht van vermogenden naar Zwitserland en Italië. Nederland kijkt daar niet naar." }
     ],
     facts: [
-      { stat: "36%", label: "tarief over werkelijk rendement (rente, dividend, huur, koers­winst)" },
-      { stat: "ongerealiseerd", label: "óók over waardestijging die nog niet is verzilverd, op aandelen, vastgoed en crypto" },
+      { stat: "36%", label: "tarief over werkelijk rendement (rente, dividend, huur, koerswinst)" },
+      { stat: "1 jan 2028", label: "beoogde ingangsdatum; Tweede Kamer aanvaardde wetsvoorstel 36.748 op 12 februari 2026, behandeling Eerste Kamer lopend" },
+      { stat: "ongerealiseerd", label: "vermogensaanwasbelasting voor effecten, crypto en spaargeld: jaarlijks 36% over waarde­ontwikkeling, óók als die niet is verzilverd" },
+      { stat: "alleen realisatie", label: "vermogenswinstbelasting voor onroerend goed en aandelen in startende ondernemingen: 36% pas bij verkoop" },
       { stat: "€57.000", label: "heffingsvrij vermogen per persoon (gehuwd: dubbel)" },
-      { stat: "2027 of later", label: "beoogde inwerkingtreding, het wetsvoorstel ligt sinds december 2024 in de Tweede Kamer, eerdere ambitie 2025 is al uitgesteld" },
-      { stat: "wereldwijd uniek", label: "geen enkel ander OESO-land belast structureel ongerealiseerd rendement op particulier vermogen" },
-      { stat: "€14.400", label: "voorbeeld: portefeuille €500.000 stijgt 8% zonder verkoop, u betaalt over €40.000 papier­winst" }
+      { stat: "wereldwijd vrijwel uniek", label: "vrijwel geen OESO-land belast structureel ongerealiseerd rendement op particulier vermogen, Noorwegen probeerde het en zag een uittocht naar Zwitserland en Italië" },
+      { stat: "€14.400", label: "voorbeeld: portefeuille €500.000 stijgt 8% zonder verkoop, u betaalt over €40.000 papierwinst" }
     ],
     compoundEffect: {
       label: "Compound interest gekortwiekt, €100.000 startkapitaal bij 7% jaarlijks rendement",
