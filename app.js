@@ -1337,54 +1337,6 @@
   });
 
   /* ====================================================================
-     VS STACK, internationale vergelijking (6 metrics × 6 landen)
-     ==================================================================== */
-  if ($('vsStack')) {
-    const vs = DATA.internationaleVergelijking.metrics;
-    const colors = [palette.accent, palette.ink4, palette.ink4, palette.ink4, palette.ink4, palette.ink4];
-    $('vsStack').innerHTML = vs.map((m, i) => `
-      <div class="vs-row">
-        <div class="vs-row-head">
-          <span class="vs-row-num">${String(i+1).padStart(2,'0')}</span>
-          <h4>${m.naam}</h4>
-        </div>
-        <div class="vs-row-chart">
-          <canvas id="vsChart${i}"></canvas>
-        </div>
-        <p class="vs-row-note">${m.nl_positie}</p>
-      </div>
-    `).join('');
-
-    // Render each comparison chart
-    vs.forEach((m, i) => {
-      const canvas = $('vsChart' + i);
-      if (!canvas) return;
-      new Chart(canvas, {
-        type: 'bar',
-        data: {
-          labels: m.landen,
-          datasets: [{
-            data: m.waarden,
-            backgroundColor: m.landen.map(l => l === 'Nederland' ? palette.accent : palette.ink4),
-            borderRadius: 4, maxBarThickness: 50
-          }]
-        },
-        options: {
-          indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: { callbacks: { label: c => ' ' + c.parsed.x.toLocaleString('nl-NL') } }
-          },
-          scales: {
-            x: {...baseScale, ticks: {...baseScale.ticks, padding: 6}},
-            y: {...baseScale, ticks: {...baseScale.ticks, padding: 10, font: {size: 12, weight: c => c.tick && c.tick.label === 'Nederland' ? '700' : '400'}}}
-          }
-        }
-      });
-    });
-  }
-
-  /* ====================================================================
      CHART 46, Voedselbanken
      ==================================================================== */
   if ($('chartVoedselbank')) new Chart($('chartVoedselbank'), {
@@ -1459,18 +1411,6 @@
      ==================================================================== */
   if ($('stikstofGrid')) {
     $('stikstofGrid').innerHTML = DATA.stikstofCrisis.facts.map(f => `
-      <div class="affair-card">
-        <div class="affair-stat">${f.stat}</div>
-        <div class="affair-label">${f.label}</div>
-      </div>
-    `).join('');
-  }
-
-  /* ====================================================================
-     DEFENSIE GRID
-     ==================================================================== */
-  if ($('defensieGrid')) {
-    $('defensieGrid').innerHTML = DATA.defensieNarco.facts.map(f => `
       <div class="affair-card">
         <div class="affair-stat">${f.stat}</div>
         <div class="affair-label">${f.label}</div>

@@ -1149,53 +1149,6 @@ const DATA = {
   },
 
   /* ====================================================================
-     11b. INTERNATIONALE VERGELIJKING, NL vs vergelijkbare landen
-     ==================================================================== */
-  internationaleVergelijking: {
-    label: "Nederland naast vijf andere westerse landen (drie binnen, twee buiten de EU), op zes metrics waarop het verschil pijnlijk zichtbaar is",
-    source: "Eurostat en World Bank (bevolkingsdichtheid); OESO Productivity Statistics 2024; TNO/CBS NEA, Eurofound, Mental Health Canada, Gallup Australia (burn-out); OESO PISA 2022; CPB Kansrijk belastingbeleid en OECD Taxing Wages 2024 (marginale druk); OECD Government at a Glance 2024 (vertrouwen)",
-    sourceUrl: "https://ec.europa.eu/eurostat",
-    metrics: [
-      {
-        naam: "Bevolkingsdichtheid (inwoners per km², 2024)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
-        waarden: [521, 233, 384, 220, 4, 3],
-        nl_positie: "Veruit het dichtstbevolkte land van de groep. Bijna 2,5 keer Duitsland, en het verschil met grote westerse niet-EU landen is exponentieel. Bij gelijkblijvende immigratie loopt dit door, en er is fysiek geen ruimte om eraan te ontkomen."
-      },
-      {
-        naam: "Arbeidsproductiviteit per gewerkt uur, cumulatieve groei sinds 2008 (%)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
-        waarden: [5, 14, 12, 18, 11, 13],
-        nl_positie: "Laagste productiviteitsgroei van de groep, drie keer onder Zwitserland en bijna drie keer onder Duitsland. Nederland's BBP-groei sinds 2008 komt vrijwel volledig uit bevolkingsgroei via migratie en uit méér gewerkte uren, niet uit innovatie of efficiëntie."
-      },
-      {
-        naam: "Burn-outklachten beroepsbevolking (%, 2023-2024)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
-        waarden: [20.6, 14.0, 12.0, 13.0, 17.0, 14.0],
-        nl_positie: "Hoogste burn-outpercentage van de groep, ruim anderhalf keer Duitsland en zo'n vijf procentpunt boven Canada (dat al hoog scoort). Eén op de vijf werkende Nederlanders heeft klachten."
-      },
-      {
-        naam: "PISA-leesvaardigheid 2022 (score)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
-        waarden: [459, 480, 479, 483, 507, 480],
-        nl_positie: "Laagste score van de groep. In 2003 scoorde Nederland nog ruim boven al deze landen, inclusief Canada. De daling van 54 punten is daarmee niet alleen absoluut groot, maar ook relatief de scherpste."
-      },
-      {
-        naam: "Effectieve marginale belastingdruk anderhalf maal modaal met kind (%, 2024)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
-        waarden: [87, 49, 65, 28, 45, 39],
-        nl_positie: "Nederland heeft de hoogste effectieve marginale druk van de groep, bijna twee keer Canada, drie keer Zwitserland. Van elke extra verdiende euro houdt een Nederlands gezin met kind 13 cent over, een Zwitsers gezin 72 cent. Werken loont structureel minder."
-      },
-      {
-        naam: "Vertrouwen in de eigen regering (% (heel) veel, 2024)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
-        waarden: [22, 52, 39, 78, 32, 38],
-        nl_positie: "Laagste van de groep, ruim onder Canada en Australië. Zwitserland scoort meer dan drie keer hoger, Duitsland meer dan twee keer. Het verschil met landen buiten de EU is even groot als met landen erbinnen."
-      }
-    ]
-  },
-
-  /* ====================================================================
      11c. WERKDRUK / ZORG / JONGEREN, de stille epidemie
      ==================================================================== */
   burnoutCijfers: {
@@ -1526,22 +1479,6 @@ const DATA = {
       { stat: "€24,3 mrd", label: "transitiefonds, door overheid gereserveerd voor uitkopen + boerenleed" },
       { stat: "−30%", label: "minder vee­dieren als doel, opgelegd via EU Habitat­richtlijn" },
       { stat: "Kabinet Rutte IV", label: "viel in 2023 mede op stikstof + asiel, twee EU-aangejaagde dossiers tegelijk" }
-    ]
-  },
-
-  /* ====================================================================
-     11i. DEFENSIE LEEG, narcostaat
-     ==================================================================== */
-  defensieNarco: {
-    label: "Een staat met één onderscheidende taak, aan beide kanten kwetsbaarder geworden.",
-    source: "Min. Defensie Jaarverslag 2024-2025; NAVO Defense Expenditure Report 2025; Defensienota 2024; Direzione Nazionale Antimafia (Italië) jaarrapport 2024; Erasmus Universiteit drugscriminaliteit­onderzoek",
-    facts: [
-      { stat: "1,7% → 2,0%", label: "Nederlandse defensie-uitgaven als % BBP, sinds 2024 fors omhoog naar NAVO-norm; akkoord Defensienota 2024 voegt €2,4 mrd structureel extra toe" },
-      { stat: "9.000+", label: "openstaande militaire vacatures eind 2024, ondanks wervings­campagnes en hogere salarissen; Landmacht zit op circa 75% van de doelsterkte" },
-      { stat: "2 → 4", label: "Patriot-batterijen: NL doneerde één compleet systeem en componenten aan Oekraïne (2022-2024) en heeft vier extra Patriots besteld via NAVO-procurement 2024; volledige operationele dekking wordt vóór 2030 niet hersteld" },
-      { stat: "'narcostaat'", label: "term gebruikt door Italiaanse anti-maffia-aanklagers (DNA jaarrapporten 2022-2024) voor Nederland, niet door rechts-NL maar door Italiaanse magistraten" },
-      { stat: "60 ton", label: "cocaïne onderschept Rotterdam 2024, volgens Erasmus-onderzoek slechts ongeveer 10% van werkelijke instroom" },
-      { stat: "2019/2021/2024", label: "moorden op advocaat Wiersum, journalist De Vries en een derde direct bij Marengo betrokkene in 2024; de staat kon zijn eigen rechts­hulp­verleners niet structureel beschermen" }
     ]
   },
 
