@@ -578,14 +578,19 @@
     // Rekenkader
     const kaderEl = $('rekenkader');
     if (kaderEl && DATA.koopkrachtVergelijking.rekenkader) {
+      const extraRows = (DATA.koopkrachtVergelijking.rekenkaderExtra || []).map((r, i) => i === 0
+        ? `<div class="rk-row rk-row-head" style="margin-top: 14px;"><div class="rk-cell rk-cell-label" style="font-size: 11px; color: var(--accent); text-transform: none; letter-spacing: .04em;">${r.label}</div><div class="rk-cell rk-cell-then">${r['1999']}</div><div class="rk-cell rk-cell-now">${r['2026']}</div></div>`
+        : `<div class="rk-row"><div class="rk-cell rk-cell-label">${r.label}</div><div class="rk-cell rk-cell-then">${r['1999']}</div><div class="rk-cell rk-cell-now">${r['2026']}</div></div>`
+      ).join('');
+
       kaderEl.innerHTML = `
         <div class="rk-head">
           <span class="rk-title">Rekenkader</span>
-          <span class="rk-sub">Hoe komen we van modaal jaarsalaris tot een maandbedrag?</span>
+          <span class="rk-sub">Hoe komen we van modaal jaarsalaris tot een maandbedrag, en wat er daarna nog van weggaat</span>
         </div>
         <div class="rk-table">
           <div class="rk-row rk-row-head">
-            <div class="rk-cell rk-cell-label"></div>
+            <div class="rk-cell rk-cell-label">Van bruto naar netto besteedbaar</div>
             <div class="rk-cell rk-cell-then">1999</div>
             <div class="rk-cell rk-cell-now">2026</div>
           </div>
@@ -596,8 +601,9 @@
               <div class="rk-cell rk-cell-now">${r['2026']}</div>
             </div>
           `).join('')}
+          ${extraRows}
         </div>
-        <p class="rk-note"><strong>Wat dit kader laat zien:</strong> wie alleen kijkt naar de loonheffing (rij 1), ziet relatief licht gedaalde percentages, namelijk van 30% naar 26% van het brutoloon. Dat is precies waar overheid en pers naar verwijzen als ze zeggen 'de belastingdruk daalt'. Wie áchter de loonstrook kijkt, ziet iets anders: BTW (van 17,5% naar 21%), energiebelasting (van nauwelijks bestaand naar 12,6 ct/kWh), accijnzen op brandstof en alcohol, lokale heffingen, en de ZVW-bijdrage die in 2006 werd ingevoerd en sindsdien verdrievoudigde. Bij elkaar opgeteld stijgt de totale fiscale druk op een modaal jaarsalaris van ruim 44% (1999) naar ruim 52% (2026). De koopkrachtberekening in de cards hieronder gebruikt het netto-na-loonheffing-bedrag, omdat producentprijzen de BTW al verrekend hebben. De daling die u daar ziet is dus de <em>ondergrens</em> van het totale effect. <br><br>Bronnen: CBS Statline Modaal jaarsalaris, Belastingdienst tariefoverzicht, OESO Taxing Wages 1999-2024, NIBUD belastingen-en-toeslagen, gemeentelijke heffingenmonitor COELO.</p>
+        <p class="rk-note"><strong>Wat dit kader laat zien.</strong> Het bovenste deel toont wat een modale werknemer overhoudt na alleen loonheffing (IB + premies volksverzekeringen): €1.458 per maand in 1999, €2.708 per maand in 2026. Dit is het bedrag dat hij vervolgens uitgeeft, en waar de koopkrachtberekening in de cards hieronder mee werkt. <strong>Maar dat is niet de hele rekening.</strong> Op de uitgaven die hij vervolgens doet, betaalt hij <em>opnieuw</em> belasting via BTW (van 17,5% naar 21%), energiebelasting (van nauwelijks bestaand naar 12,6 ct/kWh), accijnzen op brandstof, alcohol en tabak, ZVW-inkomensafhankelijke bijdrage, en lokale heffingen. Het onderste deel van het kader toont die extra heffingen als percentage van het brutoloon. <strong>Cumulatief stijgt de totale fiscale druk op een modaal salaris van 44,2% in 1999 naar 52,4% in 2026.</strong> De koopkrachtdaling in de productkaarten hieronder is dus de <em>ondergrens</em>: de prijzen daarin bevatten alleen BTW (die je al niet meer zelf merkt), de andere heffingen verbergen zich elders. <br><br>Bronnen: CBS Statline Modaal jaarsalaris, Belastingdienst tariefoverzicht 1999-2026, OESO Taxing Wages 2024, NIBUD koopkrachtmonitor, COELO gemeentelijke heffingenmonitor.</p>
       `;
     }
 
@@ -779,6 +785,16 @@
         <p>${o.uitleg}</p>
       </div>
     `).join('');
+
+    const exitEl = $('exitTaxOnrecht');
+    if (exitEl && DATA.exitTaxOnrecht) {
+      exitEl.innerHTML = DATA.exitTaxOnrecht.items.map(o => `
+        <div class="box3-onrecht-card">
+          <h4>${o.titel}</h4>
+          <p>${o.uitleg}</p>
+        </div>
+      `).join('');
+    }
 
     const factsEl = $('box3Facts');
     if (factsEl) factsEl.innerHTML = DATA.box3Voorstel.facts.map(f => `

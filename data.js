@@ -15,7 +15,7 @@ const DATA = {
     { value: "2,2 → 11,5", label: "aantal modale jaarsalarissen voor een gemiddelde koopwoning, 1971 naar 2024", source: "CBS Modaal jaarsalaris, Kadaster gemiddelde verkoopprijs" },
     { value: "28 → 36", label: "gemiddelde leeftijd waarop een Nederlander zijn eerste koopwoning verwerft (1995 naar 2024)", source: "Kadaster Starters­monitor, NVM kwartaalrapportages" },
     { value: "€600.000", label: "levenslange netto kosten van één gemiddelde niet-westerse asielmigrant", source: "WODC, J. van de Beek 2021" },
-    { value: "71%", label: "van wie Nederland verlaat is hier nooit geboren, kwam, faalde, vertrok", source: "CBS Emigratie naar geboorteland 2023" },
+    { value: "#6 → #34", label: "Nederlandse positie op de InterNations Expat-ranking, het oordeel van mensen die hier zelf zijn komen werken (2016-2023)", source: "InterNations Expat Insider, jaarlijkse meting" },
     { value: "1,38", label: "Nederlands geboortecijfer 2024, vervanging vergt 2,1, demografische crisis loopt", source: "CBS Vruchtbaarheid 37422ned" },
     { value: "49%", label: "Nederlanders dat zich (zeer) eenzaam voelt, sinds 2008 met veertien procentpunt gestegen", source: "RIVM Eenzaamheidsmonitor 2024" },
     { value: "€1.500 mrd", label: "pensioenvermogen dat door WTP wordt herverdeeld, beleggingsrisico naar individu", source: "DNB en Pensioenfederatie" },
@@ -59,25 +59,28 @@ const DATA = {
     voltijdsuren: 1700,
     rekenkader: [
       { label: "Modaal jaarsalaris brúto (CBS)",                          "1999": "€25.000", "2026": "€44.000" },
-      { label: "1. Loonheffing (IB + premies volksverz.)",                "1999": "€7.500",  "2026": "€11.500" },
-      { label: "2. ZVW inkomensafhankelijke bijdrage werknemer",          "1999": "€600",    "2026": "€2.340" },
-      { label: "3. BTW + accijnzen + energiebelasting op consumptie",     "1999": "€2.500",  "2026": "€7.500" },
-      { label: "4. Lokale en provinciale heffingen (OZB, MRB, water)",    "1999": "€450",    "2026": "€1.700" },
-      { label: "Totale belasting- en premiedruk modaal (1+2+3+4)",        "1999": "€11.050 (44,2%)", "2026": "€23.040 (52,4%)" },
+      { label: "Afdracht loonheffing (IB + premies volksverz.)",          "1999": "€7.500",  "2026": "€11.500" },
       { label: "Modaal jaarsalaris nétto besteedbaar (na loonheffing)",   "1999": "€17.500", "2026": "€32.500" },
       { label: "Modaal netto besteedbaar per maand",                      "1999": "€1.458",  "2026": "€2.708" }
     ],
+    rekenkaderExtra: [
+      { label: "Daarbovenop, als percentage van bruto, betaalt een modale werknemer ook nog", "1999": "1999", "2026": "2026" },
+      { label: "BTW + accijnzen + energiebelasting (verwerkt in de prijzen die je betaalt)",   "1999": "ca. 10%", "2026": "ca. 17%" },
+      { label: "ZVW inkomensafhankelijke bijdrage werknemer",                                  "1999": "ca. 2%",  "2026": "ca. 5%" },
+      { label: "Lokale en provinciale heffingen (OZB, MRB, waterschap)",                       "1999": "ca. 2%",  "2026": "ca. 4%" },
+      { label: "Cumulatieve fiscale druk op brutoloon, alles meegerekend",                     "1999": "44,2%",   "2026": "52,4%" }
+    ],
     producten: [
-      { naam: "Pakje shag (50 gram)",                                prijs1999: 2.50, prijs2026: 13.50, eenheid: "pakjes" },
-      { naam: "Pakje sigaretten (20 stuks)",                          prijs1999: 2.95, prijs2026: 11.00, eenheid: "pakjes" },
-      { naam: "Kop koffie buiten de deur",                            prijs1999: 1.25, prijs2026: 4.00, eenheid: "koppen" },
-      { naam: "Patatje friet bij de snackbar",                        prijs1999: 1.20, prijs2026: 3.50, eenheid: "patatjes" },
-      { naam: "Pakje roomboter (250 gram)",                            prijs1999: 1.20, prijs2026: 3.50, eenheid: "pakjes" },
-      { naam: "Heel volkorenbrood",                                    prijs1999: 1.20, prijs2026: 3.40, eenheid: "broden" },
-      { naam: "Pilsje in het café (30 cl)",                            prijs1999: 1.65, prijs2026: 4.50, eenheid: "biertjes" },
-      { naam: "Treinkaartje Amsterdam-Rotterdam (enkele reis, 2e kl.)", prijs1999: 8.30, prijs2026: 19.50, eenheid: "ritjes" },
-      { naam: "Big Mac",                                                prijs1999: 2.50, prijs2026: 5.50, eenheid: "Big Macs" },
-      { naam: "Pizza Margherita in restaurant",                         prijs1999: 7.00, prijs2026: 15.00, eenheid: "pizza's" }
+      { naam: "Kop koffie buiten de deur",                                prijs1999: 1.25, prijs2026: 4.00, eenheid: "koppen" },
+      { naam: "Pilsje in het café (30 cl)",                                prijs1999: 1.65, prijs2026: 4.50, eenheid: "biertjes" },
+      { naam: "Festivaldagticket (Lowlands/Pinkpop categorie)",            prijs1999: 35.00, prijs2026: 110.00, eenheid: "tickets" },
+      { naam: "Treinkaartje Amsterdam-Rotterdam (enkele reis, 2e kl.)",    prijs1999: 8.30, prijs2026: 19.50, eenheid: "ritjes" },
+      { naam: "Heel volkorenbrood",                                        prijs1999: 1.20, prijs2026: 3.40, eenheid: "broden" },
+      { naam: "Pakje roomboter (250 gram)",                                prijs1999: 1.20, prijs2026: 3.50, eenheid: "pakjes" },
+      { naam: "Patatje friet bij de snackbar",                             prijs1999: 1.20, prijs2026: 3.50, eenheid: "patatjes" },
+      { naam: "Pizza Margherita in restaurant",                            prijs1999: 7.00, prijs2026: 15.00, eenheid: "pizza's" },
+      { naam: "Pakje shag (50 gram)",                                      prijs1999: 2.50, prijs2026: 13.50, eenheid: "pakjes" },
+      { naam: "Big Mac",                                                    prijs1999: 2.50, prijs2026: 5.50, eenheid: "Big Macs" }
     ]
   },
 
@@ -256,6 +259,17 @@ const DATA = {
       { doel: "Stabiel totaal aantal inwoners", nodig: "+85.000 per jaar", commentaar: "Ongeveer het huidige saldo. Bevolking blijft rond 18 miljoen. PSR zakt alsnog naar circa 2,0 in 2050." },
       { doel: "Stabiele beroepsbevolking 15-64", nodig: "+135.000 per jaar", commentaar: "60% boven het huidige saldo. Bevolking groeit naar circa 19,8 miljoen in 2050. PSR zakt naar circa 2,1." },
       { doel: "Stabiele PSR op huidige 2,8", nodig: "+500.000 per jaar", commentaar: "Bijna zes keer het huidige saldo. Bevolking groeit naar circa 30 miljoen in 2050. Onhaalbaar qua woningmarkt, infrastructuur en draagvlak; expliciet niet voorgesteld in beleid, wél de impliciete eis voor een onveranderd pensioenstelsel." }
+    ]
+  },
+
+  exitTaxOnrecht: {
+    label: "De voorgenomen exit-tax, ontleed",
+    source: "Wetsvoorstel Wijziging Wet IB 2001 inzake exit-heffing aanmerkelijk belang (2024); Ministerie van Financiën; Hof van Justitie EU jurisprudentie",
+    items: [
+      { titel: "Wat de exit-tax doet", uitleg: "Bij emigratie van een DGA of grootaandeelhouder wordt Box 2-belasting van 24,5% tot 33% onmiddellijk geheven over de niet-gerealiseerde meerwaarde van zijn aandelen, alsof hij ze op het moment van vertrek had verkocht. Geen verkoop, wel een rekening." },
+      { titel: "Wie wordt geraakt", uitleg: "Vooral ondernemers, MKB-eigenaren en familie­bedrijfs­opvolgers. Niet de superrijken (die al lang met holdingstructuren in andere jurisdicties zitten), wel de werkende ondernemer die zijn zaak in Nederland heeft opgebouwd." },
+      { titel: "Wat het juridisch betwistbaar maakt", uitleg: "Het Hof van Justitie EU oordeelde in 'De Lasteyrie du Saillant' (C-9/02, 2004) dat een onmiddellijke exit-heffing zonder uitstel in strijd is met de EU-vrijheid van vestiging. NL probeert hieromheen te werken via een conserverende aanslag met latere invordering, maar de juridische marges zijn smal." },
+      { titel: "Het signaal dat het afgeeft", uitleg: "Een staat die zijn productieve burgers eerst onaantrekkelijk behandelt (Box 3, marginale druk, regeldruk) en vervolgens probeert te beletten dat ze vertrekken, geeft toe dat hij hen niet langer overtuigend kan vasthouden. De exit-tax is geen instrument van kracht, het is een grendel op de deur waar mensen nog steeds doorheen willen." }
     ]
   },
 
@@ -474,8 +488,7 @@ const DATA = {
 
   vertrekkersProfielen: {
     label: "Vijf groepen die Nederland verlaten, wie zij zijn, waarom ze gaan",
-    source: "CBS Cohortonderzoek migratie; NUFFIC 'Stay Rate'; ROA Maastricht; ABU/NBBU; InterNations Expat Insider 2016-2023; SCP/NIDI emigratie-onderzoek",
-    sourceUrl: "https://www.nuffic.nl",
+    source: "CBS Cohortonderzoek migratie; NUFFIC 'Stay Rate'; ROA Maastricht; ABU/NBBU; InterNations Expat Insider 2016-2023; SCP/NIDI emigratie-onderzoek. De geciteerde quotes in dit hoofdstuk zijn illustratieve samenvattingen van type-getuigenissen uit deze openbare enquêtes en panel-rapportages, niet letterlijk geciteerde individuele respondenten. Ze zijn gebruikt om de aard van de respons-categorieën invoelbaar te maken; de onderliggende patronen zijn statistisch gefundeerd.",
     profielen: [
       {
         groep: "Hoogopgeleide Nederlander",
@@ -604,7 +617,7 @@ const DATA = {
     label: "Nederlandse hoofdkantoren die vertrokken of vertrek overwogen, 2018 tot 2026",
     source: "AFM register, AEX-mutaties, Het Financieele Dagblad, NRC, persberichten betrokken bedrijven, KPMG 'Hoofdkantoren­monitor'",
     sourceUrl: "https://www.afm.nl",
-    intro: "Hoofdkantoren zijn de hoogwaardige werkgelegenheid van een economie: directies, juristen, fiscalisten, R&D-strategie. Het zijn precies de banen die een land het meest zou willen behouden. Sinds 2018 verloor Nederland in hoog tempo zijn topbedrijven aan Londen, Zürich en Frankfurt. Vrijwel telkens noemden de betrokkenen één combinatie van oorzaken: dividendbelasting, ondernemers­klimaat, politieke onvoorspelbaarheid en hogere fiscale druk dan in vergelijkbare landen.",
+    intro: "Hoofdkantoren leveren niet de grootste hoeveelheid werkgelegenheid van een economie, maar wel de meest hoogwaardige cluster aan functies: directies, juristen, fiscalisten, R&D-strategie, internationale corporate finance. Een hoofdkantoor van een groot beursfonds heeft typisch 500 tot 5.000 medewerkers, maar het clustert er omheen de hoogste belastinginkomsten per werker, de R&D-uitgaven, de geldstromen en de zichtbaarheid van een economie in internationale netwerken. Het zijn precies de banen en geldstromen die een land het meest zou willen behouden. Sinds 2018 verloor Nederland in hoog tempo zijn topbedrijven aan Londen, Zürich en Frankfurt. Vrijwel telkens noemden de betrokkenen één combinatie van oorzaken: dividendbelasting, ondernemers­klimaat, politieke onvoorspelbaarheid en hogere fiscale druk dan in vergelijkbare landen.",
     items: [
       { jaar: 2020, bedrijf: "Unilever",          uitkomst: "Hoofdkantoor naar Londen, na fusiediscussie en dividendbelasting-debacle" },
       { jaar: 2021, bedrijf: "Shell",             uitkomst: "Hoofdkantoor Den Haag naar Londen, naamswijziging Royal Dutch Shell naar Shell plc" },
@@ -1139,45 +1152,45 @@ const DATA = {
      11b. INTERNATIONALE VERGELIJKING, NL vs vergelijkbare landen
      ==================================================================== */
   internationaleVergelijking: {
-    label: "Nederland naast vijf vergelijkbare West-Europese landen, op zes metrics waarop het verschil pijnlijk zichtbaar is",
-    source: "Eurostat (bevolkingsdichtheid, woningprijs-inkomen-ratio); TNO/CBS NEA en Eurofound (burn-out); OESO PISA 2022; CPB Kansrijk belastingbeleid en OECD Taxing Wages 2023 (marginale druk); OECD Government at a Glance (vertrouwen)",
+    label: "Nederland naast vijf andere westerse landen (drie binnen, twee buiten de EU), op zes metrics waarop het verschil pijnlijk zichtbaar is",
+    source: "Eurostat en World Bank (bevolkingsdichtheid); OESO Productivity Statistics 2024; TNO/CBS NEA, Eurofound, Mental Health Canada, Gallup Australia (burn-out); OESO PISA 2022; CPB Kansrijk belastingbeleid en OECD Taxing Wages 2024 (marginale druk); OECD Government at a Glance 2024 (vertrouwen)",
     sourceUrl: "https://ec.europa.eu/eurostat",
     metrics: [
       {
-        naam: "Bevolkingsdichtheid (inwoners per km², 2023)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
-        waarden: [521, 233, 384, 220, 76, 112],
-        nl_positie: "Veruit het dichtstbevolkte land van de groep. Bijna 2,5 keer Duitsland, bijna 7 keer Ierland. Bij gelijkblijvende immigratie loopt dit door."
+        naam: "Bevolkingsdichtheid (inwoners per km², 2024)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
+        waarden: [521, 233, 384, 220, 4, 3],
+        nl_positie: "Veruit het dichtstbevolkte land van de groep. Bijna 2,5 keer Duitsland, en het verschil met grote westerse niet-EU landen is exponentieel. Bij gelijkblijvende immigratie loopt dit door, en er is fysiek geen ruimte om eraan te ontkomen."
       },
       {
-        naam: "Huizenprijs gedeeld door mediaan jaarinkomen (centrum stad, 2024)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
-        waarden: [11.8, 9.4, 8.1, 14.2, 10.6, 13.5],
-        nl_positie: "Een Nederlandse koper geeft bijna twaalf jaarsalarissen uit voor een stedelijk huis. Alleen Zwitserland en Portugal zitten hoger, beide met aantoonbaar hogere mediaaninkomens of een zonklimaat als compensatie."
+        naam: "Arbeidsproductiviteit per gewerkt uur, cumulatieve groei sinds 2008 (%)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
+        waarden: [5, 14, 12, 18, 11, 13],
+        nl_positie: "Laagste productiviteitsgroei van de groep, drie keer onder Zwitserland en bijna drie keer onder Duitsland. Nederland's BBP-groei sinds 2008 komt vrijwel volledig uit bevolkingsgroei via migratie en uit méér gewerkte uren, niet uit innovatie of efficiëntie."
       },
       {
-        naam: "Burn-outklachten beroepsbevolking (%, 2023)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
-        waarden: [20.6, 14.0, 12.0, 13.0, 11.0, 9.0],
-        nl_positie: "Hoogste burn-outpercentage van de groep, ruim anderhalf keer Duitsland en meer dan twee keer Portugal. Eén op de vijf werkende Nederlanders heeft klachten."
+        naam: "Burn-outklachten beroepsbevolking (%, 2023-2024)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
+        waarden: [20.6, 14.0, 12.0, 13.0, 17.0, 14.0],
+        nl_positie: "Hoogste burn-outpercentage van de groep, ruim anderhalf keer Duitsland en zo'n vijf procentpunt boven Canada (dat al hoog scoort). Eén op de vijf werkende Nederlanders heeft klachten."
       },
       {
         naam: "PISA-leesvaardigheid 2022 (score)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
-        waarden: [459, 480, 479, 483, 516, 477],
-        nl_positie: "Laagste score van de groep. In 2003 scoorde Nederland nog ruim boven alle hier vergeleken landen."
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
+        waarden: [459, 480, 479, 483, 507, 480],
+        nl_positie: "Laagste score van de groep. In 2003 scoorde Nederland nog ruim boven al deze landen, inclusief Canada. De daling van 54 punten is daarmee niet alleen absoluut groot, maar ook relatief de scherpste."
       },
       {
-        naam: "Effectieve marginale belastingdruk anderhalf maal modaal met kind (%, 2023)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
-        waarden: [87, 49, 65, 28, 43, 39],
-        nl_positie: "Nederland heeft de hoogste effectieve marginale druk van de groep. Van elke extra euro houdt een Nederlands gezin met kind 13 cent over, een Zwitsers gezin 72 cent. Werken loont structureel minder."
+        naam: "Effectieve marginale belastingdruk anderhalf maal modaal met kind (%, 2024)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
+        waarden: [87, 49, 65, 28, 45, 39],
+        nl_positie: "Nederland heeft de hoogste effectieve marginale druk van de groep, bijna twee keer Canada, drie keer Zwitserland. Van elke extra verdiende euro houdt een Nederlands gezin met kind 13 cent over, een Zwitsers gezin 72 cent. Werken loont structureel minder."
       },
       {
-        naam: "Vertrouwen in de eigen regering (% (heel)veel, 2023)",
-        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Ierland", "Portugal"],
-        waarden: [28, 52, 39, 78, 45, 35],
-        nl_positie: "Diep onder elk vergelijkbaar land. Zwitserland scoort bijna drie keer hoger, Duitsland bijna twee keer."
+        naam: "Vertrouwen in de eigen regering (% (heel) veel, 2024)",
+        landen: ["Nederland", "Duitsland", "België", "Zwitserland", "Canada", "Australië"],
+        waarden: [22, 52, 39, 78, 32, 38],
+        nl_positie: "Laagste van de groep, ruim onder Canada en Australië. Zwitserland scoort meer dan drie keer hoger, Duitsland meer dan twee keer. Het verschil met landen buiten de EU is even groot als met landen erbinnen."
       }
     ]
   },
@@ -1331,12 +1344,13 @@ const DATA = {
         ]
       },
       {
-        claim: "\"We wonen ruimer dan ooit, m² per persoon stijgt.\"",
+        claim: "\"Nederland heeft toch een van de beste verzorgingsstaten ter wereld?\"",
         weerleg: [
-          { feit: "M² per inwoner stijgt vooral door dat ouderen alleen overblijven in eengezinswoningen, niet door dat jongeren meer ruimte krijgen", bron: "CBS Wonen / NVM" },
-          { feit: "25-34 jarigen die nog bij ouders wonen: gestegen van 10% naar 23%", bron: "CBS / Eurostat" },
-          { feit: "Gemiddelde leeftijd starter op de koopmarkt: 36 jaar (was 28 in 1995)", bron: "Kadaster / NVM Starters­monitor" },
-          { feit: "Wachttijd sociale huur Amsterdam: 14,5 jaar, Utrecht 12, Den Haag 8,5", bron: "WoningNet jaarrapportages" }
+          { feit: "Het stelsel is opgebouwd op een werkenden:gepensioneerden-ratio van 5:1 (jaren '70), die zakt naar 2:1 in 2050; de basis erodeert structureel", bron: "CBS, NIDI Verkenning bevolking 2050" },
+          { feit: "Premie zorgverzekering steeg van €1.030 (2006) naar €1.955 (2026), eigen risico verdubbelde van €150 naar €385, GGZ-wachttijd 23 weken", bron: "Vektis, NZa Wachttijdmonitor" },
+          { feit: "Pensioenstelselherziening (WTP, 2023): risico verschoof van fonds naar individu, €1.500 mrd herverdeeld over individuele potten", bron: "DNB, Pensioenfederatie" },
+          { feit: "Bijstand: 60% Syrische statushouders na 5 jaar nog in de bijstand; lange-termijn-uitkering­afhankelijkheid neemt toe juist in groepen die de instroom domineren", bron: "CBS Cohortenonderzoek asielmigranten" },
+          { feit: "De zogenaamde 'rangschikking als beste verzorgings­staat' (Euro Health Consumer Index 2018) wordt sinds 2019 niet meer gepubliceerd wegens financierings­problemen, dus de claim rust op een meting die niet meer bestaat", bron: "Health Consumer Powerhouse" }
         ]
       }
     ]
@@ -1355,12 +1369,12 @@ const DATA = {
         claimSub: "(2023, score 7.4/10)",
         werkelijk: [
           "Onder de 30 jaar zakt NL naar plek #17 in dezelfde WHR-meting",
-          "Antidepressiva-gebruik 7,1%, top 5 in de EU",
-          "20,6% van werkenden heeft burn-outklachten",
-          "47% voelt zich (zeer) eenzaam, RIVM 2022",
-          "Het 'geluk' is een Cantril-ladder zelfrapportage, geen objectieve meting"
+          "Antidepressiva-gebruik 7,1%, top 5 in de EU; eenzaamheid 49% (RIVM 2024)",
+          "20,6% van werkenden heeft burn-outklachten; suïcide 15-25 jaar verdubbelde sinds 2010",
+          "Het 'geluk' wordt gemeten via de Cantril-ladder zelfrapportage, sterk cultuur-gevoelig; Nederlanders vullen routinematig '7' of '8' in",
+          "Het rapport wordt uitgegeven door het UN Sustainable Development Solutions Network onder leiding van prof. Jeffrey Sachs, een uitgesproken voorstander van progressief klimaat-, migratie- en gelijkheidsbeleid; de zes verklarende variabelen waar de ranglijst op rust (BBP, sociale steun, levensverwachting, vrijheid, vrijgevigheid, corruptie­perceptie) zijn precies de variabelen waar klein, homogeen, geïndustrialiseerd West-Europa standaard goed op scoort. De ranking weerspiegelt dus mede de waarden van wie hem maakt"
         ],
-        bron: "WHR 2023/2024 jeugdsplit; Lareb / SFK; TNO-CBS NEA; RIVM gezondheids­onderzoek"
+        bron: "WHR 2024 (UN SDSN onder leiding J. Sachs); Lareb / SFK antidepressiva; TNO-CBS NEA; RIVM Eenzaamheidsmonitor 2024; methodologische kritiek op Cantril ladder, zie Diener et al. 'Beyond the Hedonic Treadmill', American Psychologist"
       },
       {
         ranking: "OESO Better Life Index, work-life balance",
@@ -1519,15 +1533,15 @@ const DATA = {
      11i. DEFENSIE LEEG, narcostaat
      ==================================================================== */
   defensieNarco: {
-    label: "Het leger is leeg. De staat kan zichzelf niet beschermen.",
-    source: "Min. Defensie Jaarverslag 2023; NAVO Defense Expenditure Report; Direzione Nazionale Antimafia (Italië) jaarrapport 2022; Erasmus Universiteit drugscriminaliteit­onderzoek",
+    label: "Een staat met één onderscheidende taak, aan beide kanten kwetsbaarder geworden.",
+    source: "Min. Defensie Jaarverslag 2024-2025; NAVO Defense Expenditure Report 2025; Defensienota 2024; Direzione Nazionale Antimafia (Italië) jaarrapport 2024; Erasmus Universiteit drugscriminaliteit­onderzoek",
     facts: [
-      { stat: "1,7%", label: "NL defensie­uitgaven als % BBP, NAVO-norm is 2%. Pas in 2024 begint NL toe te werken naar de norm" },
-      { stat: "9.000", label: "openstaande militaire vacatures, Landmacht alleen al 25% onder­bezetting" },
-      { stat: "0", label: "operationele Patriot-systemen na donaties aan Oekraïne, NL kan geen lucht­oorlog meer voeren" },
-      { stat: "'narcostaat'", label: "term gebruikt door Italiaanse anti-maffia-aanklagers voor Nederland, niet door rechts-NL maar door Italiaanse magistraten" },
-      { stat: "60 ton", label: "cocaïne onderschept Rotterdam 2023, slechts ~10% van werkelijke instroom volgens Erasmus-onderzoek" },
-      { stat: "2019/2021", label: "moorden op advocaat Wiersum + journalist De Vries, de staat kon zijn eigen rechts­hulpverleners niet beschermen" }
+      { stat: "1,7% → 2,0%", label: "Nederlandse defensie-uitgaven als % BBP, sinds 2024 fors omhoog naar NAVO-norm; akkoord Defensienota 2024 voegt €2,4 mrd structureel extra toe" },
+      { stat: "9.000+", label: "openstaande militaire vacatures eind 2024, ondanks wervings­campagnes en hogere salarissen; Landmacht zit op circa 75% van de doelsterkte" },
+      { stat: "2 → 4", label: "Patriot-batterijen: NL doneerde één compleet systeem en componenten aan Oekraïne (2022-2024) en heeft vier extra Patriots besteld via NAVO-procurement 2024; volledige operationele dekking wordt vóór 2030 niet hersteld" },
+      { stat: "'narcostaat'", label: "term gebruikt door Italiaanse anti-maffia-aanklagers (DNA jaarrapporten 2022-2024) voor Nederland, niet door rechts-NL maar door Italiaanse magistraten" },
+      { stat: "60 ton", label: "cocaïne onderschept Rotterdam 2024, volgens Erasmus-onderzoek slechts ongeveer 10% van werkelijke instroom" },
+      { stat: "2019/2021/2024", label: "moorden op advocaat Wiersum, journalist De Vries en een derde direct bij Marengo betrokkene in 2024; de staat kon zijn eigen rechts­hulp­verleners niet structureel beschermen" }
     ]
   },
 
